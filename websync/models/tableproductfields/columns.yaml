@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: id
+        type: number
+    field_name:
+        label: field_name
+        type: text
+    clientproductrules_id:
+        label: binded_field
+        type: text
+    fieldtype_id:
+        label: fieldtype_id
+        type: number
+    nullable:
+        label: nullable
+        type: text
+    is_relation_field_with_brand_table:
+        label: is_relation_field_with_brand_table
+        type: text
+    is_relation_field_with_category_table:
+        label: is_relation_field_with_category_table
+        type: text

@@ -1,0 +1,33 @@
+fields:
+    field_name:
+        label: 'Field name of syncro table'
+        span: auto
+        type: text
+    fieldtype_id:
+        label: 'Tipo Campo'
+        span: auto
+        type: number
+    clientproductrules_id:
+        label: 'Bind to regola'
+        span: auto
+        type: number
+    is_relation_field_with_brand_table:
+        label: "E' il campo di relazione coi brand"
+        span: left
+        type: checkbox
+    is_relation_field_with_category_table:
+        label: "E' il campo di relazione con le categorie"
+        span: left
+        type: checkbox
+    nullable:
+        label: Nullable
+        span: left
+        type: checkbox
+    brand_field_relation_rule_name:
+        label: 'Nome campo chiave esterna Brand'
+        span: left
+        type: number
+    category_field_relation_rule_name:
+        label: 'Nome campo chiave esterna Categoria'
+        span: left
+        type: number

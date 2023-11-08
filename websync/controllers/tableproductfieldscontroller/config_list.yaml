@@ -1,0 +1,12 @@
+list: $/tecnotrade/websync/models/tableproductfields/columns.yaml
+modelClass: Tecnotrade\Websync\Models\TableProductFields
+title: TableProductFieldsController
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'tecnotrade/websync/tableproductfieldscontroller/update/:id'

@@ -1,0 +1,10 @@
+name: TableProductFieldsController
+form: $/tecnotrade/websync/models/tableproductfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TableProductFields
+defaultRedirect: tecnotrade/websync/tableproductfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/tableproductfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tableproductfieldscontroller
+update:
+    redirect: tecnotrade/websync/tableproductfieldscontroller
+    redirectClose: tecnotrade/websync/tableproductfieldscontroller
