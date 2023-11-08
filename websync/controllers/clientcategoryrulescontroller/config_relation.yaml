@@ -1,0 +1,9 @@
+clientcategoryfields:
+    label: 'Aggiungi campo'
+    view:
+        list: $/tecnotrade/websync/models/clientcategoryfields/columns.yaml
+        toolbarButtons: add|remove
+    manage:
+        form: $/tecnotrade/websync/models/clientcategoryfields/fields.yaml
+        recordsPerPage: 10
+        showSearch: true

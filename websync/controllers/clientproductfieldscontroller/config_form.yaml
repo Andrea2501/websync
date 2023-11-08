@@ -1,0 +1,10 @@
+name: ClientProductFieldsController
+form: $/tecnotrade/websync/models/clientproductfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\ClientProductFields
+defaultRedirect: tecnotrade/websync/clientproductfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/clientproductfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/clientproductfieldscontroller
+update:
+    redirect: tecnotrade/websync/clientproductfieldscontroller
+    redirectClose: tecnotrade/websync/clientproductfieldscontroller

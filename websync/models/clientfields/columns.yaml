@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: name
+        type: text
+        sortable: true
+    label:
+        label: label
+        type: text
+        sortable: true
+    position_in_csv:
+        label: 'poszione in source'
+        type: number
+        sortable: true
+    fieldtype_id:
+        label: fieldtype_id
+        type: number

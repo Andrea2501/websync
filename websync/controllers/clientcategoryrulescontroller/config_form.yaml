@@ -1,0 +1,10 @@
+name: ClientCategoryRulesController
+form: $/tecnotrade/websync/models/clientcategoryrules/fields.yaml
+modelClass: Tecnotrade\Websync\Models\ClientCategoryRules
+defaultRedirect: tecnotrade/websync/clientcategoryrulescontroller
+create:
+    redirect: 'tecnotrade/websync/clientcategoryrulescontroller/update/:id'
+    redirectClose: tecnotrade/websync/clientcategoryrulescontroller
+update:
+    redirect: tecnotrade/websync/clientcategoryrulescontroller
+    redirectClose: tecnotrade/websync/clientcategoryrulescontroller

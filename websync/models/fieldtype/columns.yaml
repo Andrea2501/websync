@@ -1,0 +1,10 @@
+columns:
+    type:
+        label: type
+        type: text
+    code:
+        label: code
+        type: text
+    max_length:
+        label: max_length
+        type: text

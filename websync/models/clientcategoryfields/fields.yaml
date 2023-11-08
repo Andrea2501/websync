@@ -1,0 +1,21 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        type: text
+        comment: 'Usa il nome del campo nel file/api'
+    label:
+        label: Label
+        span: auto
+        type: text
+    order:
+        label: Order
+        span: auto
+        type: number
+        comment: 'Usa ordinamanto del campo nel file/api'
+    fieldtype:
+        label: 'Tipo campo'
+        nameFrom: type
+        descriptionFrom: description
+        span: auto
+        type: relation

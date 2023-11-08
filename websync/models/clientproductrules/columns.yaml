@@ -1,0 +1,25 @@
+columns:
+    rule_name:
+        label: 'nome regola'
+        type: text
+        sortable: true
+    label:
+        label: label
+        type: text
+        sortable: true
+    description:
+        label: description
+        type: text
+    primary_key:
+        label: 'primary key'
+        type: text
+        sortable: true
+    somma_campi_numerici:
+        label: 'somma campi numerici'
+        type: text
+    concatena_campi_come_stringa:
+        label: 'concatena campi come stringa'
+        type: text
+    elimina_da_mall_se_inizia_per:
+        label: 'nascondi da mall se inizia_per'
+        type: text

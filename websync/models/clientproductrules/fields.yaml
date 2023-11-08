@@ -1,0 +1,82 @@
+fields:
+    rule_name:
+        label: 'Nome Regola'
+        span: auto
+        type: text
+        comment: 'Il campo verrù utilizzato come campo raggruppato se utilizzato nelle regole. Non può contenere spazi vuoti solo lettere e _'
+    label:
+        label: Etichetta
+        span: right
+        type: text
+    description:
+        label: 'Breve descrizione'
+        span: full
+        size: ''
+        type: textarea
+    clientproductfields:
+        label: Campi
+        span: left
+        path: partial_fields
+        context:
+            - update
+            - preview
+        type: partial
+    regoleeformule:
+        label: 'Sezione Formule'
+        span: full
+        context:
+            - update
+            - preview
+        type: section
+    primary_key:
+        label: 'Primary key'
+        span: auto
+        context:
+            - update
+            - preview
+        type: checkbox
+        comment: 'Chiave primaria per sincro - user_defined_id di offline mall'
+    somma_campi_numerici:
+        label: 'Somma se i campi sono numerici'
+        span: left
+        context:
+            - update
+            - preview
+        type: checkbox
+        comment: 'I campi verranno sommati come decimal in un campo con il nome della regola'
+    concatena_campi_come_stringa:
+        label: 'Concatena campi come stringa'
+        span: left
+        context:
+            - update
+            - preview
+        type: checkbox
+        comment: 'I campi verranno uniti in un campo che avrà il nome della regola'
+    elimina_da_mall_se_inizia_per:
+        label: 'Nascondi da shop se inizia per'
+        span: left
+        context:
+            - update
+            - preview
+        type: text
+        comment: 'Se questo campo inizia per i caratteri specificati il record verrà nascosto dal negozio online.'
+    elimina_da_mall_se_uguale_a:
+        label: 'Nascondi da shop se uguale a'
+        span: left
+        context:
+            - update
+            - preview
+        type: number
+        comment: 'Se questo campo è uguale ad un testo o carattere specificato il record verrà nascosto da mall'
+    is_slug:
+        label: 'Is slug'
+        span: left
+        type: checkbox
+    force_slug:
+        label: 'Forza slug (scrivi lo slug)'
+        span: left
+        context:
+            - update
+            - preview
+        type: text
+        comment: 'lo slug viene creato automaicamente da Offline Mall'

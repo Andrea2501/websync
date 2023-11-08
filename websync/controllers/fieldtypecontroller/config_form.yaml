@@ -1,0 +1,10 @@
+name: FieldTypeController
+form: $/tecnotrade/websync/models/fieldtype/fields.yaml
+modelClass: Tecnotrade\Websync\Models\FieldType
+defaultRedirect: tecnotrade/websync/fieldtypecontroller
+create:
+    redirect: 'tecnotrade/websync/fieldtypecontroller/update/:id'
+    redirectClose: tecnotrade/websync/fieldtypecontroller
+update:
+    redirect: tecnotrade/websync/fieldtypecontroller
+    redirectClose: tecnotrade/websync/fieldtypecontroller

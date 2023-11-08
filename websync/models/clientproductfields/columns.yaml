@@ -1,0 +1,15 @@
+columns:
+    field_name:
+        label: field_name
+        type: text
+        sortable: true
+    label:
+        label: label
+        type: text
+        sortable: true
+    fieldtype_id:
+        label: tipo_campo
+        type: text
+        sortable: true
+        select: type
+        relation: fieldtype

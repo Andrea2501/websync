@@ -1,0 +1,19 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    order:
+        label: Order
+        span: auto
+        type: number
+    fieldtype:
+        label: 'Tipo Campo'
+        nameFrom: type
+        descriptionFrom: description
+        span: auto
+        type: relation

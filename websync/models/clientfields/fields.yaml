@@ -1,0 +1,19 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    position_in_csv:
+        label: 'Position in csv'
+        span: auto
+        type: number
+    fieldtype:
+        label: 'Tipo campo'
+        span: auto
+        nameFrom: type
+        descriptionFrom: description
+        type: relation

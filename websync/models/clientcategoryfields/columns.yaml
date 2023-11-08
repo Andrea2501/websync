@@ -1,0 +1,12 @@
+columns:
+    field_name:
+        label: field_name
+        type: text
+    label:
+        label: label
+        type: text
+    fieldtype_id:
+        label: tipo_campo
+        type: number
+        select: type
+        relation: fieldtype

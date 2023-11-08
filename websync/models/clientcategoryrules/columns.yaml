@@ -1,0 +1,28 @@
+columns:
+    id:
+        label: id
+        type: number
+    rule_name:
+        label: rule_name
+        type: text
+    label:
+        label: label
+        type: text
+    description:
+        label: description
+        type: text
+    force_slug:
+        label: force_slug
+        type: text
+    is_root_se_valore_null:
+        label: is_root
+        type: text
+    is_root_se_valore_uguale_a:
+        label: is_child
+        type: text
+    elimina_da_mall_se_uguale_a:
+        label: elimina_da_mall_se_uguale_a
+        type: text
+    elimina_da_mall_se_inizia_per:
+        label: elimina_da_mall_se_inizia_per
+        type: text

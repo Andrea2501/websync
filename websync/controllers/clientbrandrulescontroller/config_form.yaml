@@ -1,0 +1,10 @@
+name: ClientBrandRulesController
+form: $/tecnotrade/websync/models/clientbrandrules/fields.yaml
+modelClass: Tecnotrade\Websync\Models\ClientBrandRules
+defaultRedirect: tecnotrade/websync/clientbrandrulescontroller
+create:
+    redirect: 'tecnotrade/websync/clientbrandrulescontroller/update/:id'
+    redirectClose: tecnotrade/websync/clientbrandrulescontroller
+update:
+    redirect: tecnotrade/websync/clientbrandrulescontroller
+    redirectClose: tecnotrade/websync/clientbrandrulescontroller

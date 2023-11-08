@@ -1,0 +1,13 @@
+fields:
+    type:
+        label: Type
+        span: auto
+        type: text
+    code:
+        label: Code
+        span: auto
+        type: text
+    max_length:
+        label: 'Max length'
+        span: auto
+        type: number

@@ -1,0 +1,40 @@
+plugin:
+    name: 'tecnotrade.websync::lang.plugin.name'
+    description: 'tecnotrade.websync::lang.plugin.description'
+    author: Tecnotrade
+    icon: oc-icon-adjust
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: 'tecnotrade.websync::lang.plugin.name'
+        url: /
+        icon: icon-life-ring
+        sideMenu:
+            side-menu-item2:
+                label: 'Tipi Campi'
+                url: tecnotrade/websync/fieldtypecontroller
+                icon: icon-sitemap
+            side-menu-item:
+                label: 'Campi Sorgente Prodotti'
+                url: tecnotrade/websync/clientproductfieldscontroller
+                icon: icon-sitemap
+            side-menu-item3:
+                label: 'Regole Campi Sorgente Prodotti'
+                url: tecnotrade/websync/clientproductrulescontroller
+                icon: icon-sitemap
+            side-menu-item4:
+                label: 'Campi Sorgente Categorie'
+                url: tecnotrade/websync/clientcategoryfieldscontroller
+                icon: icon-sitemap
+            side-menu-item5:
+                label: 'Regole Campi Sorgente Categorie'
+                url: tecnotrade/websync/clientcategoryrulescontroller
+                icon: icon-sitemap
+            side-menu-item6:
+                label: 'Campi Sorgente Brand'
+                url: tecnotrade/websync/clientbrandfieldscontroller
+                icon: icon-sitemap
+            side-menu-item7:
+                label: 'Regole Campi Sorgente Brand'
+                url: tecnotrade/websync/clientbrandrulescontroller/
+                icon: icon-sitemap
