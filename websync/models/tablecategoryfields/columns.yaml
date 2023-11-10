@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: id
+        type: number
+    field_name:
+        label: field_name
+        type: text
+    is_relation_with_product_table:
+        label: is_relation_with_product_table
+        type: text
+    clientproductrules_id:
+        label: clientproductrules_id
+        type: number
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    clientcategoryrules_id:
+        label: clientcategoryrules_id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

@@ -1,0 +1,39 @@
+fields:
+    field_name:
+        label: 'Filed Name Of Syncro Table'
+        span: auto
+        readOnly: 1
+        required: 1
+        type: text
+    fieldtype:
+        label: 'Tipo Campo'
+        nameFrom: type
+        descriptionFrom: description
+        emptyOption: 'Seleziona il tipo di dato'
+        span: auto
+        readOnly: 1
+        required: 1
+        type: relation
+    clientcategoryrules:
+        label: 'Bind to category rule'
+        nameFrom: label
+        descriptionFrom: description
+        emptyOption: 'Seleziona la regola da associare'
+        span: auto
+        required: 1
+        type: relation
+    is_primary_key:
+        label: 'E chiave primaria dati'
+        span: left
+        type: checkbox
+    is_relation_with_product_table:
+        label: "E' la chiave con la tabella prodotti"
+        span: left
+        type: checkbox
+    clientproductrules:
+        label: 'Seleziona il campo chiave esterna dei prodotti'
+        nameFrom: label
+        descriptionFrom: description
+        span: left
+        emptyOption: 'Seleziona la chiave esterna prodotti'
+        type: relation

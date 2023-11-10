@@ -1,16 +1,23 @@
 fields:
     field_name:
         label: 'Field name of syncro table'
-        span: auto
+        span: left
+        readOnly: 1
         type: text
-    fieldtype_id:
+    fieldtype:
         label: 'Tipo Campo'
-        span: auto
-        type: number
-    clientproductrules_id:
-        label: 'Bind to regola'
-        span: auto
-        type: number
+        nameFrom: type
+        descriptionFrom: description
+        span: right
+        readOnly: 1
+        type: relation
+    clientproductrules:
+        label: 'Bind To rules'
+        span: left
+        nameFrom: label
+        descriptionFrom: description
+        emptyOption: 'Seleziona la regola da cui prendere il valore'
+        type: relation
     is_relation_field_with_brand_table:
         label: "E' il campo di relazione coi brand"
         span: left
@@ -23,11 +30,18 @@ fields:
         label: Nullable
         span: left
         type: checkbox
-    brand_field_relation_rule_name:
-        label: 'Nome campo chiave esterna Brand'
+    clientbrandrules:
+        label: 'Seleziona chiave esterna Brand'
+        nameFrom: label
+        descriptionFrom: description
+        emptyOption: 'Seleziona una regola'
         span: left
-        type: number
-    category_field_relation_rule_name:
-        label: 'Nome campo chiave esterna Categoria'
+        containerAttributes: {  }
+        type: relation
+    clientcategoryrules:
+        label: 'Seleziona chiave esterna Categoria'
         span: left
-        type: number
+        nameFrom: label
+        descriptionFrom: description
+        emptyOption: 'Seleziona una regola'
+        type: relation

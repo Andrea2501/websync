@@ -126,3 +126,63 @@ v1.0.42:
 v1.0.43:
     - 'Created table tecnotrade_websync_syncro_table_product_fields'
     - builder_table_create_tecnotrade_websync_syncro_table_product_fields.php
+v1.0.44:
+    - 'Updated table tecnotrade_websync_syncro_table_product_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_product_fields.php
+v1.0.45:
+    - 'Updated table tecnotrade_websync_syncro_table_product_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_product_fields_2.php
+v1.0.46:
+    - 'Created table tecnotrade_websync_products'
+    - builder_table_create_tecnotrade_websync_products.php
+v1.0.47:
+    - 'Seeder per field_types table'
+    - fieldtypeseeder.php
+v1.0.48:
+    - 'Seeder per ProductTableFields'
+    - tableproductfieldseeder.php
+v1.0.49:
+    - 'Created table tecnotrade_websync_brand'
+    - builder_table_create_tecnotrade_websync_brand.php
+v1.0.50:
+    - 'Created table tecnotrade_websync_syncro_table_brand'
+    - builder_table_create_tecnotrade_websync_syncro_table_brand.php
+v1.0.51:
+    - 'Updated table tecnotrade_websync_syncro_table_brand'
+    - builder_table_update_tecnotrade_websync_syncro_table_brand.php
+v1.0.52:
+    - 'Updated table tecnotrade_websync_syncro_table_brand'
+    - builder_table_update_tecnotrade_websync_syncro_table_brand_2.php
+v1.0.53:
+    - 'Updated table tecnotrade_websync_brand'
+    - builder_table_update_tecnotrade_websync_brand.php
+v1.0.54:
+    - 'Seeder Per BrandTableFields'
+    - tablebrandfieldseeder.php
+v1.0.55:
+    - 'Created table tecnotrade_websync_category'
+    - builder_table_create_tecnotrade_websync_category.php
+v1.0.56:
+    - 'Updated table tecnotrade_websync_category'
+    - builder_table_update_tecnotrade_websync_category.php
+v1.0.57:
+    - 'Created table tecnotrade_websync_syncro_table_category'
+    - builder_table_create_tecnotrade_websync_syncro_table_category.php
+v1.0.58:
+    - 'Updated table tecnotrade_websync_syncro_table_brand'
+    - builder_table_update_tecnotrade_websync_syncro_table_brand_fields.php
+v1.0.59:
+    - 'Updated table tecnotrade_websync_syncro_table_category'
+    - builder_table_update_tecnotrade_websync_syncro_table_category_fields.php
+v1.0.60:
+    - 'Updated table tecnotrade_websync_syncro_table_category_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_category_fields_2.php
+v1.0.61:
+    - 'Seeder Per Table Category Fields'
+    - tablecategoryfieldseeder.php
+v1.0.62:
+    - 'Updated table tecnotrade_websync_category'
+    - builder_table_update_tecnotrade_websync_category_2.php
+v1.0.63:
+    - 'Rifatto Seeder Per Table Category Fields dopo modifica Database table'
+    - tablecategoryfieldseeder.php    

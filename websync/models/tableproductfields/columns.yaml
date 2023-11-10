@@ -11,6 +11,8 @@ columns:
     fieldtype_id:
         label: fieldtype_id
         type: number
+        select: type
+        relation: fieldtype
     nullable:
         label: nullable
         type: text

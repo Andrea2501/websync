@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class TableProductFields extends Model
+class TableCategoryFields extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
@@ -13,21 +13,18 @@ class TableProductFields extends Model
     /**
      * @var string table in the database used by the model.
      */
-    public $table = 'tecnotrade_websync_syncro_table_product_fields';
+    public $table = 'tecnotrade_websync_syncro_table_category_fields';
 
     /**
      * @var array rules for validation.
      */
     public $rules = [
     ];
-
     public $belongsTo=[
         'fieldtype'=>['Tecnotrade\Websync\Models\FieldType',
         'order'=>'type'
         ],
-        'clientbrandrules'=>['Tecnotrade\Websync\Models\ClientBrandRules',
-        'order'=>'label'
-        ],
+       
         'clientcategoryrules'=>['Tecnotrade\Websync\Models\ClientCategoryRules',
         'order'=>'label'
         ],

@@ -16,4 +16,5 @@ fields:
         nameFrom: type
         descriptionFrom: description
         span: auto
+        emptyOption: 'Seleziona il tipo di campo'
         type: relation

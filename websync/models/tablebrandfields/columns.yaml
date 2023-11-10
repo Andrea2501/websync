@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: id
+        type: number
+    field_name:
+        label: field_name
+        type: text
+    fieldtype_id:
+        label: filedtype_id
+        type: number
+        select: type
+        relation: fieldtype
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    clientbrandrules_id:
+        label: binded_field
+        type: number
+        select: label
+        relation: clientbrandrules

@@ -70,7 +70,7 @@ fields:
             - preview
         type: number
         comment: "E' figlio se il codice è multiplo di una lunghezza di n caratteri"
-    chiled_moltiplicatore_iniziale:
+    child_moltiplicatore_iniziale:
         label: 'Moltiplicatore iniziale codice figli'
         span: right
         context:

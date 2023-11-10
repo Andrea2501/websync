@@ -1,0 +1,10 @@
+name: TableBrandFieldsController
+form: $/tecnotrade/websync/models/tablebrandfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TableBrandFields
+defaultRedirect: tecnotrade/websync/tablebrandfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/tablebrandfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tablebrandfieldscontroller
+update:
+    redirect: tecnotrade/websync/tablebrandfieldscontroller
+    redirectClose: tecnotrade/websync/tablebrandfieldscontroller

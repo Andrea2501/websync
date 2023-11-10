@@ -1,0 +1,18 @@
+In update ci sono le seguenti versioni che eseguono i seed:
+
+v1.0.47:
+    - 'Seeder per field_types table'
+    - fieldtypeseeder.php
+v1.0.48:
+    - 'Seeder per ProductTableFields'
+    - tableproductfieldseeder.php 
+v1.0.54:
+    - 'Seeder Per BrandTableFields'
+    - tablebrandfieldseeder.php
+v1.0.61:
+    - 'Seeder Per Table Category Fields'
+    - tablecategoryfieldseeder.php   
+
+v1.0.63:
+    - 'Seeder Per Table Category Fields'
+    - tablecategoryfieldseeder.php               

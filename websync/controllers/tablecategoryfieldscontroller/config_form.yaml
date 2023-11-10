@@ -1,0 +1,10 @@
+name: TableCategoryFieldsController
+form: $/tecnotrade/websync/models/tablecategoryfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TableCategoryFields
+defaultRedirect: tecnotrade/websync/tablecategoryfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/tablecategoryfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tablecategoryfieldscontroller
+update:
+    redirect: tecnotrade/websync/tablecategoryfieldscontroller
+    redirectClose: tecnotrade/websync/tablecategoryfieldscontroller
