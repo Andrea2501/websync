@@ -1,0 +1,10 @@
+name: SupportBrandTableController
+form: $/tecnotrade/websync/models/supportbrandtable/fields.yaml
+modelClass: Tecnotrade\Websync\Models\SupportBrandTable
+defaultRedirect: tecnotrade/websync/supportbrandtablecontroller
+create:
+    redirect: 'tecnotrade/websync/supportbrandtablecontroller/update/:id'
+    redirectClose: tecnotrade/websync/supportbrandtablecontroller
+update:
+    redirect: tecnotrade/websync/supportbrandtablecontroller
+    redirectClose: tecnotrade/websync/supportbrandtablecontroller

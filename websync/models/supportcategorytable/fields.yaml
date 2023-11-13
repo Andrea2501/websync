@@ -1,0 +1,29 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        type: text
+    code:
+        label: Code
+        span: auto
+        type: text
+    parent_id:
+        label: 'Parent id'
+        span: auto
+        type: number
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number
+    october_parent_id:
+        label: 'October parent id'
+        span: auto
+        type: number

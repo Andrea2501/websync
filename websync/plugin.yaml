@@ -39,7 +39,7 @@ navigation:
                 url: tecnotrade/websync/clientbrandrulescontroller/
                 icon: icon-sitemap
     main-menu-item2:
-        label: 'Web Sync Tables'
+        label: 'WebSync Binding'
         url: /
         icon: icon-life-ring
         sideMenu:
@@ -54,4 +54,21 @@ navigation:
             side-menu-item3:
                 label: 'Category Table Fields'
                 url: tecnotrade/websync/tablecategoryfieldscontroller
+                icon: icon-sitemap
+    main-menu-item3:
+        label: 'WebSync Support Tables'
+        url: /
+        icon: icon-life-ring
+        sideMenu:
+            side-menu-item:
+                label: 'Support Product Table'
+                url: tecnotrade/websync/supportproducttablecontroller
+                icon: icon-sitemap
+            side-menu-item2:
+                label: 'Support Category Table'
+                url: tecnotrade/websync/supportcategorytablecontroller
+                icon: icon-sitemap
+            side-menu-item3:
+                label: 'Support Brand Table'
+                url: tecnotrade/websync/supportbrandtablecontroller
                 icon: icon-sitemap

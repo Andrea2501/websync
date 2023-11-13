@@ -1,0 +1,33 @@
+fields:
+    product_name:
+        label: 'Product name'
+        span: auto
+        type: text
+    codice_interno_univoco:
+        label: 'Codice interno univoco'
+        span: auto
+        type: text
+    brand_code:
+        label: 'Brand code'
+        span: auto
+        type: text
+    category_code:
+        label: 'Category code'
+        span: auto
+        type: text
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number
+    category_october_id:
+        label: 'Category october id'
+        span: auto
+        type: number
+    brand_october_id:
+        label: 'Brand october id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number

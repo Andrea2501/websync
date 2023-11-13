@@ -1,0 +1,17 @@
+fields:
+    brand_name:
+        label: 'Brand name'
+        span: auto
+        type: text
+    brand_code:
+        label: 'Brand code'
+        span: auto
+        type: text
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number

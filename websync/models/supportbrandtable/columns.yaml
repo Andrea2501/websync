@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: id
+        type: number
+    brand_name:
+        label: brand_name
+        type: text
+    brand_code:
+        label: brand_code
+        type: text
+    october_id:
+        label: october_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    description:
+        label: description
+        type: text
+    slug:
+        label: slug
+        type: text
+    website:
+        label: website
+        type: text

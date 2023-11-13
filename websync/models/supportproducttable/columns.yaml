@@ -1,0 +1,85 @@
+columns:
+    id:
+        label: id
+        type: number
+    product_name:
+        label: product_name
+        type: text
+    codice_interno_univoco:
+        label: codice_interno_univoco
+        type: text
+    brand_code:
+        label: brand_code
+        type: text
+    category_code:
+        label: category_code
+        type: text
+    excerpt:
+        label: excerpt
+        type: text
+    description:
+        label: description
+        type: text
+    extended_description:
+        label: extended_description
+        type: text
+    meta_title:
+        label: meta_title
+        type: text
+    meta_description:
+        label: meta_description
+        type: text
+    qty_in_stock_int:
+        label: qty_in_stock_int
+        type: number
+    qty_in_stock_double:
+        label: qty_in_stock_double
+        type: text
+    inventory_management_method:
+        label: inventory_management_method
+        type: text
+    allow_out_of_stock_purchase:
+        label: allow_out_of_stock_purchase
+        type: text
+    stackable:
+        label: stackable
+        type: text
+    shippable:
+        label: shippable
+        type: text
+    price_included_taxes:
+        label: price_included_taxes
+        type: text
+    price:
+        label: price
+        type: text
+    mpn:
+        label: mpn
+        type: text
+    gtin:
+        label: gtin
+        type: text
+    original_slug:
+        label: original_slug
+        type: text
+    october_id:
+        label: october_id
+        type: number
+    category_october_id:
+        label: category_october_id
+        type: number
+    brand_october_id:
+        label: brand_october_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    slug:
+        label: slug
+        type: text

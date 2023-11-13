@@ -1,0 +1,10 @@
+name: SupportProductTableController
+form: $/tecnotrade/websync/models/supportproducttable/fields.yaml
+modelClass: Tecnotrade\Websync\Models\SupportProductTable
+defaultRedirect: tecnotrade/websync/supportproducttablecontroller
+create:
+    redirect: 'tecnotrade/websync/supportproducttablecontroller/update/:id'
+    redirectClose: tecnotrade/websync/supportproducttablecontroller
+update:
+    redirect: tecnotrade/websync/supportproducttablecontroller
+    redirectClose: tecnotrade/websync/supportproducttablecontroller

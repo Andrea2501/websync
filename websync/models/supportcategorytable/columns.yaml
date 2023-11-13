@@ -1,0 +1,49 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: name
+        type: text
+    slug:
+        label: slug
+        type: text
+    code:
+        label: code
+        type: text
+    meta_title:
+        label: meta_title
+        type: text
+    meta_description:
+        label: meta_description
+        type: text
+    description:
+        label: description
+        type: text
+    description_short:
+        label: description_short
+        type: text
+    parent_code:
+        label: parent_code
+        type: text
+    level:
+        label: level
+        type: number
+    parent_id:
+        label: parent_id
+        type: number
+    october_id:
+        label: october_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    october_parent_id:
+        label: october_parent_id
+        type: number

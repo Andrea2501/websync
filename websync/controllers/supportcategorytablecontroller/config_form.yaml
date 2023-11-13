@@ -1,0 +1,10 @@
+name: SupportCategoryTableController
+form: $/tecnotrade/websync/models/supportcategorytable/fields.yaml
+modelClass: Tecnotrade\Websync\Models\SupportCategoryTable
+defaultRedirect: tecnotrade/websync/supportcategorytablecontroller
+create:
+    redirect: 'tecnotrade/websync/supportcategorytablecontroller/update/:id'
+    redirectClose: tecnotrade/websync/supportcategorytablecontroller
+update:
+    redirect: tecnotrade/websync/supportcategorytablecontroller
+    redirectClose: tecnotrade/websync/supportcategorytablecontroller
