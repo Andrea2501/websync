@@ -17,3 +17,4 @@ columns:
     fieldtype_id:
         label: fieldtype_id
         type: number
+        invisible: true

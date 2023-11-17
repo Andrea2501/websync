@@ -15,7 +15,7 @@ fields:
         type: textarea
     clientproductfields:
         label: Campi
-        span: left
+        span: full
         path: partial_fields
         context:
             - update
@@ -69,14 +69,6 @@ fields:
         type: number
         comment: 'Se questo campo è uguale ad un testo o carattere specificato il record verrà nascosto da mall'
     is_slug:
-        label: 'Is slug'
+        label: 'Forza Slug Da Campo (NON CONSIGLIATO)'
         span: left
         type: checkbox
-    force_slug:
-        label: 'Forza slug (scrivi lo slug)'
-        span: left
-        context:
-            - update
-            - preview
-        type: text
-        comment: 'lo slug viene creato automaicamente da Offline Mall'

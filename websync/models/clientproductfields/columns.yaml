@@ -7,9 +7,8 @@ columns:
         label: label
         type: text
         sortable: true
-    fieldtype_id:
-        label: tipo_campo
+    order:
+        label: position
         type: text
+        invisible: false
         sortable: true
-        select: type
-        relation: fieldtype

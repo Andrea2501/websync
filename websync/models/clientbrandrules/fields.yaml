@@ -21,19 +21,15 @@ fields:
         label: 'Regole e Condizioni'
         span: full
         type: section
+    elimina_da_mall_se_uguale_a:
+        label: 'Elimina da mall se uguale a'
+        span: auto
+        type: text
     elimina_da_mall_se_inizia_per:
         label: 'Elimina da mall se inizia per'
         span: auto
         type: text
-    elimina_da_mall_se_uguale_a:
-        label: 'Elimina da mall se uguale a'
-        span: auto
-        type: textarea
-    force_slug:
-        label: 'Force slug'
-        span: auto
-        type: textarea
     is_slug:
-        label: 'Is slug'
-        span: auto
+        label: 'Forza lo slug da questo campo (non consigliato!!!!)'
+        span: left
         type: checkbox

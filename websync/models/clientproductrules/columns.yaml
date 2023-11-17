@@ -23,3 +23,7 @@ columns:
     elimina_da_mall_se_inizia_per:
         label: 'nascondi da mall se inizia_per'
         type: text
+    is_slug:
+        label: 'Forza Slug Da Campo'
+        type: text
+        sortable: true

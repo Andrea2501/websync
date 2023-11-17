@@ -2,7 +2,7 @@ clientbrandfields:
     label: Aggiungi campo
     view:
         list: $/tecnotrade/websync/models/clientbrandfields/columns.yaml
-        toolbarButtons: add|remove
+        toolbarButtons: add|remove|create|delete
     manage:
         form: $/tecnotrade/websync/models/clientbrandfields/fields.yaml
         recordsPerPage: 10

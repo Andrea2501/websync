@@ -26,17 +26,8 @@ fields:
             - update
             - preview
         type: section
-    force_slug:
-        label: 'Forza Slug'
-        size: ''
-        span: auto
-        context:
-            - update
-            - preview
-        type: textarea
-        comment: 'Verra forzato lo slug della categoria NON CONSIGLIATO'
     is_slug:
-        label: 'Is slug'
+        label: 'Forza Slug Da Questo Campo (NON CONSIGLIATO!!!)'
         span: left
         type: checkbox
     is_root_se_valore_null:

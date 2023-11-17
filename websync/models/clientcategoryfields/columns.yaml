@@ -5,8 +5,6 @@ columns:
     label:
         label: label
         type: text
-    fieldtype_id:
-        label: tipo_campo
+    order:
+        label: 'position in csv/api'
         type: number
-        select: type
-        relation: fieldtype

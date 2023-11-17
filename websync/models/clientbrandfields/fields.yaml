@@ -17,4 +17,5 @@ fields:
         descriptionFrom: description
         span: auto
         emptyOption: 'Seleziona il tipo di campo'
+        hidden: 1
         type: relation

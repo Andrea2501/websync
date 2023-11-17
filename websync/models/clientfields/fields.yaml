@@ -2,10 +2,12 @@ fields:
     name:
         label: Name
         span: auto
+        required: 0
         type: text
     label:
         label: Label
         span: auto
+        required: 1
         type: text
     position_in_csv:
         label: 'Position in csv'
@@ -13,8 +15,9 @@ fields:
         type: number
     fieldtype:
         label: 'Tipo campo'
-        span: auto
         nameFrom: type
         descriptionFrom: description
         emptyOption: 'Seleziona il tipo di campo'
+        span: auto
+        hidden: 0
         type: relation

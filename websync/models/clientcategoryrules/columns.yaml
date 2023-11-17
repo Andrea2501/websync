@@ -11,9 +11,6 @@ columns:
     description:
         label: description
         type: text
-    force_slug:
-        label: force_slug
-        type: text
     is_root_se_valore_null:
         label: is_root
         type: text
@@ -25,4 +22,10 @@ columns:
         type: text
     elimina_da_mall_se_inizia_per:
         label: elimina_da_mall_se_inizia_per
+        type: text
+    updated_at:
+        label: updated_at
+        type: datetime
+    is_slug:
+        label: 'Forza Slug Da questo Campo'
         type: text

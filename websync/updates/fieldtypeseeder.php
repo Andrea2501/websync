@@ -11,13 +11,13 @@ class FieldTypeSeeded extends Seeder
 
         $field = FieldType::create([
             'type' => 'varchar (191)',
-            'code' => 'varchat-191',
+            'code' => 'varchar-191',
             'max_length' => '191',
             
         ]);
         $field = FieldType::create([
             'type' => 'varchar (255)',
-            'code' => 'varchat-255',
+            'code' => 'varchar-255',
             'max_length' => '255',
             
         ]);

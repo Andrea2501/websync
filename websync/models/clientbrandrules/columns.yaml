@@ -8,9 +8,6 @@ columns:
     description:
         label: description
         type: text
-    force_slug:
-        label: force_slug
-        type: text
     elimina_da_mall_se_inizia_per:
         label: elimina_da_mall_se_inizia_per
         type: text
@@ -23,3 +20,6 @@ columns:
     updated_at:
         label: updated_at
         type: datetime
+    is_slug:
+        label: 'Forza Slug Da Campo'
+        type: text

@@ -8,8 +8,3 @@ columns:
     order:
         label: order
         type: number
-    fieldtype_id:
-        label: field_type
-        type: text
-        select: type
-        relation: fieldtype
