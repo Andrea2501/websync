@@ -1,0 +1,316 @@
+fields:
+    dropdown1:
+        label: 'Seleziona Il Tipo di Sincro'
+        options:
+            CSV: CSV
+            API: API
+        emptyOption: 'Seleziona il tipo di sincronizzaione'
+        showSearch: 0
+        span: auto
+        type: dropdown
+    sectioncsv:
+        label: 'Configura Sincro Csv'
+        span: left
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: section
+    csv_header:
+        label: "I Csv Hanno L'Header"
+        span: left
+        default: 1
+        type: checkbox
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    product_file_name:
+        label: 'Product file name'
+        span: left
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: text
+        comment: 'Inserisci i nomi dei file esatti, esempio: prodotti.csv'
+    category_file_name:
+        label: 'Category file name'
+        span: left
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: text
+        comment: 'Inserisci i nomi dei file esatti, esempio: category.csv'
+    brand_file_name:
+        label: 'Brand file name'
+        span: left
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: text
+        comment: 'Inserisci i nomi dei file esatti, esempio: brand.csv'
+    separator:
+        label: Separator
+        span: left
+        default: ;
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: text
+        comment: 'Inserisci il separatore: 1 carattere, preferibili: ; o |'
+    caricamento_csv_con_ftp:
+        label: 'Carica i file tramite ftp o direttamente dal backend'
+        options:
+            - 'Caricamento diretto'
+            - 'Caricamento tramite ftp'
+        span: left
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: radio
+    ftp_host:
+        label: 'Ftp host'
+        span: left
+        type: text
+        comment: "L'host deve puntare alla cartella contenente i file da scaricare"
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    ftp_username:
+        label: 'Ftp username'
+        span: left
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    ftp_password:
+        label: 'Ftp password'
+        span: auto
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    ftp_use_ssl:
+        label: 'Ftp use ssl'
+        span: auto
+        type: checkbox
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    ftp_port:
+        label: 'Ftp port'
+        span: left
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+    sectionapi:
+        label: 'Configura Sincro Api'
+        span: full
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+        type: section
+    api_username:
+        label: 'Api username'
+        span: auto
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_password:
+        label: 'Api password'
+        span: right
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_token_required:
+        label: 'Specifica se richiede un token di autenticazione'
+        span: left
+        type: checkbox
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_url_per_ottenere_token:
+        label: "Inserire l'url completo per ottenere il token di autenticazione"
+        span: left
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    param_name_retituiti_da_token_separati_da_virgola:
+        label: 'Nome parametro restituito da chiamata a token, normalmente il nome è token. Il risultato deve essere un JSON'
+        span: right
+        type: text
+        comment: "Il parametri verrà utilizzati per l'autenticazione a tutte le chiamate api esclusa quella del token"
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_get_param_username_name:
+        label: 'Nome Parametro contenente lo username'
+        span: auto
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_get_param_password_name:
+        label: 'Nome Parametro contenente la password'
+        span: right
+        type: text
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_get_page_param_name:
+        label: 'Nome Parametro Da Leggere  Contenente Il Numero di Pagina'
+        span: auto
+        type: text
+        comment: 'Compilare solo se il parametro va esiste (comunemente: page)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_get_record_per_page_param_name:
+        label: 'Nome Parametro Da leggere Per avere il Numero Di Record Da Leggere Per Ogni Chiamata Alle Api'
+        span: auto
+        type: text
+        comment: 'Se utilizzato, verrà letto il numero di record restituiti per ogni pagina (comunemente: per_page)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_get_total_pages:
+        label: 'Parametro da leggere contenente il numero di pagine totali dato il numero di record per pagina'
+        span: auto
+        type: text
+        comment: "Compilare solo se il parametro va letto nell'header delle chiamate (comunemente: total_pages)"
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_post_page_param_name:
+        label: 'Nome parametro da PASSARE per leggere i record di una pagina specifica'
+        span: left
+        type: text
+        comment: 'Parametro in POST da passare alle api (normalmente page)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_post_per_page_param_name:
+        label: 'Nome Parametro Api da PASSARE per contenente il numero di record per pagina'
+        span: right
+        type: number
+        comment: 'Parametro in POST da passare alle api (normalmente per_page)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_num_record_per_page:
+        label: 'Numero di record da leggere per pagina'
+        span: left
+        type: number
+        comment: 'Inserire il numero di record che ogni chiamata api deve restituire per ogni pagina'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_toproducts:
+        label: 'Url Per Ottenere I dati In JSON dei Prodotti'
+        span: left
+        type: text
+        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_tocategory:
+        label: 'Url Per Ottenere I dati In JSON delle Categorie'
+        span: left
+        type: text
+        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'
+    api_tobrand:
+        label: 'Url Per Ottenere I dati In JSON dei Brand'
+        span: left
+        type: text
+        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'

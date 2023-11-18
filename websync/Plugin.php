@@ -36,5 +36,19 @@ class Plugin extends PluginBase
      */
     public function registerSettings()
     {
+        return [
+            'settings' => [
+                'label' => 'Configurazioni Sincro Web  ',
+                'description' => 'Imposta i parametri per la sincto.',
+                'category' => 'Tecnotrade',
+                'icon' => 'icon-cog',
+                'class' => \Tecnotrade\Websync\Models\ConfigSetting::class,
+                'order' => 50,
+                'keywords' => 'sincro syncro congig tecnotrade',
+                'permissions' => ['rainlab.users.access_settings']
+                
+            ],
+            
+        ];
     }
 }
