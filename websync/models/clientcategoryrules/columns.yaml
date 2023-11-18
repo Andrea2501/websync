@@ -11,6 +11,9 @@ columns:
     description:
         label: description
         type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text    
     is_root_se_valore_null:
         label: is_root
         type: text
@@ -29,3 +32,4 @@ columns:
     is_slug:
         label: 'Forza Slug Da questo Campo'
         type: text
+    

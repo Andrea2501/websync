@@ -21,6 +21,10 @@ fields:
         label: 'Regole e Condizioni'
         span: full
         type: section
+    is_primary_key:
+        label: 'Is primary key'
+        span: full
+        type: checkbox
     elimina_da_mall_se_uguale_a:
         label: 'Elimina da mall se uguale a'
         span: auto

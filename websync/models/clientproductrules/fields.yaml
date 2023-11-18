@@ -17,9 +17,6 @@ fields:
         label: Campi
         span: full
         path: partial_fields
-        context:
-            - update
-            - preview
         type: partial
     regoleeformule:
         label: 'Sezione Formule'

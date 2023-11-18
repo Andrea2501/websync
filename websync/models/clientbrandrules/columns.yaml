@@ -23,3 +23,6 @@ columns:
     is_slug:
         label: 'Forza Slug Da Campo'
         type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text

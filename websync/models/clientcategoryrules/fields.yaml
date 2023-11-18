@@ -15,9 +15,6 @@ fields:
         label: 'Seleziona Campi'
         span: full
         path: partial_fields
-        context:
-            - update
-            - preview
         type: partial
     section1:
         label: 'Sezione formule'
@@ -36,6 +33,10 @@ fields:
         context:
             - update
             - preview
+        type: checkbox
+    is_primary_key:
+        label: 'Is primary key'
+        span: left
         type: checkbox
     is_root_se_valore_uguale_a:
         label: 'Is root se valore uguale a'

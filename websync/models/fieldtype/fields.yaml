@@ -11,3 +11,7 @@ fields:
         label: 'Max length'
         span: auto
         type: number
+    is_numeric:
+        label: 'Is numeric'
+        span: auto
+        type: checkbox
