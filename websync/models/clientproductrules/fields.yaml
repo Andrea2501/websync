@@ -49,6 +49,11 @@ fields:
             - preview
         type: checkbox
         comment: 'I campi verranno uniti in un campo che avrà il nome della regola'
+    is_data_update:
+        label: 'Campo da utilizzare per controllare data di aggiornamanto del record'
+        span: left
+        type: checkbox
+        comment: 'Vedi configurazioni per utilizzare questo parametro'
     elimina_da_mall_se_inizia_per:
         label: 'Nascondi da shop se inizia per'
         span: left

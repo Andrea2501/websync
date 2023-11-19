@@ -26,3 +26,6 @@ columns:
     is_primary_key:
         label: is_primary_key
         type: text
+    is_data_update:
+        label: is_data_update
+        type: text

@@ -35,6 +35,12 @@ class FieldTypeSeeded extends Seeder
             'is_primary_key'=>'0',
             'fieldtype_id'=>'2'
         ]);
+        $field = BrandFields::create([
+            'field_name' => 'update_at',
+            'is_primary_key'=>'0',
+            'fieldtype_id'=>'7'
+            
+        ]);
 
     }
 }

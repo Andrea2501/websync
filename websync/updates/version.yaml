@@ -213,3 +213,22 @@ v1.0.71:
 v1.0.72:
     - 'Created table tecnotrade_websync_config_settings'
     - builder_table_create_tecnotrade_websync_config_settings.php
+v1.0.73:
+    - 'Updated table tecnotrade_websync_clientproductrules'
+    - builder_table_update_tecnotrade_websync_clientproductrules_8.php
+v1.0.74:
+    - 'Updated table tecnotrade_websync_clientcatrules'
+    - builder_table_update_tecnotrade_websync_clientcatrules_12.php
+v1.0.75:
+    - 'Updated table tecnotrade_websync_clientbrandrules'
+    - builder_table_update_tecnotrade_websync_clientbrandrules_6.php
+v1.0.76:
+    - 'Aggiunta Seed Campi update_at Brand Product Category'
+    - tableproductfieldseeder.php
+    - tablebrandfieldseeder.php
+    - tablecategoryfieldseeder
+v1.0.77:
+    - 'Altra Modifica Seed Campi update_at Brand Product Category'
+    - tableproductfieldseeder.php
+    - tablebrandfieldseeder.php
+    - tablecategoryfieldseeder           

@@ -27,3 +27,6 @@ columns:
         label: 'Forza Slug Da Campo'
         type: text
         sortable: true
+    is_data_update:
+        label: is_data_update
+        type: text

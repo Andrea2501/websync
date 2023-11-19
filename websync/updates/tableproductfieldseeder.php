@@ -130,5 +130,11 @@ class TableProductFieldSeeder extends Seeder
             'fieldtype_id'=>'1'
             
         ]);
+        $field = ProductFields::create([
+            'field_name' => 'update_at',
+            'is_primary_key'=>'0',
+            'fieldtype_id'=>'7'
+            
+        ]);
     }
 }

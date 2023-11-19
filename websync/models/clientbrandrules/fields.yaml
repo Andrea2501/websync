@@ -23,15 +23,20 @@ fields:
         type: section
     is_primary_key:
         label: 'Is primary key'
-        span: full
+        span: left
         type: checkbox
+    is_data_update:
+        label: 'Campo che contiene la data di modifica del record'
+        span: left
+        type: checkbox
+        comment: "Impostare l'utilizzo nelle configurazione"
     elimina_da_mall_se_uguale_a:
         label: 'Elimina da mall se uguale a'
-        span: auto
+        span: left
         type: text
     elimina_da_mall_se_inizia_per:
         label: 'Elimina da mall se inizia per'
-        span: auto
+        span: left
         type: text
     is_slug:
         label: 'Forza lo slug da questo campo (non consigliato!!!!)'

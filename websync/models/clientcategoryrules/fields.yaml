@@ -38,6 +38,11 @@ fields:
         label: 'Is primary key'
         span: left
         type: checkbox
+    is_data_update:
+        label: 'Campo da utilizzare per verificare la data di aggiornamanto'
+        span: left
+        type: checkbox
+        comment: 'Imposta il parametro nelle configurazioni'
     is_root_se_valore_uguale_a:
         label: 'Is root se valore uguale a'
         span: left
