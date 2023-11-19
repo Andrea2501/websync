@@ -1,6 +1,6 @@
 plugin:
-    name: 'tecnotrade.websync::lang.plugin.name'
-    description: 'tecnotrade.websync::lang.plugin.description'
+    name: 'Tecnotrade WebSync'
+    description: 'Web Sync Con Plugin Mall'
     author: Tecnotrade
     icon: oc-icon-adjust
     homepage: ''

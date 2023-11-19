@@ -149,7 +149,7 @@ fields:
         span: auto
         type: text
         dependsOn:
-            - dropdown1
+            - dropdown1 
         trigger:
             action: show
             field: dropdown1
@@ -184,20 +184,20 @@ fields:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    param_name_retituiti_da_token_separati_da_virgola:
-        label: 'Nome parametro restituito da chiamata a token, normalmente il nome è token. Il risultato deve essere un JSON'
+    api_param_post_token_name:
+        label: 'Nome parametro in cui inserire il valore del token, normalmente il nome è token.'
         span: right
         type: text
-        comment: "Il parametri verrà utilizzati per l'autenticazione a tutte le chiamate api esclusa quella del token"
+        comment: "Il parametro verrà utilizzati per l'autenticazione a tutte le chiamate api esclusa quella del token"
         dependsOn:
             - dropdown1
         trigger:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    api_get_param_username_name:
+    api_post_param_username_name:
         label: 'Nome Parametro contenente lo username'
-        span: auto
+        span: left
         type: text
         dependsOn:
             - dropdown1
@@ -205,43 +205,10 @@ fields:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    api_get_param_password_name:
+    api_post_param_password_name:
         label: 'Nome Parametro contenente la password'
-        span: right
+        span: left
         type: text
-        dependsOn:
-            - dropdown1
-        trigger:
-            action: show
-            field: dropdown1
-            condition: 'value[API]'
-    api_get_page_param_name:
-        label: 'Nome Parametro Da Leggere  Contenente Il Numero di Pagina'
-        span: auto
-        type: text
-        comment: 'Compilare solo se il parametro va esiste (comunemente: page)'
-        dependsOn:
-            - dropdown1
-        trigger:
-            action: show
-            field: dropdown1
-            condition: 'value[API]'
-    api_get_record_per_page_param_name:
-        label: 'Nome Parametro Da leggere Per avere il Numero Di Record Da Leggere Per Ogni Chiamata Alle Api'
-        span: auto
-        type: text
-        comment: 'Se utilizzato, verrà letto il numero di record restituiti per ogni pagina (comunemente: per_page)'
-        dependsOn:
-            - dropdown1
-        trigger:
-            action: show
-            field: dropdown1
-            condition: 'value[API]'
-    api_get_total_pages:
-        label: 'Parametro da leggere contenente il numero di pagine totali dato il numero di record per pagina'
-        span: auto
-        type: text
-        comment: "Compilare solo se il parametro va letto nell'header delle chiamate (comunemente: total_pages)"
         dependsOn:
             - dropdown1
         trigger:
@@ -260,8 +227,8 @@ fields:
             field: dropdown1
             condition: 'value[API]'
     api_post_per_page_param_name:
-        label: 'Nome Parametro Api da PASSARE per contenente il numero di record per pagina'
-        span: right
+        label: 'Nome Parametro Api da PASSARE contenente il numero di record per pagina'
+        span: left
         type: number
         comment: 'Parametro in POST da passare alle api (normalmente per_page)'
         dependsOn:
@@ -281,36 +248,80 @@ fields:
             action: show
             field: dropdown1
             condition: 'value[API]'
+    api_post_date_update_param_nam:
+        label: 'Parametro da PASSARE contenente la data da cui iniziare la lettura dei record'
+        span: left
+        type: text
+        comment: 'Le api devono avere un campo in cui è presente la data di ultimo aggiornamento nel formato Y-m-d'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'        
     api_toproducts:
         label: 'Url Per Ottenere I dati In JSON dei Prodotti'
         span: left
         type: text
-        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        comment: 'Inserire Url Alle Api dei prodotti'
         dependsOn:
             - dropdown1
         trigger:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    api_tocategory:
+    api_toproducts_result_name:
+        label: 'Nome Parametro Contentente I risultati'
+        span: left
+        type: text
+        comment: 'Nome della variabile contentenete Il JSON dei prodotti (es: se $result["Articoli"], scrivere solo Articoli)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'        
+    api_tocategories:
         label: 'Url Per Ottenere I dati In JSON delle Categorie'
         span: left
         type: text
-        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        comment: 'Inserire Url Alle Api delle categorie'
         dependsOn:
             - dropdown1
         trigger:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    api_tobrand:
+    api_tocategories_result_name:
+        label: 'Nome Parametro Contentente I risultati'
+        span: left
+        type: text
+        comment: 'Nome della variabile contentenete Il JSON delle categorie (es: se $result["Categorie"] scrivere solo Categorie)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'         
+    api_tobrands:
         label: 'Url Per Ottenere I dati In JSON dei Brand'
         span: left
         type: text
-        comment: 'Verranno utilizzati i parametri specificati in precedenza per le paginazioni'
+        comment: 'Inserire Url alle Api dei Brand'
         dependsOn:
             - dropdown1
         trigger:
             action: show
             field: dropdown1
             condition: 'value[API]'
+    api_tobrands_result_name:
+        label: 'Nome Parametro Contentente I risultati'
+        span: left
+        type: text
+        comment: 'Nome della variabile contentenete Il JSON dei brand (es: $result["Marchi"] scrivere solo Marchi)'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'         
