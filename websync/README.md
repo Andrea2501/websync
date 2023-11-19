@@ -60,7 +60,7 @@ Le api sono state relizzate secondo il modello standard e comunque più chiaro p
 Riport l'esempio di una chiamata api. Attenzione: i nomi dei campi dell' oggeto contenente i valori non DEVONO CONENERE SPAZIO. Esempio: Nome Prodotto, non è valido; Nome_Prodotto è un nome valido.
 I nomi dei campi possono contenere solo lettere numeri e underscore . Non POSSONO INIZIARE CON UN underscore ed è preferibile che inizino con una lettera.
 
-Chiamata di esempio che verrà utilizzato nel codice
+Chiamata di esempio che verrà utilizzato nel codice.
 
 ```php
 
