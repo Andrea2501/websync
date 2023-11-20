@@ -12,6 +12,8 @@ class Plugin extends PluginBase
      */
     public function register()
     {
+        $this->registerConsoleCommand('websinc.initsincro', \Tecnotrade\Websync\Console\InitSincro::class);
+    
     }
 
     /**

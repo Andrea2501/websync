@@ -5,6 +5,31 @@ Attualmente in sviluppo:
 Prodotti
 Brand categorie
 
+Innanzi tutto Creare Il canale di log modificando il file: public/config/logging.php. Il log della sincro si troverà nel file /storage/logs/tecnotrade_websync{date}.log
+
+```php
+
+//.......
+//CANALE GIA' PRESENTE COME ESEMPIO
+'papertrail' => [
+            'driver' => 'monolog',
+            'level' => 'debug',
+            'handler' => Monolog\Handler\SyslogUdpHandler::class,
+            'handler_with' => [
+                'host' => env('PAPERTRAIL_URL'),
+                'port' => env('PAPERTRAIL_PORT'),
+            ],
+        ],
+
+// AGGIUNGERE IL CANALE DI WEB SYNC
+'websync' => [
+            'driver' => 'daily', // Utilizza il driver "daily"
+            'path' => storage_path('logs/tecnotrade_websync.log'),
+            'level' => 'debug',
+            'days' => 15, // Specifica il periodo di rotazione in giorni, puoi decidere la dura di mantenimento del file nell filesystem
+        ],
+```
+
 ## Come utilizzare
 
 Compilare per prima cosa i nomi campi sorgente dei dati esterni, se non si hanno i nomi dei campi si può utilizzare la numerazione partendo da 0 (solo csv). NON SI POSSONO UTILIZZARE ENTRAMBI.

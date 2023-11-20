@@ -1,5 +1,7 @@
 <?php namespace Tecnotrade\Websync\Components;
 
+use Arr;
+use Artisan;
 use Cms\Classes\ComponentBase;
 use Tecnotrade\Websync\Models\ClientProductRules as ClientProductRules;
 use Tecnotrade\Websync\Models\ClientProductFields as ClientProductFields;
@@ -7,6 +9,8 @@ use Tecnotrade\Websync\Models\TableProductFields as SincroProductFields;
 use Tecnotrade\Websync\Models\ConfigSetting As SyncSetting;
 
 use October\Rain\Exception\ApplicationException as AppException;
+
+
 
 
 
@@ -32,23 +36,32 @@ class TestLetturaModel extends ComponentBase
     public $regoleToBind=array();
     public $fieldBind=array();
     public $csvConfiguration=array();
-    public $apiConfiguration=array();
+    public $websyncConfiguration=array();
     public $tipoClientData;
 
     public function onRun(){
         $this->tipoClientData=$this->getGeneralConfiguration();
         if($this->tipoClientData=="API"){
-            $this->apiConfiguration=$this->getApiConfiguration();
+            $this->websyncConfiguration=$this->getApiConfiguration();
+            
         }
         else{
             $this->csvConfiguration=$this->getCsvConfiguration();
         }
         $this->prepareProductsRules();
+        $output=[];
+        $resultCode=Artisan::call('websinc:initsincro',
+        ['data' => $this->websyncConfiguration],
+        $output);
+        dd($resultCode);
+        
+        dd($this->websyncConfiguration);
     }
 
     
 
     public function prepareProductsRules() {
+       
         $allProductFields=SincroProductFields::all();
         if($allProductFields && count($allProductFields)>0){
             foreach($allProductFields as $pField){
@@ -65,9 +78,11 @@ class TestLetturaModel extends ComponentBase
                 
                 $ruleFields=[];
                 foreach($clientFields as $clField){
+                   
                     $fName=$clField->field_name;
                     $fPosition=$clField->order;
                     $fIsNumeric=empty($clField->fieldtype->is_numeric) ? 0: $clField->fieldtype->is_numeric;
+                    
                     $ruleFields[]=[
                         "nomeCampo"=>$fName,
                         "posizioneCampo"=>$fPosition,
@@ -92,15 +107,16 @@ class TestLetturaModel extends ComponentBase
                     "isRelationWithBrand"=>$pField->is_relation_field_with_brand_table===0 ? null:true,
                     "isRelationWithCategory"=>$pField->is_relation_field_with_category_table===0 ? null:true,
                     "isPrimaryKey"=>$pField->is_primary_key===0 ? null:true,
+                    "isDateToCompare"=>$ruleRelation->is_data_update,
                     "maxLength"=>$fieldTypeMaxLength,
                     "fields"=>$ruleFields,
+                    
                 ];
+                
                 $this->regoleToBind[]=$regole;
                 
             }
-            dd($this->fieldBind);
-            dd($this->regoleToBind);
-           
+            
         }
         else{
 
@@ -193,8 +209,8 @@ class TestLetturaModel extends ComponentBase
         else{
             $postParmNumRecordPerPage=null;
         }
-        if(SyncSetting::get('api_post_date_update_param_nam')){
-            $postParamDataUpdateName=SyncSetting::get('api_post_date_update_param_nam');
+        if(SyncSetting::get('api_post_date_update_param_name')){
+            $postParamDataUpdateName=SyncSetting::get('api_post_date_update_param_name');
         }
         else{
             $postParamDataUpdateName=null;
@@ -259,10 +275,33 @@ class TestLetturaModel extends ComponentBase
         $this->checkEmptyConfiguration($variabileResultsCategorie,'Non hai inserito la variabile contente i risultati della chiamata a Api categories');
         $this->checkEmptyConfiguration($variabileResultsBrands,'Non hai inserito la variabile contente i risultati della chiamata a Api Brand');
         
-        $postParamNamePage='';
-        $postParamNamePerPageRecord='';
-        $postParmNumRecordPerPage=0;
-        $postParamDataUpdateName=null;
+        $sincroConfig=[
+            "type"=>"API",
+            "username"=>$username,
+            "password"=>$password,
+            "isTokenRequired"=>$tokenRequired,
+            "urlLetturaToken"=>$urlLetturaToken,
+            "tokenParamName"=>$postParamNameToken,
+            "passwordParamName"=>$postParamNamePassword,
+            "userParamName"=>$postParamNameUsername,
+            "pageParameName"=>empty($postParamNamePage) ? null : $postParamNamePage,
+            "perPageParamName"=>empty($postParamNamePerPageRecord) ? null : $postParamNamePerPageRecord,
+            "numPerPage"=>$postParmNumRecordPerPage,
+            "dataUpdateParamName"=>empty($postParamDataUpdateName) ? null : $postParamDataUpdateName,    
+            "urlToProdotti"=>$chiamataApiProdotti,
+            "urlToCategorie"=>$chiamataApiCategorie,
+            "urlToBrand"=>$chiamataApiBrand,
+            "apiProdottiResultName"=>$variabileResultsProdotti,
+            "apiCategorieResultName"=>$variabileResultsCategorie,
+            "apiBrandResultName"=>$variabileResultsBrands,
+        ];
+        
+
+        return $sincroConfig;
+        
+        
+        
+        
         
         
         
