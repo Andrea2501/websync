@@ -231,4 +231,9 @@ v1.0.77:
     - 'Altra Modifica Seed Campi update_at Brand Product Category'
     - tableproductfieldseeder.php
     - tablebrandfieldseeder.php
-    - tablecategoryfieldseeder           
+    - tablecategoryfieldseeder.php
+v1.0.78:
+    - 'Altra Modifica Seed Campi update_at Brand Product Category'
+    - tableproductfieldseeder.php
+    - tablebrandfieldseeder.php
+    - tablecategoryfieldseeder.php                     

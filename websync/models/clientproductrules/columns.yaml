@@ -30,3 +30,6 @@ columns:
     is_data_update:
         label: is_data_update
         type: text
+    elimina_da_mall_se_uguale_a:
+        label: elimina_da_mall_se_uguale_a
+        type: text

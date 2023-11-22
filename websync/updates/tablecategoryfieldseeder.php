@@ -65,6 +65,12 @@ class TableCategoryFieldSeeder extends Seeder
             'fieldtype_id'=>'7'
             
         ]);
+        $field = CategoryFields::create([
+            'field_name' => 'visibility',
+            'is_primary_key'=>'0',
+            'fieldtype_id'=>'6'
+            
+        ]);
        
     }
 }

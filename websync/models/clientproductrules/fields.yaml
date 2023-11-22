@@ -65,10 +65,7 @@ fields:
     elimina_da_mall_se_uguale_a:
         label: 'Nascondi da shop se uguale a'
         span: left
-        context:
-            - update
-            - preview
-        type: number
+        type: text
         comment: 'Se questo campo è uguale ad un testo o carattere specificato il record verrà nascosto da mall'
     is_slug:
         label: 'Forza Slug Da Campo (NON CONSIGLIATO)'
