@@ -43,6 +43,7 @@ class TestLetturaModel extends ComponentBase
         $this->tipoClientData=$this->getGeneralConfiguration();
         if($this->tipoClientData=="API"){
             $this->websyncConfiguration=$this->getApiConfiguration();
+            //dd($this->websyncConfiguration);
             //prepareProductRules crea le regole e i campi che che evono essere associati alle regole API;
             $this->setDataForApi();
             // controllo che sia stata impostata una chiave univoca al modello esterno e associata al campo
@@ -51,8 +52,9 @@ class TestLetturaModel extends ComponentBase
             if($hasPk===false){
                 throw new AppException('Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
-            $this->testReadRule();
-            //dd($this->rulesToBind);
+            $this->prepareSincroProducts();
+            //$this->testReadRule();
+            
             //dd($this->websyncConfiguration);     
         }
         else{
@@ -68,45 +70,12 @@ class TestLetturaModel extends ComponentBase
        
     }
 
-    protected function checkPrimaryKeyExists(){
-        $elements=$this->rulesToBind;
-        foreach($elements as $element){
-            if($element["mallField"]=="codice_interno_univoco"){
-                $pk=$element["pk"];
-                if($pk && $pk=="1"){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
-
-    protected function getClientApiPrimaryKey(){
-        $elements=$this->rulesToBind;
-        $nomeChiave='';
-        foreach($elements as $element){
-            if($element["mallField"]=="codice_interno_univoco"){
-               
-                foreach($element["fields"] as $field){
-                    $nomeChiave=$field["nomeCampo"];
-                    return $nomeChiave;
-                }
-            }
-        }
-    }
-
-
     public function setDataForApi(){
         $res=$this->prepareApiProductsRules();
         if($res!==true){
             throw new AppException('Si  è verificato un problema nella creazione delle regole dei prodotti.');  
         }
     }
-
-    
 
     public function prepareApiProductsRules() {
        
@@ -127,7 +96,7 @@ class TestLetturaModel extends ComponentBase
                 
                 $ruleFields=[];
                 foreach($clientFields as $clField){
-                   
+                    
                     $fName=$clField->field_name;
                     $fPosition=$clField->order;
                     $fIsNumeric=empty($clField->fieldtype->is_numeric) ? 0: $clField->fieldtype->is_numeric;
@@ -176,6 +145,43 @@ class TestLetturaModel extends ComponentBase
         }
     }
 
+    protected function checkPrimaryKeyExists(){
+        $elements=$this->rulesToBind;
+        foreach($elements as $element){
+            if($element["mallField"]=="codice_interno_univoco"){
+                $pk=$element["pk"];
+                if($pk && $pk=="1"){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    protected function getClientApiPrimaryKey(){
+        $elements=$this->rulesToBind;
+        $nomeChiave='';
+        foreach($elements as $element){
+            if($element["mallField"]=="codice_interno_univoco"){
+               
+                foreach($element["fields"] as $field){
+                    $nomeChiave=$field["nomeCampo"];
+                    return $nomeChiave;
+                }
+            }
+        }
+    }
+
+
+   
+
+    
+
+    
+
     protected function getGeneralConfiguration(){
         if(SyncSetting::get('dropdown1')){
             $tipoClientData=SyncSetting::get('dropdown1');
@@ -198,6 +204,7 @@ class TestLetturaModel extends ComponentBase
         $postParamNamePerPageRecord='';
         $postParmNumRecordPerPage=0;
         $postParamDataUpdateName=null;
+        $postParamDataUpdateFormat=null;
         $chiamataApiProdotti='';
         $chiamataApiCategorie='';
         $chiamataApiBrand='';
@@ -263,6 +270,12 @@ class TestLetturaModel extends ComponentBase
         }
         if(SyncSetting::get('api_post_date_update_param_name')){
             $postParamDataUpdateName=SyncSetting::get('api_post_date_update_param_name');
+            if(SyncSetting::get('api_post_date_update_format')){
+                $postParamDataUpdateFormat=SyncSetting::get('api_post_date_update_format');
+            }
+            else{
+                throw new AppException('Hai specificato il parametro data di aggiornamento, devi specificarne anche il formato');
+            }
         }
         else{
             $postParamDataUpdateName=null;
@@ -341,6 +354,7 @@ class TestLetturaModel extends ComponentBase
             "perPageParamName"=>empty($postParamNamePerPageRecord) ? null : $postParamNamePerPageRecord,
             "numPerPage"=>$postParmNumRecordPerPage,
             "dataUpdateParamName"=>empty($postParamDataUpdateName) ? null : $postParamDataUpdateName,    
+            "dataUpdateParamNameFormat"=>$postParamDataUpdateFormat,   
             "urlToProdotti"=>$chiamataApiProdotti,
             "urlToCategorie"=>$chiamataApiCategorie,
             "urlToBrand"=>$chiamataApiBrand,
@@ -373,24 +387,27 @@ class TestLetturaModel extends ComponentBase
         $recordPerPage=null;
         $currentPage=null;
         $useDataForUpdate=null;
-
+        $token=null;
+        $dataParamNameFormat=null;
+        if($conf["pageParamName"] && !empty($conf["pageParamName"])){
+            $usePagination=true;
+            $recordPerPage=$conf["numPerPage"];
+            $currentPage=1;    
+        }
+        if($conf["dataUpdateParamName"] && !empty($conf["dataUpdateParamName"])){
+            $useDataForUpdate=true;
+            $dataParamNameFormat=$conf["dataUpdateParamNameFormat"];
+        }
         if($type=="API"){
             if($conf["isTokenRequired"]=="1"){
+                
                 $token=$this->getAuthToken($conf);
-                if($conf["pageParamName"] && !empty($conf["pageParamName"])){
-                    $usePagination=true;
-                    $recordPerPage=$conf["numPerPage"];
-                    $currentPage=1;    
+                if(!$token){
+                    throw new AppException('Non sono riuscito ad ottenere il token.');
                 }
-                if($conf["dataUpdateParamName"] && !empty($conf["dataUpdateParamName"])){
-                    $useDataForUpdate=true;
-                }
-
-                $this->getArticles($conf,$usePagination,$recordPerPage,$currentPage,$useDataForUpdate,$token);
-            }
-            else{
-                $this->getArticles($conf,null);
-            }
+            }               
+            $this->getArticles($conf,$usePagination,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,$token);
+            
             
         }
     }
@@ -408,23 +425,26 @@ class TestLetturaModel extends ComponentBase
             $passwordParamName => $password,
         ]);
         if ($response->ok()) {
+            
             return $response->body();
         } else {
+            
             return null;
         }
             
     }
     
-    protected function getArticles($configData,$usePagination=null,$recordPerPage=null,$page=1,$useDataForUpdate=null,$token=null){
+    protected function getArticles($configData,$usePagination=null,$recordPerPage=null,$page=1,$useDataForUpdate=null,$dataParamNameFormat=null,$token=null){
 
         
-        $dataDiModifica = Carbon::now()->subDays(2)->format('Y-m-d');
+        $dataDiModifica = null;
         $articoliParamResultsname=$configData["apiProdottiResultName"];
         $articoliApiUrl = $configData["urlToProdotti"];
         $articoliParamTokenName=null;
         $articoliParamNumPerPageName=null;
         $articolParamPageToReadName=null;
         $articoliParamDataUpdateName=null;
+        
         $pageToread=$page;
         $numPerPage=$recordPerPage;
         if($token){
@@ -436,17 +456,13 @@ class TestLetturaModel extends ComponentBase
             
         }
         if($useDataForUpdate){
-            $articoliParamDataUpdateName=$configData["dataUpdateParamName"];        
+            $articoliParamDataUpdateName=$configData["dataUpdateParamName"];
+            $dataDiModifica=Carbon::now()->subDays(5)->format($dataParamNameFormat);        
         }
         
         // dichiaro i post data 
         
-        $curl_post_data=[
-            $articoliParamTokenName=>null,
-            $articolParamPageToReadName=>null,
-            $articoliParamNumPerPageName=>null,
-            $articoliParamDataUpdateName=>null,
-        ];
+        $curl_post_data=[];
 
 
         // controllo i valori se presenti 
@@ -459,11 +475,11 @@ class TestLetturaModel extends ComponentBase
             $curl_post_data[$articoliParamNumPerPageName]=$numPerPage;
         }
         if($useDataForUpdate){
-            $curl_post_data[$articoliParamDataUpdateName]=now();
+            $curl_post_data[$articoliParamDataUpdateName]=$dataDiModifica;
         }
+    
 
-
-
+        
 
         
 
@@ -481,6 +497,7 @@ class TestLetturaModel extends ComponentBase
         $result = json_decode($curl_response, true);
         if ($result && is_array($result) && count($result) > 0) {
             $products=$result[$articoliParamResultsname];
+            
             if($products && is_array($products)){
                 $numArticoliRestituiti=count($products);
                 if($numArticoliRestituiti > 0){
@@ -492,10 +509,11 @@ class TestLetturaModel extends ComponentBase
                     
                     foreach ($products as $articolo) {
 
+                        $this->testReadRule($articolo);
 
 
 
-                        $codice = $articolo["codice"];
+                        /*$codice = $articolo["codice"];
                         $dataAggiornamento = $articolo["dataagg"];
                         $nomeArticolo = $articolo["descrizione"];
                         $descrzioneBreve = $articolo["descrizioneBreve"];
@@ -535,19 +553,21 @@ class TestLetturaModel extends ComponentBase
                             $modelArticolo->save();
                             $string="Inserito articolo: " .$codice;
                             //Log::channel('sincro_special')->info($string);
-                        }
+                        }*/
                     }
                
                 }
             }
         }
     }
-    protected function testReadRule(){
+    protected function testReadRule($articolo){
+        
         $rules=$this->rulesToBind;
         $chiavePrimariaApiClient=$this->getClientApiPrimaryKey();
-       
+        $stringToTest='';
+        $articoliAppoggio=new ProductTable;
         foreach($rules as $rule){
-            dd($rule);
+            
             $ruleName=$rule["nomeRegola"];
             $pk=$rule["pk"];
             $isPrimaryKey=$rule["isPrimaryKey"];
@@ -557,7 +577,7 @@ class TestLetturaModel extends ComponentBase
             $fieldNumeric=0;
             $valueAssigned=false;
 
-            // AGREGO I CAMPI DELLE API
+            // AGGREGO I CAMPI DELLE API
             foreach($rule["fields"] as $field){
                 $fieldNames.=trim($field["nomeCampo"]).',';
                 $fieldNumeric=$field["isNumeric"];
@@ -565,20 +585,20 @@ class TestLetturaModel extends ComponentBase
             // TOLGO LA VIRGOLA FINALE
             $clientFields=substr($fieldNames, 0, -1);
             
-            // SE NUMERICO ASSEGNO E DEVO SOMMARE I CAMPI 
-            if($fieldNumeric=="1"){
+            // controllo se devo sommare i campi come numeri
+            
+            if($rule["sommaCampiNumerici"] && count($rule["fields"]) >0 ){
                 $valueToSave=0;
-                if($rule["sommaCampaNumerici"] && count($rule["fields"]) >0 ){
-                    $arrFieldsToTake=explode(",",$clientFields);
-                    foreach($arrFieldsToTake as $f){
-                        //$val=$api->$f
-                        $val=0;
-                        $valueToSave+=$val;
-                    }
-                    $valueAssigned=true;           
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$articolo[$f];
+                    $valueToSave+=$val;
                 }
-
+                $articoliAppoggio->{$productField}=$valueToSave;
+                $valueAssigned=true;           
             }
+
+            
 
             // SE NON HO ASSEGNATO IL VALORE PER AGGREGAZIONE NUMERICA CONTROLLO SE ASSEGNO PER CONCAT STRING
 
@@ -586,22 +606,32 @@ class TestLetturaModel extends ComponentBase
                 $valueToSave='';
                 $arrFieldsToTake=explode(",",$clientFields);
                     foreach($arrFieldsToTake as $f){
-                        //$val=$api->$f
-                        $val=0;
-                        $valueToSave.=$val;
+                        $val=$articolo[$f];
+                        $valueToSave.=' '.$val;
+
                     }
+                $articoliAppoggio->{$productField}=$valueToSave;
                 $valueAssigned=true;    
             }
-            
-            // SE NON CI SONO REGOLE DI AGGREGAZIONE ASSEGNO IL VALORE
-            foreach($rule["fields"] as $field){
-                $fieldName=trim($field["nomeCampo"]);
-                //$val=$api->$fieldName
-                $valueToSave=$val;
-                $valueAssigned=true;
-                break;
+
+            // // SE NON CI SONO REGOLE DI AGGREGAZIONE ASSEGNO IL VALORE NON HO ASSEGNATO IL VALORE PER QUESTA REGOLA
+            if($valueAssigned==false){
+                foreach($rule["fields"] as $field){
+                    $fieldName=trim($field["nomeCampo"]);
+                    
+                    $val=$articolo[$fieldName];
+                    $valueToSave=$val;
+                    $articoliAppoggio->{$productField}=$val;
+                    $valueAssigned=true;
+                    break;
+                }
             }
+            
+            
         }
+        echo "ARTICOLO";
+        dd($articoliAppoggio);
+        die();
         
     }    
     

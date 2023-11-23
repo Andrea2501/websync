@@ -248,17 +248,31 @@ fields:
             action: show
             field: dropdown1
             condition: 'value[API]'
-    api_post_date_update_param_nam:
+    api_post_date_update_param_name:
         label: 'Parametro da PASSARE contenente la data da cui iniziare la lettura dei record'
         span: left
         type: text
-        comment: 'Le api devono avere un campo in cui è presente la data di ultimo aggiornamento nel formato Y-m-d'
+        comment: 'Compila il parametro formato data'
         dependsOn:
             - dropdown1
         trigger:
             action: show
             field: dropdown1
-            condition: 'value[API]'        
+            condition: 'value[API]'
+    api_post_date_update_format:
+        label: 'Inserire il formato della data tra quelli possibili'
+        span: left
+        type: dropdown
+        options:
+            Y-m-d H:i:s : Y-m-d H:i:s
+            Y-m-d: Y-m-d
+        emptyOption: 'Seleziona il formato data'
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[API]'                   
     api_toproducts:
         label: 'Url Per Ottenere I dati In JSON dei Prodotti'
         span: left
