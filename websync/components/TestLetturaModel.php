@@ -444,6 +444,8 @@ class TestLetturaModel extends ComponentBase
         $articoliParamNumPerPageName=null;
         $articolParamPageToReadName=null;
         $articoliParamDataUpdateName=null;
+        // nome del campo che contine la chiave primaria del prodotto nelle api
+        $pKey=$this->getClientApiPrimaryKey();
         
         $pageToread=$page;
         $numPerPage=$recordPerPage;
@@ -508,8 +510,11 @@ class TestLetturaModel extends ComponentBase
                     
                     
                     foreach ($products as $articolo) {
-
-                        $this->testReadRule($articolo);
+                        $valuePrimaryKey=$articolo[$pKey];
+                        //$articolo che leggo,
+                        //$pKeynome del campo primarykey delle api
+                        //$valuePrimaryKey=valore della chiave primaria
+                        $this->addToProductSupportTable($articolo,$pKey,$valuePrimaryKey);
 
 
 
@@ -560,12 +565,22 @@ class TestLetturaModel extends ComponentBase
             }
         }
     }
-    protected function testReadRule($articolo){
+    protected function addToProductSupportTable($articolo,$pKeyClient,$pKeyClientvalue){
         
         $rules=$this->rulesToBind;
         $chiavePrimariaApiClient=$this->getClientApiPrimaryKey();
         $stringToTest='';
-        $articoliAppoggio=new ProductTable;
+        $action="NEW";
+       
+        $articoloAppoggio=ProductTable::where('codice_interno_univoco','=',$pKeyClientvalue)->first();
+        if($articoloAppoggio){
+            $action="UPD";
+        }
+        else{
+            $articoloAppoggio=new ProductTable;
+        }
+        
+        $nascondiArticolo=null;
         foreach($rules as $rule){
             
             $ruleName=$rule["nomeRegola"];
@@ -576,6 +591,7 @@ class TestLetturaModel extends ComponentBase
             $fieldNames='';
             $fieldNumeric=0;
             $valueAssigned=false;
+           
 
             // AGGREGO I CAMPI DELLE API
             foreach($rule["fields"] as $field){
@@ -584,6 +600,35 @@ class TestLetturaModel extends ComponentBase
             }
             // TOLGO LA VIRGOLA FINALE
             $clientFields=substr($fieldNames, 0, -1);
+            
+            // CONTROLLO SE UNA REGOLA DI ELIMINAZIONE
+            if($rule["eliminaSeIniziaPer"] && !empty($rule["eliminaSeIniziaPer"])){
+                $valueEliminaSeIniziaPer=$rule["eliminaSeIniziaPer"];
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$articolo[$f];
+                    if (substr($val, 0, strlen($valueEliminaSeIniziaPer)) === $valueEliminaSeIniziaPer){
+                       $nascondiArticolo=true;
+                    } 
+                }
+            }
+            if($rule["eliminaSeIniziaPer"] && !empty($rule["eliminaSeIniziaPer"])){
+                $valueEliminaSeUgualeA=$rule["eliminaSeUguale_a"];
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$articolo[$f];
+                    if (substr($val, 0, strlen($valueEliminaSeUgualeA)) === $valueEliminaSeUgualeA){
+                        $nascondiArticolo=true;
+                    } 
+                }
+            }
+            if($action==="UPD"){
+                if($pk=="1" || $isPrimaryKey=="1" || $productField=='product_name' || $productField=='codice_interno_univoco' || $productField='original_slug'){
+                    
+                    continue;
+                }
+            }
+           
             
             // controllo se devo sommare i campi come numeri
             
@@ -594,7 +639,7 @@ class TestLetturaModel extends ComponentBase
                     $val=$articolo[$f];
                     $valueToSave+=$val;
                 }
-                $articoliAppoggio->{$productField}=$valueToSave;
+                $articoloAppoggio->{$productField}=$valueToSave;
                 $valueAssigned=true;           
             }
 
@@ -610,7 +655,7 @@ class TestLetturaModel extends ComponentBase
                         $valueToSave.=' '.$val;
 
                     }
-                $articoliAppoggio->{$productField}=$valueToSave;
+                $articoloAppoggio->{$productField}=$valueToSave;
                 $valueAssigned=true;    
             }
 
@@ -621,7 +666,7 @@ class TestLetturaModel extends ComponentBase
                     
                     $val=$articolo[$fieldName];
                     $valueToSave=$val;
-                    $articoliAppoggio->{$productField}=$val;
+                    $articoloAppoggio->{$productField}=$val;
                     $valueAssigned=true;
                     break;
                 }
@@ -630,7 +675,8 @@ class TestLetturaModel extends ComponentBase
             
         }
         echo "ARTICOLO";
-        dd($articoliAppoggio);
+        var_dump($nascondiArticolo);
+        dd($articoloAppoggio);
         die();
         
     }    
