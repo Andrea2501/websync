@@ -29,9 +29,6 @@ columns:
     updated_at:
         label: updated_at
         type: datetime
-    is_slug:
-        label: 'Forza Slug Da questo Campo'
-        type: text
     is_data_update:
         label: is_data_update
         type: text

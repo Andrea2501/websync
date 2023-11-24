@@ -23,10 +23,6 @@ fields:
             - update
             - preview
         type: section
-    is_slug:
-        label: 'Forza Slug Da Questo Campo (NON CONSIGLIATO!!!)'
-        span: left
-        type: checkbox
     is_root_se_valore_null:
         label: 'Is root se valore null'
         span: left

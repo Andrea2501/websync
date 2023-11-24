@@ -38,7 +38,3 @@ fields:
         label: 'Elimina da mall se inizia per'
         span: left
         type: text
-    is_slug:
-        label: 'Forza lo slug da questo campo (non consigliato!!!!)'
-        span: left
-        type: checkbox

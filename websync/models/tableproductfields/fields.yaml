@@ -2,7 +2,7 @@ fields:
     field_name:
         label: 'Field name of syncro table'
         span: left
-        readOnly: 1
+        readOnly: 0
         type: text
     fieldtype:
         label: 'Tipo Campo'
@@ -24,10 +24,6 @@ fields:
         type: checkbox
     is_relation_field_with_category_table:
         label: "E' il campo di relazione con le categorie"
-        span: left
-        type: checkbox
-    nullable:
-        label: Nullable
         span: left
         type: checkbox
     clientbrandrules:

@@ -20,9 +20,6 @@ columns:
     updated_at:
         label: updated_at
         type: datetime
-    is_slug:
-        label: 'Forza Slug Da Campo'
-        type: text
     is_primary_key:
         label: is_primary_key
         type: text

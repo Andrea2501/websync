@@ -83,3 +83,6 @@ columns:
     slug:
         label: slug
         type: text
+    visibility:
+        label: visibility
+        type: text

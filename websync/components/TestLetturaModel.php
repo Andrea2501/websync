@@ -10,6 +10,7 @@ use Tecnotrade\Websync\Models\TableProductFields as SincroProductFields;
 use Tecnotrade\Websync\Models\ConfigSetting As SyncSetting;
 use Tecnotrade\Websync\Models\SupportProductTable as ProductTable;
 use October\Rain\Exception\ApplicationException as AppException;
+use Exception;
 
 use Carbon\Carbon;
 
@@ -484,7 +485,7 @@ class TestLetturaModel extends ComponentBase
         
 
         
-
+        $contaRecord=0;
         $data = json_encode($curl_post_data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $articoliApiUrl);
@@ -514,8 +515,10 @@ class TestLetturaModel extends ComponentBase
                         //$articolo che leggo,
                         //$pKeynome del campo primarykey delle api
                         //$valuePrimaryKey=valore della chiave primaria
-                        $this->addToProductSupportTable($articolo,$pKey,$valuePrimaryKey);
-
+                        $result=$this->addToProductSupportTable($articolo,$pKey,$valuePrimaryKey);
+                        if(is_numeric($result)){
+                            $contaRecord++;
+                        }
 
 
                         /*$codice = $articolo["codice"];
@@ -560,8 +563,10 @@ class TestLetturaModel extends ComponentBase
                             //Log::channel('sincro_special')->info($string);
                         }*/
                     }
+                    
                
                 }
+                echo  "INSERITI O MODIFICATI: ".$contaRecord;
             }
         }
     }
@@ -674,10 +679,19 @@ class TestLetturaModel extends ComponentBase
             
             
         }
-        echo "ARTICOLO";
-        var_dump($nascondiArticolo);
-        dd($articoloAppoggio);
-        die();
+        
+        if($nascondiArticolo){
+            $articoloAppoggio->visibility=0;
+        }
+        try{
+            $xId=$articoloAppoggio->save();
+            return 1;   
+            
+        }
+        catch(Exception $ex){
+            $errore=$ex->getMessage();
+            dd($errore);
+        }
         
     }    
     

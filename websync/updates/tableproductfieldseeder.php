@@ -125,13 +125,13 @@ class TableProductFieldSeeder extends Seeder
             
         ]);
         $field = ProductFields::create([
-            'field_name' => 'original_slug',
+            'field_name' => 'original_url',
             'is_primary_key'=>'0',
-            'fieldtype_id'=>'1'
+            'fieldtype_id'=>'4'
             
         ]);
         $field = ProductFields::create([
-            'field_name' => 'update_at',
+            'field_name' => 'updated_at',
             'is_primary_key'=>'0',
             'fieldtype_id'=>'7'
             
@@ -142,5 +142,12 @@ class TableProductFieldSeeder extends Seeder
             'fieldtype_id'=>'6'
             
         ]);
+        $field = ProductFields::create([
+            'field_name' => 'slug',
+            'is_primary_key'=>'0',
+            'fieldtype_id'=>'1'
+            
+        ]);
+        
     }
 }

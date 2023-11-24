@@ -8,6 +8,3 @@ columns:
     max_length:
         label: max_length
         type: text
-    is_numeric:
-        label: is_numeric
-        type: text

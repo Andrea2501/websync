@@ -236,4 +236,27 @@ v1.0.78:
     - 'Altra Modifica Seed Campi update_at Brand Product Category'
     - tableproductfieldseeder.php
     - tablebrandfieldseeder.php
-    - tablecategoryfieldseeder.php                     
+    - tablecategoryfieldseeder.php
+v1.0.79:
+    - 'Updated table tecnotrade_websync_products'
+    - builder_table_update_tecnotrade_websync_products_2.php
+v1.0.80:
+    - 'Updated table tecnotrade_websync_fieldtype'
+    - builder_table_update_tecnotrade_websync_fieldtype_2.php
+v1.0.81:
+    - 'Updated table tecnotrade_websync_clientproductrules'
+    - builder_table_update_tecnotrade_websync_clientproductrules_9.php
+v1.0.82:
+    - 'Updated table tecnotrade_websync_clientbrandrules'
+    - builder_table_update_tecnotrade_websync_clientbrandrules_7.php
+v1.0.83:
+    - 'Updated table tecnotrade_websync_clientcatrules'
+    - builder_table_update_tecnotrade_websync_clientcatrules_13.php
+v1.0.84:
+    - 'Updated table tecnotrade_websync_clientproductrules'
+    - builder_table_update_tecnotrade_websync_clientproductrules_10.php
+v1.0.85:
+    - 'Nuove Modifiche ai Model ed ai seeder'
+    - tableproductfieldseeder.php
+    - tablebrandfieldseeder.php
+    - tablecategoryfieldseeder.php 
