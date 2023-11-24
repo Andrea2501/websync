@@ -486,6 +486,9 @@ class TestLetturaModel extends ComponentBase
 
         
         $contaRecord=0;
+        $contaRecordCorretti=0;
+        $contaRecordConErrori=0;
+        $codiciArticoliConErrori=[];
         $data = json_encode($curl_post_data);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $articoliApiUrl);
@@ -511,13 +514,19 @@ class TestLetturaModel extends ComponentBase
                     
                     
                     foreach ($products as $articolo) {
+                        $contaRecord++;
                         $valuePrimaryKey=$articolo[$pKey];
                         //$articolo che leggo,
                         //$pKeynome del campo primarykey delle api
                         //$valuePrimaryKey=valore della chiave primaria
                         $result=$this->addToProductSupportTable($articolo,$pKey,$valuePrimaryKey);
-                        if(is_numeric($result)){
-                            $contaRecord++;
+                        
+                        if($result=="1"){
+                            $contaRecordCorretti++;
+                        }
+                        else{
+                            $contaRecordConErrori++;
+                            $codiciArticoliConErrori[]=$valuePrimaryKey;
                         }
 
 
@@ -566,7 +575,8 @@ class TestLetturaModel extends ComponentBase
                     
                
                 }
-                echo  "INSERITI O MODIFICATI: ".$contaRecord;
+                echo  "Record elaborati: ".$contaRecord.'- record Corretti: '. $contaRecordCorretti.' - record con errori: '. $contaRecordConErrori ;
+                // array contenente i codici articoli con errori $codiciArticoliConErrori;
             }
         }
     }
@@ -690,7 +700,7 @@ class TestLetturaModel extends ComponentBase
         }
         catch(Exception $ex){
             $errore=$ex->getMessage();
-            dd($errore);
+            return 0;
         }
         
     }    
