@@ -23,13 +23,6 @@ fields:
             - update
             - preview
         type: section
-    is_root_se_valore_null:
-        label: 'Is root se valore null'
-        span: left
-        context:
-            - update
-            - preview
-        type: checkbox
     is_primary_key:
         label: 'Is primary key'
         span: left
@@ -39,38 +32,6 @@ fields:
         span: left
         type: checkbox
         comment: 'Imposta il parametro nelle configurazioni'
-    is_root_se_valore_uguale_a:
-        label: 'Is root se valore uguale a'
-        span: left
-        context:
-            - update
-            - preview
-        type: text
-        comment: "E' root se il codice della categoria di root hanno un valore sempre costante"
-    is_root_se_lunghezza_uguale_a:
-        label: 'Is root se lunghezza codice uguale a'
-        span: left
-        context:
-            - update
-            - preview
-        type: number
-        comment: 'Se le categorie di root hanno un codice di lunghezza uguale'
-    is_child_se_lunghezza_multipla_di:
-        label: 'Is child se lunghezza codice multipla di'
-        span: left
-        context:
-            - update
-            - preview
-        type: number
-        comment: "E' figlio se il codice è multiplo di una lunghezza di n caratteri"
-    child_moltiplicatore_iniziale:
-        label: 'Moltiplicatore iniziale codice figli'
-        span: right
-        context:
-            - update
-            - preview
-        type: number
-        comment: 'Numero iniziale da cui calcolare i multipli per i codice figli'
     elimina_da_mall_se_inizia_per:
         label: 'Elimina da mall se inizia per'
         span: left
