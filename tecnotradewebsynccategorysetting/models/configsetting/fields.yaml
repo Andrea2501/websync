@@ -1,0 +1,72 @@
+fields:
+    rootsection:
+        label: 'Imposta i parmetri per le gategorie di root'
+        span: full
+        type: section
+    is_root_if_cat_code_lenght_is:
+        label: 'E'' Root Se "CODICE CATEGORIA" Ha una lunghezza di numero caratteri'
+        span: left
+        type: number
+    is_root_cat_if_father_null:
+        label: 'E'' Root Se "CODICE CATEGORIA PADRE" è NULL o VUOTO'
+        span: left
+        type: checkbox
+    sectionchild:
+        label: 'Imposta i parametri per le categorie figlie'
+        span: full
+        type: section
+    is_child_if_parent_code_not_null:
+        label: 'E'' figlio se "CODICE CATEGORIA PADRE" non è NULL o non è VUOTO'
+        span: left
+        required: 1
+        type: checkbox
+    levelsection:
+        label: "Imposta i parametri per la generazione dell' albero dei livelli"
+        span: full
+        type: section
+    category_tree_type:
+        label: 'Seleziona come verranno generati i livelli'
+        options:
+            1: 'Sono tutte categorie di Root: level 0'
+            2: 'Il livello verrà importato dal binding diretto del campo livello'
+            3: 'Il livello verrà calcolato in base alla lunghezza del codice di categoria'
+            4: 'Cerca di calcolare i livelli automaticamente'
+        span: full
+        required: 1
+        type: radio
+    cat_root_lenght:
+        label: 'Lunghezza del campo "CODICE CATEGORIA DI ROOT" uguale a n caratteri'
+        span: left
+        dependsOn:
+            - category_tree_type
+        trigger:
+            action: show
+            field: category_tree_type
+            condition: 'value[3]'
+        type: number
+    cat_child_multiplier:
+        label: 'Moltiplicatore del "CODICE CATEGORIA" per generare i livelli'
+        span: right
+        dependsOn:
+            - category_tree_type
+        trigger:
+            action: show
+            field: category_tree_type
+            condition: 'value[3]'
+        type: number
+        comment: 'Se il campo root ha una lunghezza 2 il moltiplicatore inizierà a calcolare i livelli partendo da 2 x moltiplicatore'
+    bindingproductsection:
+        label: 'Binding con prodotti'
+        span: full
+        type: section
+    binding_products:
+        label: 'Seleziona il tipo di binding con i prodotti'
+        span: auto
+        showSearch: true
+        options:
+            1: 'STANDARD, 1 Prodotto può appartenere ad una sola categoria solo una categoria'
+            2: 'Usa La Tabella Pivot'
+        required: 1
+        placeholder: 'Seleziona il tipo di binding'
+        type: dropdown
+        comment: 'Ricorda, selezionando la modalità standard, in base alle configurazioni di Mall, il prodotto verrà comunque visualizzato anche in tutte le categorie padre'
