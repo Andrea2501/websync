@@ -1,4 +1,4 @@
-# WEB SYNC V 1.0 BETA
+# WEB SYNC V 1.0.3 BETA
 
 Plugin per sincronizzazione con sorgente dati esterne.
 Attualmente in sviluppo:
@@ -6,6 +6,10 @@ Prodotti
 Brand categorie
 
 Innanzi tutto Creare Il canale di log modificando il file: public/config/logging.php. Il log della sincro si troverà nel file /storage/logs/tecnotrade_websync{date}.log
+
+Terminata la sincro tramite api dei prodotti nella tabella di appoggio: manca paginazione
+
+
 
 ```php
 

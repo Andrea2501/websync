@@ -530,47 +530,7 @@ class TestLetturaModel extends ComponentBase
                         }
 
 
-                        /*$codice = $articolo["codice"];
-                        $dataAggiornamento = $articolo["dataagg"];
-                        $nomeArticolo = $articolo["descrizione"];
-                        $descrzioneBreve = $articolo["descrizioneBreve"];
-                        $descrzioneLunga = $articolo["descrizioneLunga"];
-                        $idClasse = $articolo["classe"];
-                        $idRaggruppamento = $articolo["raggruppamento"];
-                        $esportabile = $articolo["esportabile"];
-                        $prezzo = $articolo["prezzo"];
-                        $importStatus = 1;
-        
-                        $modelArticolo=new ProductTable;
-                        if ($modelArticolo) {
-                            $modelArticolo->updated_at=$dataAggiornamento;
-                            //echo "La data è nel futuro.";
-                            $modelArticolo->descrizione_breve = $descrzioneBreve;
-                            $modelArticolo->descrizione_lunga = $descrzioneLunga;
-                            $modelArticolo->classe_id = $idClasse;
-                            $modelArticolo->raggruppamento_id = $idRaggruppamento;
-                            $modelArticolo->esportabile = $esportabile;
-                            $modelArticolo->import_status = $importStatus;
-                            $modelArticolo->prezzo = $prezzo;
-                            $modelArticolo->save();
-                            $string="Aggiornato articolo: " .$codice;
-                            //Log::channel('sincro_special')->info($string);
-                            
-                        } else {
-                            $modelArticolo;
-                            $modelArticolo->codice = $codice;
-                            $modelArticolo->descrizione = $nomeArticolo;
-                            $modelArticolo->descrizione_breve = $descrzioneBreve;
-                            $modelArticolo->descrizione_lunga = $descrzioneLunga;
-                            $modelArticolo->classe_id = $idClasse;
-                            $modelArticolo->raggruppamento_id = $idRaggruppamento;
-                            $modelArticolo->esportabile = $esportabile;
-                            $modelArticolo->prezzo = $prezzo;
-                            $modelArticolo->import_status = $importStatus;
-                            $modelArticolo->save();
-                            $string="Inserito articolo: " .$codice;
-                            //Log::channel('sincro_special')->info($string);
-                        }*/
+                        
                     }
                     
                
