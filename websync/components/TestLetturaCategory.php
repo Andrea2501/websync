@@ -468,7 +468,7 @@ class TestLetturaCategory extends ComponentBase
                 }
             }
             if($action==="UPD"){
-                if($pk=="1" || $isPrimaryKey=="1" || $categoryField=='code' || $categoryField='slug'){
+                if($pk=="1" || $isPrimaryKey=="1" || $categoryField=='code' || $categoryField=='slug'){
                     
                     continue;
                 }
@@ -529,9 +529,7 @@ class TestLetturaCategory extends ComponentBase
         }
 
 
-        if($nascondiCategoria){
-            $categoriaAppoggio->visibility=0;
-        }
+        
         try{
             $xId=$categoriaAppoggio->save();
             return 1;   

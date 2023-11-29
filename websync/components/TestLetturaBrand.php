@@ -56,19 +56,20 @@ class TestLetturaBrand extends ComponentBase
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         if($this->tipoClientData=="API"){
             $this->websyncConfiguration=CommonConfigFunction::getApiConfiguration('BRAND');
+            dd($this->websyncConfiguration);
             //dd($this->websyncConfiguration);
             //$token=$this->getAuthToken($this->websyncConfiguration);
             //$result=$this->getRaggruppamenti($token);
             //dd($result);
             $this->setDataForApi();
-            dd($this->rulesToBind);
+           
             // controllo che sia stata impostata una chiave univoca al modello esterno e associata al campo
             //user_defined_id
-            /*$hasPk=$this->checkPrimaryKeyExists();
+            $hasPk=$this->checkPrimaryKeyExists();
             if($hasPk===false){
                 throw new AppException('Categorie: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
-            $this->prepareSincroBrands();
+            /*$this->prepareSincroBrands();
             */
 
 
@@ -234,10 +235,253 @@ class TestLetturaBrand extends ComponentBase
                     throw new AppException('Non sono riuscito ad ottenere il token.');
                 }
             }               
-            $this->getCategories($conf,$usePagination,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,$token);
+            $this->getBrands($conf,$usePagination,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,$token);
             
             
         }
     }
+
+    protected function getBrands($configData,$usePagination=null,$recordPerPage=null,$page=1,$useDataForUpdate=null,$dataParamNameFormat=null,$token=null){
+
+        
+        $dataDiModifica = null;
+        $brandsParamResultsname=$configData["apiBrandResultName"];
+        $brandApiUrl = $configData["urlToBrand"];
+        $articoliParamTokenName=null;
+        $articoliParamNumPerPageName=null;
+        $articolParamPageToReadName=null;
+        $articoliParamDataUpdateName=null;
+        // nome del campo che contine la chiave primaria del prodotto nelle api
+        $pKey=$this->getClientApiPrimaryKey();
+        
+        $pageToread=$page;
+        $numPerPage=$recordPerPage;
+        if($token){
+            $articoliParamTokenName=$configData["tokenParamName"];  
+        }
+        if($usePagination){
+            $articoliParamNumPerPageName=$configData["perPageParamName"];
+            $articolParamPageToReadName=$configData["pageParamName"];
+            
+        }
+        if($useDataForUpdate){
+            $articoliParamDataUpdateName=$configData["dataUpdateParamName"];
+            $dataDiModifica=Carbon::now()->subDays(5)->format($dataParamNameFormat);        
+        }
+        
+        // dichiaro i post data 
+        
+        $curl_post_data=[];
+
+
+        // controllo i valori se presenti 
+
+        if($token){
+            $curl_post_data[$articoliParamTokenName] = $token;
+        }
+        if($usePagination){
+            $curl_post_data[$articolParamPageToReadName]=$pageToread;
+            $curl_post_data[$articoliParamNumPerPageName]=$numPerPage;
+        }
+        if($useDataForUpdate){
+            $curl_post_data[$articoliParamDataUpdateName]=$dataDiModifica;
+        }
+    
+
+        
+
+        
+        $contaRecord=0;
+        $contaRecordCorretti=0;
+        $contaRecordConErrori=0;
+        $codiciBrandConErrori=[];
+        $data = json_encode($curl_post_data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $brandApiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 1110);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        $curl_response = curl_exec($ch);
+
+        $result = json_decode($curl_response, true);
+        if ($result && is_array($result) && count($result) > 0) {
+            $brands=$result[$brandsParamResultsname];
+            
+            if($brands && is_array($brands)){
+                $numBrandRestituiti=count($brands);
+                if($numBrandRestituiti > 0){
+                   
+                    /* SEZIONE PER PRENDER GLI ARTICOLI DAL CLIENT ED INSERIRLI NELLA TABELLA DI APPOGGIO */
+                    /* bisogna prendere i campi ciclando sulle regole ed associarlo al model 
+                    della tabella di appoggio*/
+                    
+                    
+                    foreach ($brands as $brand) {
+                        $contaRecord++;
+                        $valuePrimaryKey=$brand[$pKey];
+                        
+                        //$articolo che leggo,
+                        //$pKeynome del campo primarykey delle api
+                        //$valuePrimaryKey=valore della chiave primaria
+                        $result=$this->addToBrandsSupportTable($brand,$pKey,$valuePrimaryKey);
+                        
+                        if($result=="1"){
+                            $contaRecordCorretti++;
+                        }
+                        else{
+                            $contaRecordConErrori++;
+                            $codiciBrandConErrori[]=$valuePrimaryKey;
+                        }
+
+
+                        
+                    }
+                    
+               
+                }
+                echo  "Record elaborati: ".$contaRecord.'- record Corretti: '. $contaRecordCorretti.' - record con errori: '. $contaRecordConErrori ;
+                // array contenente i codici articoli con errori $codiciArticoliConErrori;
+                
+                
+                
+            }
+        }
+    }
+    protected function addToBrandsSupportTable($brand,$pKeyClient,$pKeyClientvalue){
+        
+        $rules=$this->rulesToBind;
+        
+        $chiavePrimariaApiClient=$this->getClientApiPrimaryKey();
+        $stringToTest='';
+        $action="NEW";
+       
+        $brandAppoggio=BrandTable::where('brand_code','=',$pKeyClientvalue)->first();
+        if($brandAppoggio){
+            $action="UPD";
+        }
+        else{
+            $brandAppoggio=new BrandTable();
+        }
+        
+        
+        $nascondiBrand=null;
+        foreach($rules as $rule){
+            
+            $ruleName=$rule["nomeRegola"];
+            $pk=$rule["pk"];
+            $isPrimaryKey=$rule["isPrimaryKey"];
+            $brandField=$rule["mallField"];
+            $valueToSave=0;
+            $fieldNames='';
+            $fieldNumeric=0;
+            $valueAssigned=false;
+           
+
+            // AGGREGO I CAMPI DELLE API
+            foreach($rule["fields"] as $field){
+                $fieldNames.=trim($field["nomeCampo"]).',';
+                $fieldNumeric=$field["isNumeric"];
+            }
+            // TOLGO LA VIRGOLA FINALE
+            $clientFields=substr($fieldNames, 0, -1);
+            
+            // CONTROLLO SE UNA REGOLA DI ELIMINAZIONE
+            if($rule["eliminaSeIniziaPer"] && !empty($rule["eliminaSeIniziaPer"])){
+                $valueEliminaSeIniziaPer=$rule["eliminaSeIniziaPer"];
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$brand[$f];
+                    if (substr($val, 0, strlen($valueEliminaSeIniziaPer)) === $valueEliminaSeIniziaPer){
+                       $nascondiBrand=true;
+                    } 
+                }
+            }
+            if($rule["eliminaSeUguale_a"] && !empty($rule["eliminaSeUguale_a"])){
+                $valueEliminaSeUgualeA=$rule["eliminaSeUguale_a"];
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$brand[$f];
+                    if (substr($val, 0, strlen($valueEliminaSeUgualeA)) === $valueEliminaSeUgualeA){
+                        $nascondiBrand=true;
+                    } 
+                }
+            }
+            if($action==="UPD"){
+                if($pk=="1" || $isPrimaryKey=="1" || $brandField=='brand_code' || $brandField=='slug'){
+                    
+                    continue;
+                }
+            }
+           
+            
+            // controllo se devo sommare i campi come numeri
+            
+            if($rule["sommaCampiNumerici"] && count($rule["fields"]) >0 ){
+                $valueToSave=0;
+                $arrFieldsToTake=explode(",",$clientFields);
+                foreach($arrFieldsToTake as $f){
+                    $val=$brand[$f];
+                    $valueToSave+=$val;
+                }
+                $brandAppoggio->{$brandField}=$valueToSave;
+                $valueAssigned=true;           
+            }
+
+            
+
+            // SE NON HO ASSEGNATO IL VALORE PER AGGREGAZIONE NUMERICA CONTROLLO SE ASSEGNO PER CONCAT STRING
+
+            if($rule["concatenaStringhe"] && count($rule["fields"]) >0 && $valueAssigned===false){
+                $valueToSave='';
+                $arrFieldsToTake=explode(",",$clientFields);
+                    foreach($arrFieldsToTake as $f){
+                        $val=$brandField[$f];
+                        $valueToSave.=' '.$val;
+
+                    }
+                $brandAppoggio->{$brandField}=$valueToSave;
+                $valueAssigned=true;    
+            }
+
+            // // SE NON CI SONO REGOLE DI AGGREGAZIONE ASSEGNO IL VALORE NON HO ASSEGNATO IL VALORE PER QUESTA REGOLA
+            if($valueAssigned==false){
+                foreach($rule["fields"] as $field){
+                    $fieldName=trim($field["nomeCampo"]);
+                    
+                    $val=$brand[$fieldName];
+                    $valueToSave=$val;
+                    $brandAppoggio->{$brandField}=$val;
+                    $valueAssigned=true;
+                    break;
+                }
+            }
+            
+            
+        }
+        if($nascondiBrand){
+            $brandAppoggio->visibility=0;
+        }
+        
+        
+
+
+        
+        try{
+            $xId=$brandAppoggio->save();
+            return 1;   
+            
+        }
+        catch(Exception $ex){
+            $errore=$ex->getMessage();
+            return 0;
+        }
+        
+    }    
+
+    
+    
 
 }
