@@ -22,3 +22,6 @@ columns:
     is_relation_field_with_category_table:
         label: is_relation_field_with_category_table
         type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text
