@@ -9,6 +9,9 @@ Innanzi tutto Creare Il canale di log modificando il file: public/config/logging
 
 Terminata la sincro tramite api dei prodotti nella tabella di appoggio: manca paginazione
 
+Le variabili dei tipi di albero si trova nella classe statica CommonConfigDunction.php
+
+Terminata la sincro categorie con test per il tipo di albero 1 (ONE) e 2 (DIRECT)
 
 
 ```php
