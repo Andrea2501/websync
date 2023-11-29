@@ -599,7 +599,7 @@ class TestLetturaModel extends ComponentBase
                 }
             }
             if($action==="UPD"){
-                if($pk=="1" || $isPrimaryKey=="1" || $productField=='product_name' || $productField=='codice_interno_univoco' || $productField='original_slug'){
+                if($pk=="1" || $isPrimaryKey=="1" || $productField=='product_name' || $productField=='codice_interno_univoco' || $productField=='original_slug'){
                     
                     continue;
                 }
