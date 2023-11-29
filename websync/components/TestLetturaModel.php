@@ -540,6 +540,7 @@ class TestLetturaModel extends ComponentBase
             }
         }
     }
+    
     protected function addToProductSupportTable($articolo,$pKeyClient,$pKeyClientvalue){
         
         $rules=$this->rulesToBind;
@@ -587,7 +588,7 @@ class TestLetturaModel extends ComponentBase
                     } 
                 }
             }
-            if($rule["eliminaSeIniziaPer"] && !empty($rule["eliminaSeIniziaPer"])){
+            if($rule["eliminaSeUguale_a"] && !empty($rule["eliminaSeUguale_a"])){
                 $valueEliminaSeUgualeA=$rule["eliminaSeUguale_a"];
                 $arrFieldsToTake=explode(",",$clientFields);
                 foreach($arrFieldsToTake as $f){

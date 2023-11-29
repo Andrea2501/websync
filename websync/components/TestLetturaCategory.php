@@ -187,7 +187,8 @@ class TestLetturaCategory extends ComponentBase
                 if(!$ruleRelation->clientcategoryfields){
                     continue;
                 }
-                $clientFields=$ruleRelation->clientcategoryfields;                    
+                $clientFields=$ruleRelation->clientcategoryfields;   
+                                 
                 //dd($clientFields);
                 $ruleFields=[];
                 foreach($clientFields as $clField){
@@ -208,13 +209,12 @@ class TestLetturaCategory extends ComponentBase
                     "nomeRegola"=>$ruleRelation->rule_name,
                     "idRegola"=>$ruleRelation->id,
                     "pk"=>$ruleRelation->is_primary_key,
-                    "sommaCampiNumerici"=>$ruleRelation->somma_campi_numerici===0 ? null:true,
-                    "concatenaStringhe"=>$ruleRelation->concatena_campi_come_stringa,
+                    "sommaCampiNumerici"=>null,
+                    "concatenaStringhe"=>null,
                     "eliminaSeIniziaPer"=>empty(trim($ruleRelation->elimina_da_mall_se_inizia_per))? null :$ruleRelation->elimina_da_mall_se_inizia_per ,
-                    "eliminaSeUguale_a"=>$ruleRelation->elimina_da_mall_se_uguale_a,
+                    "eliminaSeUguale_a"=>empty(trim($ruleRelation->elimina_da_mall_se_uguale_a))?null : $ruleRelation->elimina_da_mall_se_uguale_a, 
                     "isSlug"=>$ruleRelation->is_slug===0 ? null:true,
-                    "isRelationWithBrand"=>$pField->is_relation_field_with_brand_table===0 ? null:true,
-                    "isRelationWithCategory"=>$pField->is_relation_field_with_category_table===0 ? null:true,
+                    "isRelationWithProductTable"=>empty($pField->is_relation_with_product_table) ? null:true,
                     "isPrimaryKey"=>$pField->is_primary_key===0 ? null:true,
                     "isDateToCompare"=>$ruleRelation->is_data_update,
                     "maxLength"=>$fieldTypeMaxLength,
@@ -225,8 +225,10 @@ class TestLetturaCategory extends ComponentBase
                 
                 
                 $this->rulesToBind[]=$regole;
+              
                 
             }
+            
             return true;
             
         }
@@ -373,6 +375,29 @@ class TestLetturaCategory extends ComponentBase
                 }
                 echo  "Record elaborati: ".$contaRecord.'- record Corretti: '. $contaRecordCorretti.' - record con errori: '. $contaRecordConErrori ;
                 // array contenente i codici articoli con errori $codiciArticoliConErrori;
+                // VADO A CREARE L ALBERO DEI LIVELLI;
+                $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
+                $tipoAlbero=$categorySettings["treeMethod"];
+                if($tipoAlbero==="ONE" || $tipoAlbero==="DIRECT"){
+                    // in questo caso le categorie o sono tutte di root 
+                    //o le categorie child e il relativo livello sono state specificate
+                    return true;
+                }
+                elseif($tipoAlbero=="LEN"){
+                    // la creazione dell'albero si basa sulla lunghezza dei codici di categoria e del
+                    // moltiplicatore
+                    
+                }
+                elseif($tipoAlbero=="REC"){
+                    // la creazione si basa su una ricorsione
+                    // questo meto verrà implementato in seguito
+                    throw new AppException('Il metodo di generazione albero non è ancora implementato.');
+
+                }
+                else{
+                    throw new AppException('Non è possibie creare l\'albero, tipo non valido, controlla le configurazioni');
+                }
+                
             }
         }
     }
@@ -432,7 +457,7 @@ class TestLetturaCategory extends ComponentBase
                     } 
                 }
             }
-            if($rule["eliminaSeIniziaPer"] && !empty($rule["eliminaSeIniziaPer"])){
+            if($rule["eliminaSeUguale_a"] && !empty($rule["eliminaSeUguale_a"])){
                 $valueEliminaSeUgualeA=$rule["eliminaSeUguale_a"];
                 $arrFieldsToTake=explode(",",$clientFields);
                 foreach($arrFieldsToTake as $f){
