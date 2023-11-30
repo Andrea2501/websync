@@ -149,6 +149,18 @@ protected function getArticles($token,$date)
     }
 
 ```
- 
+## ESECUZIONI PROCEDURE
 
+1 Importazione in tabelle di appoggio di:
+    categorie
+    marchi
+    prodotti
+
+    Viene impostato l'import status a 1: import_status = 1
+
+2 Importazione e/o aggiornamento delle categorie:
+    Viene impostato l'import status a 2: import_status = 2
+
+3 Viene settato l'albero delle categorie
+    Viene impostato l'import status delle categorie a 3: import_status = 3 
     

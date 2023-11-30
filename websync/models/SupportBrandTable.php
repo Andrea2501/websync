@@ -8,6 +8,7 @@ use Model;
 class SupportBrandTable extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Sluggable;
 
 
     /**
@@ -20,5 +21,7 @@ class SupportBrandTable extends Model
      */
     public $rules = [
     ];
+    protected $slugs = ['slug' => 'brand_name'];
+
 
 }

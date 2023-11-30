@@ -32,6 +32,7 @@ class Plugin extends PluginBase
             'Tecnotrade\Websync\Components\TestLetturaModel'=> 'TestLetturaModel',
             'Tecnotrade\Websync\Components\TestLetturaCategory'=> 'TestLetturaCategory',
             'Tecnotrade\Websync\Components\TestLetturaBrand'=> 'TestLetturaBrand',
+            'Tecnotrade\Websync\Components\CategoryToMall'=> 'CategoryToMall',
         ];
     }
 

@@ -29,9 +29,6 @@ columns:
     level:
         label: level
         type: number
-    parent_id:
-        label: parent_id
-        type: number
     october_id:
         label: october_id
         type: number
@@ -47,3 +44,6 @@ columns:
     october_parent_id:
         label: october_parent_id
         type: number
+    visibility:
+        label: visibility
+        type: text

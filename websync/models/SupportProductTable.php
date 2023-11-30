@@ -8,7 +8,7 @@ use Model;
 class SupportProductTable extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
+    use \October\Rain\Database\Traits\Sluggable;
 
     /**
      * @var string table in the database used by the model.
@@ -20,5 +20,6 @@ class SupportProductTable extends Model
      */
     public $rules = [
     ];
+    protected $slugs = ['slug' => 'product_name'];
 
 }

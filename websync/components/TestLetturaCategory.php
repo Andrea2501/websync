@@ -519,8 +519,12 @@ class TestLetturaCategory extends ComponentBase
             
             
         }
+        
         if($nascondiCategoria){
             $categoriaAppoggio->visibility=0;
+        }
+        if(empty($categoria->visibility)){
+            $categoriaAppoggio->visibility=1;
         }
         
         if($alberoIsOne===true){
