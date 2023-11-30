@@ -56,7 +56,7 @@ class TestLetturaBrand extends ComponentBase
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         if($this->tipoClientData=="API"){
             $this->websyncConfiguration=CommonConfigFunction::getApiConfiguration('BRAND');
-            dd($this->websyncConfiguration);
+            
             //dd($this->websyncConfiguration);
             //$token=$this->getAuthToken($this->websyncConfiguration);
             //$result=$this->getRaggruppamenti($token);
@@ -69,8 +69,8 @@ class TestLetturaBrand extends ComponentBase
             if($hasPk===false){
                 throw new AppException('Categorie: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
-            /*$this->prepareSincroBrands();
-            */
+            $this->prepareSincroBrands();
+            
 
 
                 
@@ -210,7 +210,7 @@ class TestLetturaBrand extends ComponentBase
         }
     }
     protected function prepareSincroBrands(){
-        $conf=$this->websyncCategoryConfiguration;
+        $conf=$this->websyncConfiguration;
         $type=$conf["type"];
         $usePagination=false;
         $recordPerPage=null;
@@ -465,11 +465,12 @@ class TestLetturaBrand extends ComponentBase
             $brandAppoggio->visibility=0;
         }
         
-        
+        $brandAppoggio->import_status=1;
 
 
         
         try{
+           
             $xId=$brandAppoggio->save();
             return 1;   
             

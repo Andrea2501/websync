@@ -654,6 +654,7 @@ class TestLetturaModel extends ComponentBase
         if($nascondiArticolo){
             $articoloAppoggio->visibility=0;
         }
+        $articoloAppoggio->import_status=1;
         try{
             $xId=$articoloAppoggio->save();
             return 1;   

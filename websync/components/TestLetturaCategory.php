@@ -529,9 +529,11 @@ class TestLetturaCategory extends ComponentBase
         }
 
 
-        
+        $categoriaAppoggio->import_status=1;
+            
         try{
             $xId=$categoriaAppoggio->save();
+            
             return 1;   
             
         }
