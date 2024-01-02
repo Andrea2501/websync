@@ -27,3 +27,11 @@ fields:
         label: 'Parent code'
         span: auto
         type: text
+    visibility:
+        label: Visibility
+        span: auto
+        type: checkbox
+    level:
+        label: Level
+        span: auto
+        type: number

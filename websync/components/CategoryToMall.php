@@ -41,14 +41,16 @@ class CategoryToMall extends ComponentBase
     public $tipoClientData;
     public $csvConfiguration;
     public function onRun(){
-
+       
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         $numCategories=0;
+        
         if($this->tipoClientData=="API"){
             $this->webSyncSettings=CommonConfigFunction::getApiConfiguration('CATEGORIE');
             
             $this->categorySettings=$this->webSyncSettings["categorySettings"];
-            $allCategories=CategoryTable::where('import_status','=',2)->get();
+            $allCategories=CategoryTable::where('import_status','=',1)->get();
+           
             
             if($allCategories){
                 
@@ -116,10 +118,10 @@ class CategoryToMall extends ComponentBase
                 }
             }
             else{
-               $idOctober=$this->addNewMallCategory($row);
+               $newMallCat=$this->addNewMallCategory($row);
                //aggiorno la categoria della tabella di appoggio: attenzione devo ancora associare il parent_id_october
-                if($idOctober){
-                    $category->october_id=$idOctober;
+                if($newMallCat){
+                    $category->october_id=$newMallCat->id;
                     $category->import_status=2;
                     $category->save();
                     $savedCategory++;
@@ -137,7 +139,8 @@ class CategoryToMall extends ComponentBase
     }
 
     protected function addNewMallCategory($cat){
-        $idOctober=null;
+        
+        
         $mallCategory=new MallCategory;
         $mallCategory->name=$cat["nome"];
         $mallCategory->slug=$cat["slug"];
@@ -169,20 +172,13 @@ class CategoryToMall extends ComponentBase
         $mallCategory->nest_depth=$cat["nestDepth"];
         $mallCategory->description=$cat["description"];
         $mallCategory->description_short=$cat["shortDescription"];
-        try{
-            $idOctober=$mallCategory->save();   
-            
-            return $idOctober;   
-            
-        }
-        catch(Exception $ex){
-            $errore=$ex->getMessage();
-            dd($errore);
-            return null;
-        }
+        $mallCategory->save();   
+        return $mallCategory;
+        
         
     }
     protected function updateMallCategory($cat){
+       
         $idOctober=$cat["octoberId"];
         $mallCategory=MallCategory::find($idOctober);
         if($mallCategory){
@@ -222,8 +218,9 @@ class CategoryToMall extends ComponentBase
     }
     protected function bindCategoriesTree(){
         $maxDepth=CategoryTable::max('level');
+       
         $numCategories=0;
-        if($maxDepth===0){
+        if(!$maxDepth){
             // ci sono solo categorie di root
             $allCategories=CategoryTable::where('import_status','=',2)->get();
             foreach($allCategories as $cat){
@@ -250,8 +247,7 @@ class CategoryToMall extends ComponentBase
         }
         else{
             for($l=0;$l<=$maxDepth;$l++){
-                $allCategories=CategoryTable::where('import_status','=',2)
-                ->where('level','=',$l)
+                $allCategories=CategoryTable::where('level','=',$l)
                 ->get();
                 if($l=="0"){
                     foreach($allCategories as $cat){
@@ -281,7 +277,7 @@ class CategoryToMall extends ComponentBase
                         //Dalla category attuale devo ricavare l'id di october del padre
                         $idOctober=$cat->october_id;
                         $parentCode=$cat->parent_code;
-                        $fatherCat=CategoryTable::where('code','=',$parentCode)->first();
+                        $fatherCat=MallCategory::where('code','=',$parentCode)->first();
                         if(isset($fatherCat)){
                             // esiste la categoria padre 
                             $idOctoberFather=$fatherCat->id;
@@ -290,7 +286,7 @@ class CategoryToMall extends ComponentBase
                             // prendo la categorie di mall con id october_id e associo il padre ed il livello
                             $mallCategory=MallCategory::find($idOctober);
                             $mallCategory->parent_id=$idOctoberFather;
-                            $mallCategory->nest_dept=$l;    
+                            $mallCategory->nest_depth=$l;    
                             try{
                                 $mallCategory->save();
                                 $numCategories++;   

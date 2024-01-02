@@ -99,6 +99,16 @@ class TestLetturaCategory extends ComponentBase
                 throw new AppException('Categorie: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
             $this->prepareSincroCategories();
+            
+            $result=$this->creaAlberoCategorie(0);
+           
+            if($result){
+                CategoryTable::query()->update(['import_status' => 1]);
+
+            }
+            else{
+                throw new AppException('Si  è verificato un problema nella creazione dell\' albero delle Categorie.');  
+            }
 
 
                 
@@ -378,7 +388,7 @@ class TestLetturaCategory extends ComponentBase
                 // VADO A CREARE L ALBERO DEI LIVELLI;
                 $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
                 $tipoAlbero=$categorySettings["treeMethod"];
-                if($tipoAlbero==="ONE" || $tipoAlbero==="DIRECT"){
+                if($tipoAlbero==="ONE" || $tipoAlbero==="DIRECT" || $tipoAlbero =="REC"){
                     // in questo caso le categorie o sono tutte di root 
                     //o le categorie child e il relativo livello sono state specificate
                     return true;
@@ -388,12 +398,7 @@ class TestLetturaCategory extends ComponentBase
                     // moltiplicatore
                     
                 }
-                elseif($tipoAlbero=="REC"){
-                    // la creazione si basa su una ricorsione
-                    // questo meto verrà implementato in seguito
-                    throw new AppException('Il metodo di generazione albero non è ancora implementato.');
-
-                }
+                
                 else{
                     throw new AppException('Non è possibie creare l\'albero, tipo non valido, controlla le configurazioni');
                 }
@@ -546,7 +551,78 @@ class TestLetturaCategory extends ComponentBase
             return 0;
         }
         
-    }    
+    }  
+    
+    protected function creaAlberoCategorie($level){
+        $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
+        $tipoAlbero=$categorySettings["treeMethod"];
+        $newLevel=0;
+        //controllo Se tutte le categorie sono in import_status 2
+        // se sono in import_status 2 esco dalla funzione
+        // uso import status = 1 , il count deve essere 0
+        $numCategorieAppoggio=CategoryTable::where('import_status','=',1)->count();
+        if($numCategorieAppoggio === 0 ){
+            return true;
+        }
+
+
+
+        if($tipoAlbero==="REC"){
+            if($level=="0"){
+                $categorieAppoggio = CategoryTable::whereNull('parent_code')
+                ->orWhere('parent_code', '=', '')
+                ->where('import_status','=',1)
+                ->get();
+                
+                $newLevel=$level+1;
+               
+                foreach($categorieAppoggio as $cat){
+                    $codiceCategoria=$cat->code;
+                    $childCategories=CategoryTable::where('parent_code','=',$codiceCategoria)
+                    ->where('import_status','=',1)
+                    ->get();
+                    foreach($childCategories as $child){
+                        $child->level=$newLevel;
+                        $child->save();
+                    }
+                    $cat->import_status=2;
+                    $cat->save();
+                }
+                $this->creaAlberoCategorie($newLevel);
+            }
+            else{
+                
+                $categorieAppoggio = CategoryTable::where('level','=',$level)
+                ->get();
+                
+                
+
+                foreach($categorieAppoggio as $cat){
+                    
+                    
+                    $codiceCategoria=$cat->code;
+                    $childCategories=CategoryTable::where('parent_code','=',$codiceCategoria)->get();
+                   
+                    foreach($childCategories as $child){
+                        
+                        $child->level=$level+1;
+                        $child->import_status=2;
+                        $child->save();
+                        
+                    }
+                    $cat->import_status=2;
+                    $cat->save();
+                }
+                $newLevel=$level+1;
+                $this->creaAlberoCategorie($newLevel);  
+            }
+            $numCategorieAppoggio=CategoryTable::where('import_status','=',1)->count();
+            if($numCategorieAppoggio === 0 ){
+            return true;
+        }  
+           
+        }
+    }
 
    
 

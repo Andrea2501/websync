@@ -1,7 +1,8 @@
 <?php namespace Tecnotrade\Websync;
 
 use System\Classes\PluginBase;
-
+use OFFLINE\Mall\Models\Brand as BrandModel;
+use OFFLINE\Mall\Controllers\Brands as BrandController;
 /**
  * Plugin class
  */
@@ -21,6 +22,7 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        $this->addSlugAndCodeToBrand();
     }
 
     /**
@@ -33,6 +35,7 @@ class Plugin extends PluginBase
             'Tecnotrade\Websync\Components\TestLetturaCategory'=> 'TestLetturaCategory',
             'Tecnotrade\Websync\Components\TestLetturaBrand'=> 'TestLetturaBrand',
             'Tecnotrade\Websync\Components\CategoryToMall'=> 'CategoryToMall',
+            'Tecnotrade\Websync\Components\BrandsToMall'=> 'BrandsToMall',
         ];
     }
 
@@ -55,5 +58,54 @@ class Plugin extends PluginBase
             ],
             
         ];
+    }
+    public function addSlugAndCodeToBrand(){
+        BrandController::extendFormFields(function($form, $model, $context) {
+            if (!$model instanceof BrandModel) {
+                return;
+            }
+            $form->addTabFields([
+                'code'=>[
+                       'label' => 'Code',
+                        'type' => 'text',
+                        'span' => 'left',
+                        'tab'=> 'offline.mall::lang.product.general',
+                        
+                                   
+                ],
+                'slug'=>[
+                    'label' => 'slug',
+                     'type' => 'text',
+                     'span' => 'left',
+                     'tab'=> 'offline.mall::lang.product.general',
+                     
+                                
+                ],
+                
+            ]);
+        });
+        BrandController::extendListColumns(function($list, $model){
+            if (!$model instanceof BrandModel) {
+                return;
+            }
+            $list->addColumns([
+
+                'code'=>[
+                    'label' => 'Code',
+                    'type' => 'text',
+                    'sortable' => true,
+                    'invisible' => false,
+                    'searchable'=>true,
+                ],
+                'slug' => [
+                    'label' => 'Slug',
+                    'type' => 'text',
+                    'sortable' => true,
+                    'invisible' => false,
+                    'searchable'=>true,
+                ],
+            ]);
+        
+        });
     }
 }

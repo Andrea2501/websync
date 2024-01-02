@@ -269,3 +269,6 @@ v1.0.87:
 v1.0.88:
     - 'Updated table tecnotrade_websync_category'
     - builder_table_update_tecnotrade_websync_category_4.php
+v1.0.89:
+    - 'Aggiungo Campo Slug e Campo Code in Offline Mall Brand'
+    - add_slug_and_code_to_mallbrand.php    
