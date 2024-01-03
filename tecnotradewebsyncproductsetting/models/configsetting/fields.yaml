@@ -1,0 +1,19 @@
+fields:
+    multiplier:
+        label: Moltiplicatore
+        span: left
+        required: 1
+        type: number
+        comment: 'Se i prezzi sono inseriti come decimali, inserire il moltiplicatore per farli diventare interi: esempio: 1.78 moltiplicatore 100=178. Il moltiplicatore deve corrispondere alle configurazioni di Mall'
+    default_currency_id:
+        label: 'Id Valuta di default'
+        span: right
+        required: 1
+        type: number
+        comment: "Inserisci l'id della valuta di default specificat in mall"
+    id_default_vat:
+        label: 'Id Partita Iva'
+        span: left
+        required: 1
+        type: number
+        comment: "Inserisci l'id della partita iva di default dei prodotti"

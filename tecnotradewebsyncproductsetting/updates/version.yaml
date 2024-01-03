@@ -1,0 +1,5 @@
+v1.0.1:
+    - 'Initialize plugin'
+v1.0.2:
+    - 'Created table tecnotrade_tecnotradewebsyncproductsetting_configsetting'
+    - builder_table_create_tecnotrade_tecnotradewebsyncproductsetting_configsetting.php

@@ -1,0 +1,6 @@
+plugin:
+    name: 'tecnotrade.tecnotradewebsyncproductsetting::lang.plugin.name'
+    description: 'tecnotrade.tecnotradewebsyncproductsetting::lang.plugin.description'
+    author: Tecnotrade
+    icon: oc-icon-adjust
+    homepage: ''

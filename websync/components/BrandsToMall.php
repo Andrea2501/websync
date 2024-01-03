@@ -13,6 +13,7 @@ use Tecnotrade\Websync\Models\SupportBrandTable as BrandTable;
 use October\Rain\Exception\ApplicationException as AppException;
 use Tecnotrade\TecnotradeWebsyncCategorySetting\Models\ConfigSetting as CatConfigSetting;
 use Tecnotrade\Websync\Classes\CommonConfigFunctions as CommonConfigFunction;
+use Tecnotrade\Tecnotradewebsyncproductsetting\Models\ConfigSetting as ProductConfigSetting;
 use OFFLINE\Mall\Models\Brand as MallBrand;
 use Exception;
 
