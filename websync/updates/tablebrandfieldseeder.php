@@ -2,7 +2,7 @@
 use Seeder;
 use Tecnotrade\Websync\Models\TableBrandFields as BrandFields;
 
-class FieldTypeSeeded extends Seeder
+class TableBrandFieldSeeder extends Seeder
 {
     public function run()
     {

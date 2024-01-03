@@ -156,9 +156,6 @@ v1.0.52:
 v1.0.53:
     - 'Updated table tecnotrade_websync_brand'
     - builder_table_update_tecnotrade_websync_brand.php
-v1.0.54:
-    - 'Seeder Per BrandTableFields'
-    - tablebrandfieldseeder.php
 v1.0.55:
     - 'Created table tecnotrade_websync_category'
     - builder_table_create_tecnotrade_websync_category.php
@@ -271,4 +268,7 @@ v1.0.88:
     - builder_table_update_tecnotrade_websync_category_4.php
 v1.0.89:
     - 'Aggiungo Campo Slug e Campo Code in Offline Mall Brand'
-    - add_slug_and_code_to_mallbrand.php    
+    - add_slug_and_code_to_mallbrand.php
+v1.0.90:
+    - 'Seeder Per BrandTableFields'
+    - tablebrandfieldseeder.php        
