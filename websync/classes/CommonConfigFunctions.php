@@ -307,6 +307,130 @@ class CommonConfigFunctions{
         }
         
     }
+    public static function getCsvConfiguration($tipoSincro){
+        
+        $postHasHeader=null;
+        $postParamDataUpdateName=null;
+        $postParamDataUpdateFormat=null;
+        $productFileName='';
+        $categoryFileName='';
+        $brandFileName='';
+        $useFieldNumber=null;
+        $fieldSeparator='';
+        $useFtp=null;
+        
+        if(SyncSetting::get('csv_post_date_update_param_name')){
+            $postParamDataUpdateName=SyncSetting::get('csv_post_date_update_param_name');
+            
+        }
+        else{
+            throw new AppException('Non hai specificato il nome del campo contenente la data di aggiornamento del record');
+        }
+        
+        
+        if(SyncSetting::get('csv_post_date_update_format')){
+            $postParamDataUpdateFormat=SyncSetting::get('csv_post_date_update_format');
+            if(empty(trim($postParamDataUpdateFormat))){
+                throw new AppException('Non hai specificato il formato data del campo contenente la data di aggiornamento del record'); 
+            }
+        }
+        else{
+            throw new AppException('Non hai specificato il formato data del campo contenente la data di aggiornamento del record');
+        
+        }
+        if(SyncSetting::get('csv_header')){
+            $postHasHeader=true;
+        }
+        
+        
+        
+        if(SyncSetting::get('product_file_name')){
+            $productFileName=SyncSetting::get('product_file_name');
+        }
+        else{
+            throw new AppException('Non hai specificato il nome del file csv dei prodotti.');
+            
+        }
+        if(SyncSetting::get('category_file_name')){
+            $categoryFileName=SyncSetting::get('category_file_name');
+        }
+        else{
+            throw new AppException('Non hai specificato il nome del file csv delle categorie.');
+            
+        }
+        
+        if(SyncSetting::get('brand_file_name')){
+            $brandFileName=SyncSetting::get('brand_file_name');
+        }
+        else{
+            throw new AppException('Non hai specificato il nome del file csv dei brand.');
+            
+        }
+        if(SyncSetting::get('use_csv_number_position')){
+            $useFieldNumber=true;
+        }
+        if(SyncSetting::get('fields_separator')){
+            $fieldSeparator=SyncSetting::get('fields_separator');
+        }
+        else{
+            throw new AppException('Non hai specificato il separatore tra i campi.');
+        }
+        if(SyncSetting::get('caricamento_csv_con_ftp')){
+            if( SyncSetting::get('caricamento_csv_con_ftp')=="2"){
+                $useFtp=true;
+            }
+            else{
+                $useFtp=false;
+            }
+        }
+        else{
+            throw new AppException('Devi specificare se utilizzare un ftp per il caricamaneto dei file.');
+        }
+        
+        self::checkEmptyConfiguration($postParamDataUpdateName,'Campo Update');
+        self::checkEmptyConfiguration($postParamDataUpdateFormat,'Formato data campo update');
+        
+        self::checkEmptyConfiguration($productFileName,'Nome file prodotti');
+        self::checkEmptyConfiguration($categoryFileName,'Nome file categorie');
+        self::checkEmptyConfiguration($brandFileName,'Nome file brand');
+        self::checkEmptyConfiguration($fieldSeparator,'Separatore dei campi');
+       
+        $sincroConfig=[
+            "type"=>"API",
+            "updateFieldName"=>$postParamDataUpdateName,
+            "updateDateFormat"=>$postParamDataUpdateFormat,
+            "productFileName"=>$productFileName,
+            "categoryFileName"=>$categoryFileName,
+            "brandFileName"=>$brandFileName,
+            "fieldsSeparator"=>$fieldSeparator,
+            "hasHeader"=>$postHasHeader,
+            "useFieldNumber"=>$useFieldNumber,
+            "useFtp"=>$useFtp,
+        ];
+        $categoryConfig=null;
+        if($tipoSincro=="CATEGORIE"){
+            $categoryConfig=self::getCategoryApiConfiguration();
+            $sincroConfig=[
+                "type"=>"API",
+                "updateFieldName"=>$postParamDataUpdateName,
+                "updateDateFormat"=>$postParamDataUpdateFormat,
+                "productFileName"=>$productFileName,
+                "categoryFileName"=>$categoryFileName,
+                "brandFileName"=>$brandFileName,
+                "fieldsSeparator"=>$fieldSeparator,
+                "hasHeader"=>$postHasHeader,
+                "useFieldNumber"=>$useFieldNumber,
+                "useFtp"=>$useFtp,
+                "categorySettings"=>$categoryConfig,
+                
+            ];
+            
+        }
+
+        
+        return $sincroConfig;
+    }
+    
     
 
 
