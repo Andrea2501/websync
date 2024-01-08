@@ -271,4 +271,7 @@ v1.0.89:
     - add_slug_and_code_to_mallbrand.php
 v1.0.90:
     - 'Seeder Per BrandTableFields'
-    - tablebrandfieldseeder.php        
+    - tablebrandfieldseeder.php
+v1.0.91:
+    - 'Updated table tecnotrade_websync_clientcatrules'
+    - builder_table_update_tecnotrade_websync_clientcatrules_15.php

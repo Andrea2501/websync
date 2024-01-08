@@ -38,6 +38,7 @@ class Plugin extends PluginBase
             'Tecnotrade\Websync\Components\BrandsToMall'=> 'BrandsToMall',
             'Tecnotrade\Websync\Components\ProductToMall'=> 'ProductToMall',
             'Tecnotrade\Websync\Components\CsvTester'=> 'CsvTester',
+            'Tecnotrade\Websync\Components\CsvTestLetturaCategory'=> 'CsvTestLetturaCategory',
         ];
     }
 

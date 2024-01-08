@@ -250,7 +250,7 @@ class TestLetturaCategory extends ComponentBase
 
     
 
-    protected function prepareSincrocategories(){
+    protected function prepareSincroCategories(){
         $conf=$this->websyncCategoryConfiguration;
         $type=$conf["type"];
         $usePagination=false;

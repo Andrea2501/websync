@@ -27,6 +27,10 @@ fields:
         label: 'Is primary key'
         span: left
         type: checkbox
+    is_slug:
+        label: 'Is slug'
+        span: auto
+        type: checkbox
     is_data_update:
         label: 'Campo da utilizzare per verificare la data di aggiornamanto'
         span: left
