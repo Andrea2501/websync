@@ -60,7 +60,7 @@ class TableCategoryFieldSeeder extends Seeder
             'fieldtype_id'=>'3'
         ]);
         $field = CategoryFields::create([
-            'field_name' => 'update_at',
+            'field_name' => 'updated_at',
             'is_primary_key'=>'0',
             'fieldtype_id'=>'7'
             

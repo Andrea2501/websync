@@ -396,7 +396,7 @@ class CommonConfigFunctions{
         self::checkEmptyConfiguration($fieldSeparator,'Separatore dei campi');
        
         $sincroConfig=[
-            "type"=>"API",
+            "type"=>"CSV",
             "updateFieldName"=>$postParamDataUpdateName,
             "updateDateFormat"=>$postParamDataUpdateFormat,
             "productFileName"=>$productFileName,
@@ -411,7 +411,7 @@ class CommonConfigFunctions{
         if($tipoSincro=="CATEGORIE"){
             $categoryConfig=self::getCategoryApiConfiguration();
             $sincroConfig=[
-                "type"=>"API",
+                "type"=>"CSV",
                 "updateFieldName"=>$postParamDataUpdateName,
                 "updateDateFormat"=>$postParamDataUpdateFormat,
                 "productFileName"=>$productFileName,

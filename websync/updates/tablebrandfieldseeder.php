@@ -36,7 +36,7 @@ class TableBrandFieldSeeder extends Seeder
             'fieldtype_id'=>'2'
         ]);
         $field = BrandFields::create([
-            'field_name' => 'update_at',
+            'field_name' => 'updated_at',
             'is_primary_key'=>'0',
             'fieldtype_id'=>'7'
             

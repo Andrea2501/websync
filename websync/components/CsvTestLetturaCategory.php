@@ -63,9 +63,10 @@ class CsvTestLetturaCategory extends ComponentBase
             }
             $this->prepareSincroCategories();
             $result=$this->creaAlberoCategorie(0);
+            
             if($result){
                 CategoryTable::query()->update(['import_status' => 1]);
-
+               
             }
             else{
                 throw new AppException('Si  è verificato un problema nella creazione dell\' albero delle Categorie.');  
@@ -174,6 +175,7 @@ class CsvTestLetturaCategory extends ComponentBase
     }
     protected function prepareSincroCategories(){
         $conf=$this->websyncCategoryConfiguration;
+       
         $type=$conf["type"];
         $usePagination=true;
         $recordPerPage=100;
@@ -264,14 +266,17 @@ class CsvTestLetturaCategory extends ComponentBase
         }
         else{
             foreach ($chunkRecords as $record){
+                
                 $valuePrimaryKey=$record[$pKey];
                 $valueDate=$record[$articoliParamDataUpdateName];
-                $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
-                if($valueDate > $dataDiModifica){
+                //$date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
+                /*if($valueDate > $dataDiModifica){
                     $this->numRecordSaltati++;
+                    $totalRecords++;
                     continue;
-                }
+                }*/
                 $result=$this->addToCategorySupportTable($record,$pKey,$valuePrimaryKey);
+                dd($valuePrimaryKey);
                 if($result=="1"){
                     $this->numRecordCorretti++;
                 }
@@ -279,6 +284,7 @@ class CsvTestLetturaCategory extends ComponentBase
                     $this->numRecordErrati++;
                     $this->codiciRecordErrati[]=$valuePrimaryKey;
                 }
+                $totalRecords++;
             } 
             $nextPage=$page + 1;
             return $this->getCategories($configData,$recordPerPage,$nextPage,$useDataForUpdate,$dataParamNameFormat,$totalRecords);    
@@ -288,6 +294,7 @@ class CsvTestLetturaCategory extends ComponentBase
         
         $rules=$this->rulesToBind;
         $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
+       
         $alberoIsOne=null;
         
         $tipoAlbero=$categorySettings["treeMethod"];
@@ -309,6 +316,7 @@ class CsvTestLetturaCategory extends ComponentBase
         
         
         $nascondiCategoria=null;
+       
         foreach($rules as $rule){
             
             $ruleName=$rule["nomeRegola"];
@@ -390,6 +398,7 @@ class CsvTestLetturaCategory extends ComponentBase
             // // SE NON CI SONO REGOLE DI AGGREGAZIONE ASSEGNO IL VALORE NON HO ASSEGNATO IL VALORE PER QUESTA REGOLA
             if($valueAssigned==false){
                 foreach($rule["fields"] as $field){
+                   
                     $fieldName=trim($field["nomeCampo"]);
                     
                     $val=$categoria[$fieldName];
@@ -417,15 +426,17 @@ class CsvTestLetturaCategory extends ComponentBase
 
 
         $categoriaAppoggio->import_status=1;
+       
             
         try{
             $xId=$categoriaAppoggio->save();
-            
+            dd($xId);
             return 1;   
             
         }
         catch(Exception $ex){
             $errore=$ex->getMessage();
+            throw new AppException($errore);
             return 0;
         }
         
