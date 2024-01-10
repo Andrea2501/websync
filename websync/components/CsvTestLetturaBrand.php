@@ -12,6 +12,10 @@ use Tecnotrade\Websync\Models\ClientCategoryRules as ClientCategoryRules;
 use Tecnotrade\Websync\Models\ClientCategoryFields as ClientCategoryFields;
 use Tecnotrade\Websync\Models\TableCategoryFields as SincroCategoryFields;
 
+use Tecnotrade\Websync\Models\SupportBrandTable as BrandTable; 
+use Tecnotrade\Websync\Models\TableBrandFields as ClientBrandFields;
+
+
 use Tecnotrade\Websync\Models\ConfigSetting As SyncSetting;
 use Tecnotrade\Websync\Models\SupportProductTable as ProductTable;
 use Tecnotrade\Websync\Models\SupportCategoryTable as CategoryTable;
@@ -19,68 +23,72 @@ use October\Rain\Exception\ApplicationException as AppException;
 use Tecnotrade\TecnotradeWebsyncCategorySetting\Models\ConfigSetting as CatConfigSetting;
 use Tecnotrade\Websync\Classes\CommonConfigFunctions as CommonConfigFunction;
 use Exception;
+
 use League\Csv\Reader;
 use League\Csv\Statement;
 
 use Carbon\Carbon;
-use Log;
 
 
 
 
-class CsvTestLetturaCategory extends ComponentBase
+class CsvTestLetturaBrand extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name'        => 'Test Lettura Dati Categorie Dinamica Con Csv',
-            'description' => 'Dynamic Category Test Binding With Csv'
+            'name'        => 'CSV Test Lettura Dati Brand Dinamici',
+            'description' => 'Dynamic Brand Test Binding'
         ];
     }
-
-    public $websyncCategoryConfiguration;
+    public function defineProperties(){
+        return [];
+    }
+    public function onInit()
+    {
+       
+    // Rest of your code
+    }
     public $websyncConfiguration=array();
     public $rulesToBind=array();
-    public $csvConfiguration=array();
     public $tipoClientData;
     protected $numRecordCorretti;
     protected $numRecordSaltati;
     protected $numRecordErrati;
     protected $codiciRecordErrati=[];
     protected $numeroTotaleRecordcsv;
-    
 
-
-    public function defineProperties(){
-        return [];
-    }
     public function onRun(){
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         if($this->tipoClientData=="CSV"){
-            $this->websyncCategoryConfiguration=CommonConfigFunction::getCsvConfiguration('CATEGORIE');
+            $this->websyncConfiguration=CommonConfigFunction::getCsvConfiguration('BRAND');
+            
+            //dd($this->websyncConfiguration);
+            //$token=$this->getAuthToken($this->websyncConfiguration);
+            //$result=$this->getRaggruppamenti($token);
+            //dd($result);
             $this->setDataForCsv();
+           
+            // controllo che sia stata impostata una chiave univoca al modello esterno e associata al campo
+            //user_defined_id
             $hasPk=$this->checkPrimaryKeyExists();
             if($hasPk===false){
-                throw new AppException('Categorie: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
+                throw new AppException('Brand: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
-            $this->prepareSincroCategories();
+            $this->prepareSincroBrands();
             
-            $result=$this->creaAlberoCategorie(0);
-            
-            if($result){
-                CategoryTable::query()->update(['import_status' => 1]);
-                dd("FINITO");
-            }
-            else{
-                throw new AppException('Si  è verificato un problema nella creazione dell\' albero delle Categorie.');  
-            }
-        }
-    }
 
+
+                
+        }
+        
+        
+        //dd($this->websyncCategoryConfiguration);
+    }
     protected function checkPrimaryKeyExists(){
         $elements=$this->rulesToBind;
         foreach($elements as $element){
-            if($element["mallField"]=="code"){
+            if($element["mallField"]=="brand_code"){
                
                 $pk=$element["pk"];
                 if( ($pk && $pk=="1") ){
@@ -93,37 +101,45 @@ class CsvTestLetturaCategory extends ComponentBase
         }
         return false;
     }
-
-
-
-    public function setDataForCsv(){
-        $res=$this->prepareCsvCategoriesRules();
-        if($res!==true){
-            throw new AppException('Si  è verificato un problema nella creazione delle regole delle Categorie.');  
+    protected function getClientCsvPrimaryKey(){
+        $elements=$this->rulesToBind;
+        $nomeChiave='';
+        foreach($elements as $element){
+            if($element["mallField"]=="brand_code"){
+               
+                foreach($element["fields"] as $field){
+                    $nomeChiave=$field["nomeCampo"];
+                    return $nomeChiave;
+                }
+            }
         }
-        
     }
-
-
-    public function prepareCsvCategoriesRules() {
+    public function setDataForCsv(){
+        $res=$this->prepareCsvBrandRules();
+        if($res!==true){
+            throw new AppException('Si  è verificato un problema nella creazione delle regole dei Brand.');  
+        }
+    }
+    public function prepareCsvBrandRules() {
        
         
-        $allCategoriesFields=SincroCategoryFields::all();
+        $allBrandFields=ClientBrandFields::all();
+        
         //dd($allCategoriesFields);
-        if($allCategoriesFields && count($allCategoriesFields)>0){
-            foreach($allCategoriesFields as $pField){
-                if(!$pField->clientcategoryrules){
+        if($allBrandFields && count($allBrandFields)>0){
+            foreach($allBrandFields as $pField){
+                
+                if(!$pField->clientbrandrules){
                     continue;
                 }
-                $ruleRelation=$pField->clientcategoryrules;
+                $ruleRelation=$pField->clientbrandrules;
                 
-                //dd($ruleRelation);
                 $fieldTypeMaxLength=$pField->fieldtype->max_length;
                 $mallField=$pField->field_name;            
-                if(!$ruleRelation->clientcategoryfields){
+                if(!$ruleRelation->clientbrandfields){
                     continue;
                 }
-                $clientFields=$ruleRelation->clientcategoryfields;   
+                $clientFields=$ruleRelation->clientbrandfields;   
                                  
                 //dd($clientFields);
                 $ruleFields=[];
@@ -149,7 +165,7 @@ class CsvTestLetturaCategory extends ComponentBase
                     "concatenaStringhe"=>null,
                     "eliminaSeIniziaPer"=>empty(trim($ruleRelation->elimina_da_mall_se_inizia_per))? null :$ruleRelation->elimina_da_mall_se_inizia_per ,
                     "eliminaSeUguale_a"=>empty(trim($ruleRelation->elimina_da_mall_se_uguale_a))?null : $ruleRelation->elimina_da_mall_se_uguale_a, 
-                    "isSlug"=>$ruleRelation->is_slug,
+                    "isSlug"=>$ruleRelation->is_slug===0 ? null:true,
                     "isRelationWithProductTable"=>empty($pField->is_relation_with_product_table) ? null:true,
                     "isPrimaryKey"=>$pField->is_primary_key===0 ? null:true,
                     "isDateToCompare"=>$ruleRelation->is_data_update,
@@ -161,26 +177,21 @@ class CsvTestLetturaCategory extends ComponentBase
                 
                 
                 $this->rulesToBind[]=$regole;
-
               
                 
             }
-            $this->numRecordCorretti=0;
-            $this->numRecordSaltati=0;
-            $this->numRecordErrati=0;
+            
             return true;
             
         }
         else{
 
-            throw new AppException('Non hai effettuato il binding corretto con la tabella prodotti');
+            throw new AppException('Non hai effettuato il binding corretto con la tabella marchi');
         }
     }
-    protected function prepareSincroCategories(){
-        $conf=$this->websyncCategoryConfiguration;
-       
+    protected function prepareSincroBrands(){
+        $conf=$this->websyncConfiguration;
         $type=$conf["type"];
-        $usePagination=true;
         $recordPerPage=100;
         $currentPage=1;
         $useDataForUpdate=null;
@@ -190,75 +201,56 @@ class CsvTestLetturaCategory extends ComponentBase
             $useDataForUpdate=true;
             $dataParamNameFormat=$conf["updateDateFormat"];
         }
+        
         if($type=="CSV"){
                            
-            $t=$this->getCategories($conf,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,0);
+            $t=$this->getBrands($conf,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,0);
             
             
         }
     }
-    protected function getClientApiPrimaryKey(){
-        $elements=$this->rulesToBind;
-        $nomeChiave='';
-        foreach($elements as $element){
-            if($element["mallField"]=="code"){
-               
-                foreach($element["fields"] as $field){
-                    $nomeChiave=$field["nomeCampo"];
-                    return $nomeChiave;
-                }
-            }
-        }
-    }
-
-    
-
-
-    protected function getCategories($configData,$recordPerPage=null,$page=1,$useDataForUpdate=null,$dataParamNameFormat=null,$numRowToread=null){
-        /*
-         "type"=>"API",
-                "updateFieldName"=>$postParamDataUpdateName,
-                "updateDateFormat"=>$postParamDataUpdateFormat,
-                "productFileName"=>$productFileName,
-                "categoryFileName"=>$categoryFileName,
-                "brandFileName"=>$brandFileName,
-                "fieldsSeparator"=>$fieldSeparator,
-                "hasHeader"=>$postHasHeader,
-                "useFieldNumber"=>$useFieldNumber,
-                "useFtp"=>$useFtp,
-                "categorySettings"=>$categoryConfig,
-        */
+    protected function getBrands($configData,$recordPerPage=null,$page=1,$useDataForUpdate=null,$dataParamNameFormat=null,$numRowToRead=null){
         
+        /*
+         $sincroConfig=[
+            "type"=>"CSV",
+            "updateFieldName"=>$postParamDataUpdateName,
+            "updateDateFormat"=>$postParamDataUpdateFormat,
+            "productFileName"=>$productFileName,
+            "categoryFileName"=>$categoryFileName,
+            "brandFileName"=>$brandFileName,
+            "fieldsSeparator"=>$fieldSeparator,
+            "hasHeader"=>$postHasHeader,
+            "useFieldNumber"=>$useFieldNumber,
+            "useFtp"=>$useFtp,
+        ];
+        */
         $dataDiModifica = null;
-        $categoriesFileName=$configData["categoryFileName"];
+        $brandFileName=$configData["brandFileName"];
         $hasHeader = $configData["hasHeader"];
         $fieldSeparator=$configData["fieldsSeparator"];
-        
-
         $articoliParamNumPerPageName=null;
         $articolParamPageToReadName=null;
         $articoliParamDataUpdateName=null;
+        
+     
         // nome del campo che contine la chiave primaria del prodotto nelle api
-        $pKey=$this->getClientApiPrimaryKey();
+        $pKey=$this->getClientCsvPrimaryKey();
         
         $pageToread=(int)$page;
-        $numPerPage=(int)$recordPerPage;    
-        
+        $numPerPage=(int)$recordPerPage;   
         $articoliParamDataUpdateName=$configData["updateFieldName"];
-        $dataDiModifica=Carbon::now()->subDays(1)->format($dataParamNameFormat);        
+        $dataDiModifica=Carbon::now()->subDays(1)->format($dataParamNameFormat);    
         $csv='';
         $filePath='';
         $chunkSize = $numPerPage;
         $startingRecord=$chunkSize*($pageToread-1);
-        
-        
         if( $page!="1" && $this->numeroTotaleRecordcsv <= $startingRecord){
             return true;
         }
         
-
         try{
-            $filePath = storage_path('app/media/'.$categoriesFileName);
+            $filePath = storage_path('app/media/'.$brandFileName);
             $csv = Reader::createFromPath($filePath, 'r');
             
         }
@@ -269,32 +261,29 @@ class CsvTestLetturaCategory extends ComponentBase
             }
             throw new AppException($ex->getMessage().'pagina: '.$pageToread. ' total: '.$this->numeroTotaleRecordcsv);
         }
-        
-        
+
+
+
         $csv->setDelimiter($fieldSeparator);
         if($hasHeader===true){
             $csv->setHeaderOffset(0);
         }
-         // Numero di righe da leggere in ogni chunk
         $totalRows = $csv->count();
         if($page=="1"){
             $this->numeroTotaleRecordcsv=$totalRows;
         }
         
-        
-        
-        
         $statement = (new Statement())
         ->offset($startingRecord)
         ->limit($chunkSize);
         $chunkRecords = $statement->process($csv);
-        $totalRecords=$numRowToread;
+        $totalRecords=$numRowToRead;
         foreach ($chunkRecords as $record){    
             $valuePrimaryKey=$record[$pKey];
             $valueDate=$record[$articoliParamDataUpdateName];
             $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
             if($date2 < $dataDiModifica){
-                $result=$this->addToCategorySupportTable($record,$pKey,$valuePrimaryKey);
+                $result=$this->addToBrandsSupportTable($record,$pKey,$valuePrimaryKey);
                 if($result=="1"){
                     $this->numRecordCorretti++;
                 }
@@ -313,42 +302,34 @@ class CsvTestLetturaCategory extends ComponentBase
             $totalRecords++;
         } 
         $nextPage=(int)$page + 1;
-        return $this->getCategories($configData,$recordPerPage,$nextPage,$useDataForUpdate,$dataParamNameFormat,$totalRecords);    
+        return $this->getBrands($configData,$recordPerPage,$nextPage,$useDataForUpdate,$dataParamNameFormat,$totalRecords);    
+        
         
     }
-    protected function addToCategorySupportTable($categoria,$pKeyClient,$pKeyClientvalue){
+    protected function addToBrandsSupportTable($brand,$pKeyClient,$pKeyClientvalue){
         
         $rules=$this->rulesToBind;
-        $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
-       
-        $alberoIsOne=null;
         
-        $tipoAlbero=$categorySettings["treeMethod"];
-        if($tipoAlbero==="ONE"){
-            // se l'albero è one sono tutte categorie di root questa regola sovrascrive tutte le altre
-            $alberoIsOne=true;
-        }
-        $chiavePrimariaApiClient=$this->getClientApiPrimaryKey();
+        $chiavePrimariaCsvClient=$this->getClientApiPrimaryKey();
         $stringToTest='';
         $action="NEW";
        
-        $categoriaAppoggio=CategoryTable::where('code','=',$pKeyClientvalue)->first();
-        if($categoriaAppoggio){
+        $brandAppoggio=BrandTable::where('brand_code','=',$pKeyClientvalue)->first();
+        if($brandAppoggio){
             $action="UPD";
         }
         else{
-            $categoriaAppoggio=new CategoryTable();
+            $brandAppoggio=new BrandTable();
         }
         
         
-        $nascondiCategoria=null;
-       
+        $nascondiBrand=null;
         foreach($rules as $rule){
             
             $ruleName=$rule["nomeRegola"];
             $pk=$rule["pk"];
             $isPrimaryKey=$rule["isPrimaryKey"];
-            $categoryField=$rule["mallField"];
+            $brandField=$rule["mallField"];
             $valueToSave=0;
             $fieldNames='';
             $fieldNumeric=0;
@@ -368,9 +349,9 @@ class CsvTestLetturaCategory extends ComponentBase
                 $valueEliminaSeIniziaPer=$rule["eliminaSeIniziaPer"];
                 $arrFieldsToTake=explode(",",$clientFields);
                 foreach($arrFieldsToTake as $f){
-                    $val=$categoria[$f];
+                    $val=$brand[$f];
                     if (substr($val, 0, strlen($valueEliminaSeIniziaPer)) === $valueEliminaSeIniziaPer){
-                       $nascondiCategoria=true;
+                       $nascondiBrand=true;
                     } 
                 }
             }
@@ -378,14 +359,14 @@ class CsvTestLetturaCategory extends ComponentBase
                 $valueEliminaSeUgualeA=$rule["eliminaSeUguale_a"];
                 $arrFieldsToTake=explode(",",$clientFields);
                 foreach($arrFieldsToTake as $f){
-                    $val=$categoria[$f];
+                    $val=$brand[$f];
                     if (substr($val, 0, strlen($valueEliminaSeUgualeA)) === $valueEliminaSeUgualeA){
-                        $nascondiCategoria=true;
+                        $nascondiBrand=true;
                     } 
                 }
             }
             if($action==="UPD"){
-                if($pk=="1" || $isPrimaryKey=="1" || $categoryField=='code' || $categoryField=='slug'){
+                if($pk=="1" || $isPrimaryKey=="1" || $brandField=='brand_code' || $brandField=='slug'){
                     
                     continue;
                 }
@@ -398,10 +379,10 @@ class CsvTestLetturaCategory extends ComponentBase
                 $valueToSave=0;
                 $arrFieldsToTake=explode(",",$clientFields);
                 foreach($arrFieldsToTake as $f){
-                    $val=$categoria[$f];
+                    $val=$brand[$f];
                     $valueToSave+=$val;
                 }
-                $categoriaAppoggio->{$categoryField}=$valueToSave;
+                $brandAppoggio->{$brandField}=$valueToSave;
                 $valueAssigned=true;           
             }
 
@@ -413,23 +394,22 @@ class CsvTestLetturaCategory extends ComponentBase
                 $valueToSave='';
                 $arrFieldsToTake=explode(",",$clientFields);
                     foreach($arrFieldsToTake as $f){
-                        $val=$categoryField[$f];
+                        $val=$brandField[$f];
                         $valueToSave.=' '.$val;
 
                     }
-                $categoriaAppoggio->{$categoryField}=$valueToSave;
+                $brandAppoggio->{$brandField}=$valueToSave;
                 $valueAssigned=true;    
             }
 
             // // SE NON CI SONO REGOLE DI AGGREGAZIONE ASSEGNO IL VALORE NON HO ASSEGNATO IL VALORE PER QUESTA REGOLA
             if($valueAssigned==false){
                 foreach($rule["fields"] as $field){
-                   
                     $fieldName=trim($field["nomeCampo"]);
                     
-                    $val=$categoria[$fieldName];
+                    $val=$brand[$fieldName];
                     $valueToSave=$val;
-                    $categoriaAppoggio->{$categoryField}=$val;
+                    $brandAppoggio->{$brandField}=$val;
                     $valueAssigned=true;
                     break;
                 }
@@ -437,128 +417,25 @@ class CsvTestLetturaCategory extends ComponentBase
             
             
         }
-        
-        if($nascondiCategoria){
-            $categoriaAppoggio->visibility=0;
-        }
-        if(empty($categoria->visibility)){
-            $categoriaAppoggio->visibility=1;
+        if($nascondiBrand){
+            $brandAppoggio->visibility=0;
         }
         
-        if($alberoIsOne===true){
-            $categoriaAppoggio->parent_code=null;
-            $categoriaAppoggio->level=0;
-        }
+        $brandAppoggio->import_status=1;
 
 
-        $categoriaAppoggio->import_status=1;
-       
-            
+        
         try{
-            $xId=$categoriaAppoggio->save();
-            
+           
+            $xId=$brandAppoggio->save();
             return 1;   
             
         }
         catch(Exception $ex){
             $errore=$ex->getMessage();
-            throw new AppException($errore);
             return 0;
         }
         
-    }  
-    protected function creaAlberoCategorie($level){
-        $categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
-        $tipoAlbero=$categorySettings["treeMethod"];
-        $newLevel=0;
-        //controllo Se tutte le categorie sono in import_status 2
-        // se sono in import_status 2 esco dalla funzione
-        // uso import status = 1 , il count deve essere 0
-        $numCategorieAppoggio=CategoryTable::where('import_status','=',1)->count();
-        if($numCategorieAppoggio === 0 ){
-            return true;
-        }
+    }    
 
-
-
-        if($tipoAlbero==="REC"){
-           
-            if($level=="0"){
-                $categorieAppoggio = CategoryTable::whereNull('parent_code')
-                ->orWhere('parent_code', '=', '')
-                ->orWhere('parent_code','=','NULL')
-                ->where('import_status','=',1)
-                ->get();
-                
-                $newLevel=$level+1;
-               
-                foreach($categorieAppoggio as $cat){
-                    Log::info("CAT: ".$cat->code. " Levle: ".$level);
-                    $codiceCategoria=$cat->code;
-                    $childCategories=CategoryTable::where('parent_code','=',$codiceCategoria)
-                    ->where('import_status','=',1)
-                    ->get();
-                    foreach($childCategories as $child){
-                        $child->level=$newLevel;
-                        Log::info("CAT: ".$cat->code. " Child: ".$child->code." Levle: ".$newLevel);
-                        $child->save();
-                    }
-                    $cat->import_status=2;
-                    $cat->save();
-                }
-                $this->creaAlberoCategorie($newLevel);
-            }
-            else{
-                
-                $categorieAppoggio = CategoryTable::where('level','=',$level)
-                ->get();
-                
-                
-
-                foreach($categorieAppoggio as $cat){
-                    Log::info("CAT: ".$cat->code. " Levle: ".$level);
-                    
-                    $codiceCategoria=$cat->code;
-                    $childCategories=CategoryTable::where('parent_code','=',$codiceCategoria)->get();
-                   
-                    foreach($childCategories as $child){
-                        
-                        $child->level=$level+1;
-                        $child->import_status=2;
-                        Log::info("CAT: ".$cat->code. " Child: ".$child->code." Levle: ".( $level + 1 ));
-                        $child->save();
-                        
-                    }
-                    $cat->import_status=2;
-                    $cat->save();
-                }
-                $newLevel=$level+1;
-                $this->creaAlberoCategorie($newLevel);  
-            }
-            $numCategorieAppoggio=CategoryTable::where('import_status','=',1)->count();
-            if($numCategorieAppoggio === 0 ){
-                return true;
-            }  
-           
-        }
-    }
 }
-
-/*
-$categorySettings=$this->websyncCategoryConfiguration["categorySettings"];
-                $tipoAlbero=$categorySettings["treeMethod"];
-                if($tipoAlbero==="ONE" || $tipoAlbero==="DIRECT" || $tipoAlbero =="REC"){
-                    // in questo caso le categorie o sono tutte di root 
-                    //o le categorie child e il relativo livello sono state specificate
-                    return true;
-                }
-                elseif($tipoAlbero=="LEN"){
-                    // la creazione dell'albero si basa sulla lunghezza dei codici di categoria e del
-                    // moltiplicatore
-                    
-                }
-                
-                else{
-                    throw new AppException('Non è possibie creare l\'albero, tipo non valido, controlla le configurazioni');
-}
-*/

@@ -67,7 +67,7 @@ class TestLetturaBrand extends ComponentBase
             //user_defined_id
             $hasPk=$this->checkPrimaryKeyExists();
             if($hasPk===false){
-                throw new AppException('Categorie: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
+                throw new AppException('Brand: Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
             $this->prepareSincroBrands();
             
@@ -206,7 +206,7 @@ class TestLetturaBrand extends ComponentBase
         }
         else{
 
-            throw new AppException('Non hai effettuato il binding corretto con la tabella prodotti');
+            throw new AppException('Non hai effettuato il binding corretto con la tabella brand');
         }
     }
     protected function prepareSincroBrands(){
