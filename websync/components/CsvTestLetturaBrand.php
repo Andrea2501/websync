@@ -278,7 +278,9 @@ class CsvTestLetturaBrand extends ComponentBase
         ->limit($chunkSize);
         $chunkRecords = $statement->process($csv);
         $totalRecords=$numRowToRead;
+        
         foreach ($chunkRecords as $record){    
+          
             $valuePrimaryKey=$record[$pKey];
             $valueDate=$record[$articoliParamDataUpdateName];
             $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
@@ -310,7 +312,8 @@ class CsvTestLetturaBrand extends ComponentBase
         
         $rules=$this->rulesToBind;
         
-        $chiavePrimariaCsvClient=$this->getClientApiPrimaryKey();
+        
+        $chiavePrimariaCsvClient=$this->getClientCsvPrimaryKey();
         $stringToTest='';
         $action="NEW";
        
@@ -426,13 +429,14 @@ class CsvTestLetturaBrand extends ComponentBase
 
         
         try{
-           
+          
             $xId=$brandAppoggio->save();
+            
             return 1;   
             
         }
         catch(Exception $ex){
-            $errore=$ex->getMessage();
+            $errore=throw new AppException($ex->getMessage());
             return 0;
         }
         
