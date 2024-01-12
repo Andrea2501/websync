@@ -99,7 +99,7 @@ class ProductToMall extends ComponentBase
         else{
             throw new AppException("Devi specificare l'id dell' iva di default");
         }
-        if($this->tipoClientData=="API"){
+        if($this->tipoClientData=="API" || $this->tipoClientData=="CSV"){
             $getAllProducts=SupportProductTable::where('import_status','=',1)->get();
 
            
@@ -115,17 +115,18 @@ class ProductToMall extends ComponentBase
                     }
                 }
                 else{
-                   //update product 
+                   //NEW product 
                     $result=$this->addNewProduct($p);
-                    dd("!!!!");
+                    
                     if(!$result){
                         throw new AppException('Si è verificato un errore nel salvataggio del prodotto codice: '.$p->codice_interno_univoco);
                     } 
                 }
             }
+            dd("FINE");
         }
         else{
-            $this->csvConfiguration=$this->getCsvConfiguration();
+            dd("BOH");
         }
     }
 

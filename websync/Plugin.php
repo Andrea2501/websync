@@ -40,6 +40,7 @@ class Plugin extends PluginBase
             'Tecnotrade\Websync\Components\CsvTester'=> 'CsvTester',
             'Tecnotrade\Websync\Components\CsvTestLetturaCategory'=> 'CsvTestLetturaCategory',
             'Tecnotrade\Websync\Components\CsvTestLetturaBrand'=> 'CsvTestLetturaBrand',
+            'Tecnotrade\Websync\Components\CsvTestLetturaProdotti'=> 'CsvTestLetturaProdotti',
         ];
     }
 

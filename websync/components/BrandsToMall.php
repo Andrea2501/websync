@@ -49,7 +49,7 @@ class BrandsToMall extends ComponentBase
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         $numBrands=0;
         
-        if($this->tipoClientData=="API"){
+        if($this->tipoClientData=="API" || $this->tipoClientData=="CSV"){
           
             $allBrands=BrandTable::where('import_status','=',1)->get();
             

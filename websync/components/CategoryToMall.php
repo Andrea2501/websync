@@ -45,10 +45,11 @@ class CategoryToMall extends ComponentBase
         $this->tipoClientData=CommonConfigFunction::getGeneralConfiguration();
         $numCategories=0;
         
-        if($this->tipoClientData=="API"){
-            $this->webSyncSettings=CommonConfigFunction::getApiConfiguration('CATEGORIE');
+        if($this->tipoClientData=="API" || $this->tipoClientData=="CSV"){
+            /*$this->webSyncSettings=CommonConfigFunction::getApiConfiguration('CATEGORIE');
             
             $this->categorySettings=$this->webSyncSettings["categorySettings"];
+            */
             $allCategories=CategoryTable::where('import_status','=',1)->get();
            
             
@@ -74,9 +75,7 @@ class CategoryToMall extends ComponentBase
                 }
             }    
         }
-        else{
-            $this->csvConfiguration=$this->getCsvConfiguration();
-        }
+        
     }
 
     protected function bindCategoriesToMall($allCategories){
