@@ -293,7 +293,8 @@ class CsvTestLetturaCategory extends ComponentBase
             $valuePrimaryKey=$record[$pKey];
             $valueDate=$record[$articoliParamDataUpdateName];
             $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
-            if($date2 < $dataDiModifica){
+            if($date2 > $dataDiModifica){
+                
                 $result=$this->addToCategorySupportTable($record,$pKey,$valuePrimaryKey);
                 if($result=="1"){
                     $this->numRecordCorretti++;
@@ -305,7 +306,7 @@ class CsvTestLetturaCategory extends ComponentBase
                 
             }
             else{
-                    
+                
                 $this->numRecordSaltati++;
             }
             //dd($valuePrimaryKey);

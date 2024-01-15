@@ -205,7 +205,7 @@ class CsvTestLetturaBrand extends ComponentBase
         if($type=="CSV"){
                            
             $t=$this->getBrands($conf,$recordPerPage,$currentPage,$useDataForUpdate,$dataParamNameFormat,0);
-            
+           
             
         }
     }
@@ -284,7 +284,8 @@ class CsvTestLetturaBrand extends ComponentBase
             $valuePrimaryKey=$record[$pKey];
             $valueDate=$record[$articoliParamDataUpdateName];
             $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
-            if($date2 < $dataDiModifica){
+            if($date2 > $dataDiModifica){
+                dd("MODIFICO");
                 $result=$this->addToBrandsSupportTable($record,$pKey,$valuePrimaryKey);
                 if($result=="1"){
                     $this->numRecordCorretti++;
@@ -296,7 +297,7 @@ class CsvTestLetturaBrand extends ComponentBase
                 
             }
             else{
-                    
+                  
                 $this->numRecordSaltati++;
             }
             //dd($valuePrimaryKey);

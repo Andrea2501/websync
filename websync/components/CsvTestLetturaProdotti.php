@@ -60,7 +60,7 @@ class CsvTestLetturaProdotti extends ComponentBase
                 throw new AppException('Non hai specificato la chiave primaria, o non l\'hai associata al campo corretto.');
             }
             $this->prepareSincroProducts();
-            dd($this->numRecordCorretti);
+            
         }
     }
     protected function checkPrimaryKeyExists(){
@@ -247,7 +247,8 @@ class CsvTestLetturaProdotti extends ComponentBase
             $valuePrimaryKey=$record[$pKey];
             $valueDate=$record[$articoliParamDataUpdateName];
             $date2 = Carbon::createFromFormat($dataParamNameFormat, $valueDate);
-            if($date2 < $dataDiModifica){
+            if($date2 > $dataDiModifica){
+                
                 $result=$this->addToProductSupportTable($record,$pKey,$valuePrimaryKey);
                 if($result=="1"){
                     $this->numRecordCorretti++;
@@ -259,7 +260,7 @@ class CsvTestLetturaProdotti extends ComponentBase
                 
             }
             else{
-                    
+               
                 $this->numRecordSaltati++;
             }
             //dd($valuePrimaryKey);

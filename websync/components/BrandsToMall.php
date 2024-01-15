@@ -57,6 +57,7 @@ class BrandsToMall extends ComponentBase
                 
                 $numBrands=count($allBrands);
                 if($numBrands > 0){
+                    
                     $result=$this->bindBrandsToMall($allBrands);
                     if (is_array($result)){
 
