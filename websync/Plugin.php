@@ -16,6 +16,15 @@ class Plugin extends PluginBase
         $this->registerConsoleCommand('websinc.initsincro', \Tecnotrade\Websync\Console\InitSincro::class);
     
     }
+    public function pluginDetails()
+    {
+        return [
+            'name' => 'Tecnotrade WebSyncro For Mall Plugin',
+            'description' => 'Sincronizzazione Dati Tramite Csv o Api',
+            'author' => 'Tecnotrade',
+            'icon' => 'octo-icon-check-square',
+        ];
+    }
 
     /**
      * boot method, called right before the request route.
