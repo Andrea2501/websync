@@ -9,7 +9,7 @@ class AddSlugAndCodeToMallBrand extends Migration
     {
         Schema::table('offline_mall_brands', function($table)
         {
-            $table->text('code')->unique()->nullable();
+            $table->string('code',255)->unique()->nullable();
         });
     }
     

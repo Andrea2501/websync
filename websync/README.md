@@ -1,4 +1,4 @@
-# WEB SYNC V 1.0.3 BETA
+# WEB SYNC V 1.0.5 BETA
 
 Plugin per sincronizzazione con sorgente dati esterne.
 Attualmente in sviluppo:
