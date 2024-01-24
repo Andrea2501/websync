@@ -1,0 +1,22 @@
+columns:
+    id:
+        label: id
+        type: number
+    field_name:
+        label: field_name
+        type: text
+    is_relation_with_product_table:
+        label: is_relation_with_product_table
+        type: text
+    clientadditonalpropsrules_id:
+        label: clientadditonalpropsrules_id
+        type: number
+    fieldtype_id:
+        label: fieldtype_id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

@@ -275,3 +275,36 @@ v1.0.90:
 v1.0.91:
     - 'Updated table tecnotrade_websync_clientcatrules'
     - builder_table_update_tecnotrade_websync_clientcatrules_15.php
+v1.0.92:
+    - 'Created table tecnotrade_websync_clientadditionalpropsfields'
+    - builder_table_create_tecnotrade_websync_clientadditionalpropsfields.php
+v1.0.93:
+    - 'Updated table tecnotrade_websync_clientadditionalpropsfields'
+    - builder_table_update_tecnotrade_websync_clientadditionalpropsfields.php
+v1.0.94:
+    - 'Created table tecnotrade_websync_clientadditionalpropsrules'
+    - builder_table_create_tecnotrade_websync_clientadditionalpropsrules.php
+v1.0.95:
+    - 'Created table tecnotrade_websync_table_additional_props_fields'
+    - builder_table_create_tecnotrade_websync_table_additional_props_fields.php
+v1.0.96:
+    - 'Updated table tecnotrade_websync_table_additional_props_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_additional_props_fields.php
+v1.0.97:
+    - 'Updated table tecnotrade_websync_syncro_table_additional_props_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_additional_props_fields_2.php
+v1.0.98:
+    - 'Created table tecnotrade_websync_additional_props'
+    - builder_table_create_tecnotrade_websync_additional_props.php
+v1.0.99:
+    - 'Created table tecnotrade_websync_client__addpropsfields_addpropsrules'
+    - builder_table_create_tecnotrade_websync_client__addpropsfields_addpropsrules.php
+v1.0.100:
+    - 'Updated table tecnotrade_websync_client__addpropsfields_addpropsrules'
+    - builder_table_update_tecnotrade_websync_client__addpropsfields_addpropsrules.php
+v1.0.101:
+    - 'Updated table tecnotrade_websync_client__addpropsfields_addpropsrules'
+    - builder_table_update_tecnotrade_websync_client__addpropsfields_addpropsrules_2.php
+v1.0.102:
+    - 'Updated table tecnotrade_websync_clientadditionalpropsrules'
+    - builder_table_update_tecnotrade_websync_clientadditionalpropsrules.php

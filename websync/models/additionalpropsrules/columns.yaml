@@ -1,0 +1,31 @@
+columns:
+    id:
+        label: id
+        type: number
+    rule_name:
+        label: rule_name
+        type: text
+    label:
+        label: label
+        type: text
+    description:
+        label: description
+        type: text
+    is_prop_name:
+        label: is_prop_name
+        type: text
+    is_prop_value:
+        label: is_prop_value
+        type: text
+    is_product_code:
+        label: is_product_code
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    is_prop_order:
+        label: is_prop_order
+        type: text

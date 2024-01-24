@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: id
+        type: number
+    chiave:
+        label: chiave
+        type: text
+    valore:
+        label: valore
+        type: text
+    product_code:
+        label: product_code
+        type: text
+    october_product_id:
+        label: october_product_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

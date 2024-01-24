@@ -1,0 +1,10 @@
+name: TableAdditionalPropsController
+form: $/tecnotrade/websync/models/tableadditionalprops/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TableAdditionalProps
+defaultRedirect: tecnotrade/websync/tableadditionalpropscontroller
+create:
+    redirect: 'tecnotrade/websync/tableadditionalpropscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tableadditionalpropscontroller
+update:
+    redirect: tecnotrade/websync/tableadditionalpropscontroller
+    redirectClose: tecnotrade/websync/tableadditionalpropscontroller

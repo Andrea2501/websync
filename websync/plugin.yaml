@@ -38,6 +38,14 @@ navigation:
                 label: 'Regole Campi Sorgente Brand'
                 url: tecnotrade/websync/clientbrandrulescontroller/
                 icon: icon-sitemap
+            side-menu-item8:
+                label: 'Campi Sorgente Proprietà Addizionali'
+                url: tecnotrade/websync/additionalpropsfieldscontroller
+                icon: icon-sitemap
+            side-menu-item9:
+                label: 'Regole Proprietà Addizionali'
+                url: tecnotrade/websync/additionalpropsrulescontoller
+                icon: icon-sitemap
     main-menu-item2:
         label: 'WebSync Binding'
         url: /
@@ -55,6 +63,10 @@ navigation:
                 label: 'Category Table Fields'
                 url: tecnotrade/websync/tablecategoryfieldscontroller
                 icon: icon-sitemap
+            side-menu-item4:
+                label: 'Table Product Additional Properties'
+                url: tecnotrade/websync/tableadditionalpropscontroller
+                icon: icon-sitemap
     main-menu-item3:
         label: 'WebSync Support Tables'
         url: /
@@ -71,4 +83,8 @@ navigation:
             side-menu-item3:
                 label: 'Support Brand Table'
                 url: tecnotrade/websync/supportbrandtablecontroller
+                icon: icon-sitemap
+            side-menu-item4:
+                label: 'Support Additional Properties'
+                url: tecnotrade/websync/supportadditionalpropscontroller
                 icon: icon-sitemap

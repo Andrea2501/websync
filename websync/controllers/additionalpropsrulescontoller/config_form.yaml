@@ -1,0 +1,10 @@
+name: AdditionalPropsRulesContoller
+form: $/tecnotrade/websync/models/additionalpropsrules/fields.yaml
+modelClass: Tecnotrade\Websync\Models\AdditionalPropsRules
+defaultRedirect: tecnotrade/websync/additionalpropsrulescontoller
+create:
+    redirect: 'tecnotrade/websync/additionalpropsrulescontoller/update/:id'
+    redirectClose: tecnotrade/websync/additionalpropsrulescontoller
+update:
+    redirect: tecnotrade/websync/additionalpropsrulescontoller
+    redirectClose: tecnotrade/websync/additionalpropsrulescontoller

@@ -1,0 +1,36 @@
+fields:
+    rule_name:
+        label: 'Nome Regola'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    description:
+        label: Description
+        size: ''
+        span: full
+        type: textarea
+    additionalpropsfields:
+        label: 'Seleziona Campi'
+        span: full
+        path: partial_fields.htm
+        type: partial
+    is_prop_name:
+        label: "E' la regola contente il nome della proprietà"
+        span: auto
+        type: checkbox
+    is_prop_value:
+        label: "E' la regola contenente il valore della proprietà"
+        span: auto
+        type: checkbox
+    is_product_code:
+        label: "E' il campo di relazione con il prodotto"
+        span: auto
+        type: checkbox
+        comment: 'Contiene il codice prodotto'
+    is_prop_order:
+        label: 'Is prop order'
+        span: auto
+        type: checkbox

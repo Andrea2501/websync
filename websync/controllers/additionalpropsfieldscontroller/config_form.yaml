@@ -1,0 +1,10 @@
+name: AdditionalPropsFieldsController
+form: $/tecnotrade/websync/models/additionalpropsfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\AdditionalPropsFields
+defaultRedirect: tecnotrade/websync/additionalpropsfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/additionalpropsfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/additionalpropsfieldscontroller
+update:
+    redirect: tecnotrade/websync/additionalpropsfieldscontroller
+    redirectClose: tecnotrade/websync/additionalpropsfieldscontroller

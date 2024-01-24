@@ -1,0 +1,13 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    order:
+        label: 'Order (posizione colonna in csv)'
+        span: auto
+        type: number

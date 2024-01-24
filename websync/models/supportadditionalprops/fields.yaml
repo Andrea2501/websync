@@ -1,0 +1,21 @@
+fields:
+    chiave:
+        label: Chiave
+        span: auto
+        type: textarea
+    valore:
+        label: Valore
+        span: auto
+        type: text
+    product_code:
+        label: 'Product code'
+        span: auto
+        type: text
+    october_product_id:
+        label: 'October product id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number
