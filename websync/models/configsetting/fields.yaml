@@ -37,7 +37,7 @@ fields:
             field: dropdown1
             condition: 'value[CSV]'
         type: text
-        comment: 'Inserisci i nomi dei file esatti, esempio: prodotti.csv'
+        comment: 'Inserisci il nome del file esatto, esempio: prodotti.csv'
     category_file_name:
         label: 'Category file name'
         span: left
@@ -48,7 +48,7 @@ fields:
             field: dropdown1
             condition: 'value[CSV]'
         type: text
-        comment: 'Inserisci i nomi dei file esatti, esempio: category.csv'
+        comment: 'Inserisci il nome dei file esatto, esempio: category.csv'
     brand_file_name:
         label: 'Brand file name'
         span: left
@@ -59,7 +59,18 @@ fields:
             field: dropdown1
             condition: 'value[CSV]'
         type: text
-        comment: 'Inserisci i nomi dei file esatti, esempio: brand.csv'
+        comment: 'Inserisci il nome del file esatto, esempio: brand.csv'
+    additional_props_file_name:
+        label: 'Additional properties file name'
+        span: left
+        dependsOn:
+            - dropdown1
+        trigger:
+            action: show
+            field: dropdown1
+            condition: 'value[CSV]'
+        type: text
+        comment: 'Inserisci il nomi del file esatto, esempio: additional_props.csv'    
     use_csv_number_position:
         label: 'Usa la posizione dei campi'
         span: left
