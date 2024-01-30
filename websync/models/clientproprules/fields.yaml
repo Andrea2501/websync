@@ -1,0 +1,55 @@
+fields:
+    rule_name:
+        label: 'Rule name'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    description:
+        label: Description
+        size: ''
+        span: full
+        type: textarea
+    propfieldsrules:
+        label: 'Seleziona Campi'
+        span: full
+        path: partial_fields.htm
+        type: partial
+    is_primary_key:
+        label: 'Is primary key'
+        span: auto
+        type: checkbox
+    is_property_group_code:
+        label: 'Is property group code'
+        span: auto
+        type: checkbox
+    is_prop_type:
+        label: 'Is prop type'
+        span: auto
+        type: checkbox
+    is_slug:
+        label: 'Is slug'
+        span: auto
+        type: checkbox
+    is_data_update:
+        label: 'Is data update'
+        span: auto
+        type: checkbox
+    is_measure_unit:
+        label: 'Is measure unit'
+        span: auto
+        type: checkbox
+    is_filter_type:
+        label: 'Is filter type'
+        span: auto
+        type: checkbox
+    is_use_for_variation:
+        label: 'Is use for variation'
+        span: auto
+        type: checkbox
+    is_type_of_property:
+        label: 'Is type of property'
+        span: auto
+        type: checkbox

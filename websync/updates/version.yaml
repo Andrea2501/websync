@@ -308,3 +308,198 @@ v1.0.101:
 v1.0.102:
     - 'Updated table tecnotrade_websync_clientadditionalpropsrules'
     - builder_table_update_tecnotrade_websync_clientadditionalpropsrules.php
+v1.0.103:
+    - 'Created table tecnotrade_websync_client_grouppropertiesfields'
+    - builder_table_create_tecnotrade_websync_client_grouppropertiesfields.php
+v1.0.104:
+    - 'Created table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_create_tecnotrade_websync_client_grouppropertyrules.php
+v1.0.105:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules.php
+v1.0.106:
+    - 'Created table tecnotrade_websync_grouppropertiesfields_grouppropertyrules'
+    - builder_table_create_tecnotrade_websync_grouppropertiesfields_grouppropertyrules.php
+v1.0.107:
+    - 'Updated table tecnotrade_websync_grouppropertiesfields_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_grouppropertiesfields_grouppropertyrules.php
+v1.0.108:
+    - 'Updated table tecnotrade_websync_grouppropertiesfields_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_grouppropertiesfields_grouppropertyrules_2.php
+v1.0.109:
+    - 'Updated table tecnotrade_websync_grouppropertiesfields_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_grouppropertiesfields_grouppropertyrules_3.php
+v1.0.110:
+    - 'Updated table tecnotrade_websync_grouppropertiesfields_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_grouppropertiesfields_grouppropertyrules_4.php
+v1.0.111:
+    - 'Created table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_create_tecnotrade_websync_syncro_table_property_groups.php
+v1.0.112:
+    - 'Updated table tecnotrade_websync_client_grouppropertiesfields'
+    - builder_table_update_tecnotrade_websync_client_grouppropertiesfields.php
+v1.0.113:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups.php
+v1.0.114:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups_2.php
+v1.0.115:
+    - 'Eseguo il seed della tabella Property Groups'
+    - tablepropertygroupfieldseeder.php
+v1.0.116:
+    - 'Eseguo il seed della tabella Property Groups'
+    - tablepropertygroupfieldseeder.php
+v1.0.117:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules_2.php
+v1.0.118:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups_3.php
+v1.0.119:
+    - 'Updated table tecnotrade_websync_syncro_table_additional_props_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_additional_props_fields_3.php
+v1.0.120:
+    - 'Updated table tecnotrade_websync_syncro_table_additional_props_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_additional_props_fields_4.php
+v1.0.121:
+    - 'Updated table tecnotrade_websync_syncro_table_additional_props_fields'
+    - builder_table_update_tecnotrade_websync_syncro_table_additional_props_fields_5.php
+v1.0.122:
+    - 'Seeder Tabella Additional Prperties'
+    - tableadditionalpropsfieldseeder.php
+v1.0.123:
+    - 'Created table tecnotrade_websync_propfields'
+    - builder_table_create_tecnotrade_websync_propfields.php
+v1.0.124:
+    - 'Created table tecnotrade_websync_proprules'
+    - builder_table_create_tecnotrade_websync_proprules.php
+v1.0.125:
+    - 'Created table tecnotrade_websync_propfields_proprules'
+    - builder_table_create_tecnotrade_websync_propfields_proprules.php
+v1.0.126:
+    - 'Updated table tecnotrade_websync_propfields_proprules'
+    - builder_table_update_tecnotrade_websync_propfields_proprules.php
+v1.0.127:
+    - 'Updated table tecnotrade_websync_proprules'
+    - builder_table_update_tecnotrade_websync_proprules.php
+v1.0.128:
+    - 'Updated table tecnotrade_websync_proprules'
+    - builder_table_update_tecnotrade_websync_proprules_2.php
+v1.0.129:
+    - 'Created table tecnotrade_websync_syncro_table_props'
+    - builder_table_create_tecnotrade_websync_syncro_table_props.php
+v1.0.130:
+    - 'Updated table tecnotrade_websync_syncro_table_props'
+    - builder_table_update_tecnotrade_websync_syncro_table_props.php
+v1.0.131:
+    - 'Updated table tecnotrade_websync_syncro_table_props'
+    - builder_table_update_tecnotrade_websync_syncro_table_props_2.php
+v1.0.132:
+    - 'Updated table tecnotrade_websync_syncro_table_props'
+    - builder_table_update_tecnotrade_websync_syncro_table_props_3.php
+v1.0.133:
+    - 'Updated table tecnotrade_websync_syncro_table_props'
+    - builder_table_update_tecnotrade_websync_syncro_table_props_4.php
+v1.0.134:
+    - 'Updated table tecnotrade_websync_proprules'
+    - builder_table_update_tecnotrade_websync_proprules_3.php
+v1.0.135:
+    - 'Seeder Property Table'
+    - tablepropertiesfieldseeder.php
+v1.0.136:
+    - 'Seeder Property Table Modificato'
+    - tablepropertiesfieldseeder.php
+v1.0.137:
+    - 'Seeder Property Table Modificato Di Nuovo'
+    - tablepropertiesfieldseeder.php
+v1.0.138:
+    - 'Created table tecnotrade_websync_group_props'
+    - builder_table_create_tecnotrade_websync_group_props.php
+v1.0.139:
+    - 'Created table tecnotrade_websync_properties'
+    - builder_table_create_tecnotrade_websync_properties.php
+v1.0.140:
+    - 'Created table tecnotrade_websync_property_property_group'
+    - builder_table_create_tecnotrade_websync_property_property_group.php
+v1.0.141:
+    - 'Updated table tecnotrade_websync_property_property_group'
+    - builder_table_update_tecnotrade_websync_property_property_group.php
+v1.0.142:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules_3.php
+v1.0.143:
+    - 'Updated table tecnotrade_websync_group_props'
+    - builder_table_update_tecnotrade_websync_group_props.php
+v1.0.144:
+    - 'Updated table tecnotrade_websync_group_props'
+    - builder_table_update_tecnotrade_websync_group_props_2.php
+v1.0.145:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules_4.php
+v1.0.146:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules_5.php
+v1.0.147:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups_4.php
+v1.0.148:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups_5.php
+v1.0.149:
+    - 'Modifica Seeder Table Property Group'
+    - tablepropertygroupfieldseeder.php
+v1.0.150:
+    - 'Updated table tecnotrade_websync_group_props'
+    - builder_table_update_tecnotrade_websync_group_props_3.php
+v1.0.151:
+    - 'Updated table tecnotrade_websync_syncro_table_property_groups'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_groups_6.php
+v1.0.152:
+    - 'Updated table tecnotrade_websync_group_props'
+    - builder_table_update_tecnotrade_websync_group_props_4.php
+v1.0.153:
+    - 'Updated table tecnotrade_websync_client_grouppropertyrules'
+    - builder_table_update_tecnotrade_websync_client_grouppropertyrules_6.php
+v1.0.154:
+    - 'Created table tecnotrade_websync_category_property_group'
+    - builder_table_create_tecnotrade_websync_category_property_group.php
+v1.0.155:
+    - 'Updated table tecnotrade_websync_products'
+    - builder_table_update_tecnotrade_websync_products_3.php
+v1.0.156:
+    - 'Modifica Seedere Support Product Table For Variants'
+    - tableproductfieldseeder.php
+v1.0.157:
+    - 'Created table tecnotrade_websync_client_propertyvaluesfields'
+    - builder_table_create_tecnotrade_websync_client_propertyvaluesfields.php
+v1.0.158:
+    - 'Created table tecnotrade_websync_clientpropvaluerules'
+    - builder_table_create_tecnotrade_websync_clientpropvaluerules.php
+v1.0.159:
+    - 'Created table tecnotrade_websync_client_propvaluefield_propvaluerule'
+    - builder_table_create_tecnotrade_websync_client_propvaluefield_propvaluerule.php
+v1.0.160:
+    - 'Updated table tecnotrade_websync_client_propvaluefield_propvaluerule'
+    - builder_table_update_tecnotrade_websync_client_propvaluefield_propvaluerule.php
+v1.0.161:
+    - 'Updated table tecnotrade_websync_client_propvaluefield_propvaluerule'
+    - builder_table_update_tecnotrade_websync_client_propvaluefield_propvaluerule_2.php
+v1.0.162:
+    - 'Updated table tecnotrade_websync_client_propvaluefield_propvaluerule'
+    - builder_table_update_tecnotrade_websync_client_propvaluefield_propvaluerule_3.php
+v1.0.163:
+    - 'Created table tecnotrade_websync_syncro_table_property'
+    - builder_table_create_tecnotrade_websync_syncro_table_property.php
+v1.0.164:
+    - 'Updated table tecnotrade_websync_syncro_table_property'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_values.php
+v1.0.165:
+    - 'Updated table tecnotrade_websync_syncro_table_property_values'
+    - builder_table_update_tecnotrade_websync_syncro_table_property_values_2.php
+v1.0.167:
+    - 'Seeder Table Property Values'
+    - tablepropertyvaluefieldseeder.php
+v1.0.168:
+    - 'Created table tecnotrade_websync_property_values'
+    - builder_table_create_tecnotrade_websync_property_values.php

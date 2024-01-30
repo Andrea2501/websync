@@ -1,0 +1,31 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        readOnly: 1
+        type: text
+    fieldtype:
+        label: 'Tipo Campo'
+        nameFrom: type
+        descriptionFrom: description
+        span: auto
+        readOnly: 1
+        type: relation
+    clientpropertygroupsrules:
+        label: 'Regola da associare'
+        nameFrom: label
+        descriptionFrom: description
+        span: auto
+        type: relation
+    is_primary_key:
+        label: 'Is primary key'
+        span: left
+        type: checkbox
+    is_slug:
+        label: 'Is slug'
+        span: left
+        type: checkbox
+    is_category_code:
+        label: 'Is category code'
+        span: auto
+        type: checkbox

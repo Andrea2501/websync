@@ -1,0 +1,21 @@
+fields:
+    category_code:
+        label: 'Category code'
+        span: auto
+        type: text
+    property_group_code:
+        label: 'Property group code'
+        span: auto
+        type: text
+    october_category_id:
+        label: 'October category id'
+        span: auto
+        type: number
+    october_property_group_id:
+        label: 'October property group id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number

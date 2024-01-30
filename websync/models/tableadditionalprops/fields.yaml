@@ -15,7 +15,15 @@ fields:
         descriptionFrom: description
         span: auto
         type: relation
-    is_relation_with_product_table:
-        label: "E' il campo di relazione con il product code"
-        span: right
+    is_primary_key:
+        label: 'Is primary key'
+        span: left
+        type: checkbox
+    is_product_code:
+        label: 'Is product code'
+        span: left
+        type: checkbox
+    is_data_update:
+        label: 'Is data update'
+        span: auto
         type: checkbox

@@ -1,0 +1,41 @@
+fields:
+    product_code:
+        label: 'Product code'
+        span: auto
+        type: text
+    parent_product_code:
+        label: 'Parent product code'
+        span: auto
+        type: text
+    property_code:
+        label: 'Property code'
+        span: auto
+        type: text
+    property_name:
+        label: 'Property name'
+        span: auto
+        type: text
+    property_index:
+        label: 'Property index'
+        span: auto
+        type: text
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number
+    property_october_id:
+        label: 'Property october id'
+        span: auto
+        type: number
+    product_october_id:
+        label: 'Product october id'
+        span: auto
+        type: number
+    product_variant_id:
+        label: 'Product variant id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number

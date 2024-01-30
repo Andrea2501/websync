@@ -46,6 +46,30 @@ navigation:
                 label: 'Regole Proprietà Addizionali'
                 url: tecnotrade/websync/additionalpropsrulescontoller
                 icon: icon-sitemap
+            side-menu-item10:
+                label: 'Campi Sorgente Property Groups'
+                url: tecnotrade/websync/clientgrouppropfieldscontroller
+                icon: icon-sitemap
+            side-menu-item11:
+                label: 'Regole Campi Sorgente Property Groups'
+                url: tecnotrade/websync/clientgroupproprulescontroller
+                icon: icon-sitemap
+            side-menu-item12:
+                label: 'Campi Sorgente Proprietà'
+                url: tecnotrade/websync/clientpropfieldscontroller
+                icon: icon-sitemap
+            side-menu-item13:
+                label: 'Regole Campi Sorgente Proprietà'
+                url: tecnotrade/websync/clientproprulescontroller
+                icon: icon-sitemap
+            side-menu-item14:
+                label: 'Campi Sorgente Valore Proprietà'
+                url: tecnotrade/websync/clientpropvaluesfieldscontroller
+                icon: icon-sitemap
+            side-menu-item15:
+                label: 'Regole Campi Sorgente Valore Proprietà'
+                url: tecnotrade/websync/clientpropvaluerulescontroller
+                icon: icon-sitemap
     main-menu-item2:
         label: 'WebSync Binding'
         url: /
@@ -67,6 +91,18 @@ navigation:
                 label: 'Table Product Additional Properties'
                 url: tecnotrade/websync/tableadditionalpropscontroller
                 icon: icon-sitemap
+            side-menu-item5:
+                label: 'Property Groups Table'
+                url: tecnotrade/websync/tablepropertygroupscontroller
+                icon: icon-sitemap
+            side-menu-item6:
+                label: 'Property table'
+                url: tecnotrade/websync/tablepropertyfieldscontroller
+                icon: icon-sitemap
+            side-menu-item7:
+                label: 'Property Values'
+                url: tecnotrade/websync/tablepropertyvaluescontroller
+                icon: icon-sitemap
     main-menu-item3:
         label: 'WebSync Support Tables'
         url: /
@@ -87,4 +123,24 @@ navigation:
             side-menu-item4:
                 label: 'Support Additional Properties'
                 url: tecnotrade/websync/supportadditionalpropscontroller
+                icon: icon-sitemap
+            side-menu-item5:
+                label: 'Support Property Groups'
+                url: tecnotrade/websync/supportpropertygroupscontroller
+                icon: icon-sitemap
+            side-menu-item6:
+                label: 'Support Properties'
+                url: tecnotrade/websync/supportpropertiescontroller
+                icon: icon-sitemap
+            side-menu-item7:
+                label: 'Support Property Property Groups'
+                url: tecnotrade/websync/supportpropertypropertygroupcontroller
+                icon: icon-sitemap
+            side-menu-item8:
+                label: 'Category Property Group Table'
+                url: tecnotrade/websync/categorypropertygroupcontroller
+                icon: icon-sitemap
+            side-menu-item9:
+                label: 'Support Property Values'
+                url: tecnotrade/websync/supportpropertyvaluescontroller
                 icon: icon-sitemap

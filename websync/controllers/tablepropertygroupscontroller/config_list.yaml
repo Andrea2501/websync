@@ -1,0 +1,12 @@
+list: $/tecnotrade/websync/models/tablepropertygroups/columns.yaml
+modelClass: Tecnotrade\Websync\Models\TablePropertyGroups
+title: TablePropertyGroupsController
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'tecnotrade/websync/tablepropertygroupscontroller/update/:id'

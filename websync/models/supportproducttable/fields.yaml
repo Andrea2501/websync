@@ -31,3 +31,11 @@ fields:
         label: 'Import status'
         span: auto
         type: number
+    codice_interno_padre:
+        label: 'Codice interno padre'
+        span: auto
+        type: text
+    october_prodotto_padre_id:
+        label: 'October prodotto padre id'
+        span: auto
+        type: number

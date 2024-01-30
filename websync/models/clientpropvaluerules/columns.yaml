@@ -1,0 +1,34 @@
+columns:
+    id:
+        label: id
+        type: number
+    rule_name:
+        label: rule_name
+        type: text
+    label:
+        label: label
+        type: text
+    is_data_update:
+        label: is_data_update
+        type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    is_product_code:
+        label: is_product_code
+        type: text
+    is_parent_product_code:
+        label: is_parent_product_code
+        type: text
+    is_property_code:
+        label: is_property_code
+        type: text
+    is_property_value:
+        label: is_property_value
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

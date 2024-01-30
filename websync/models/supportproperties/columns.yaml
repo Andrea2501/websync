@@ -1,0 +1,37 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: name
+        type: text
+    slug:
+        label: slug
+        type: text
+    internal_code:
+        label: internal_code
+        type: text
+    type:
+        label: type
+        type: text
+    unit:
+        label: unit
+        type: text
+    filter_type:
+        label: filter_type
+        type: text
+    use_for_variant:
+        label: use_for_variant
+        type: text
+    import_status:
+        label: import_status
+        type: number
+    october_id:
+        label: october_id
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

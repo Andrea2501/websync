@@ -1,0 +1,10 @@
+name: TablePropertyGroupsController
+form: $/tecnotrade/websync/models/tablepropertygroups/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TablePropertyGroups
+defaultRedirect: tecnotrade/websync/tablepropertygroupscontroller
+create:
+    redirect: 'tecnotrade/websync/tablepropertygroupscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tablepropertygroupscontroller
+update:
+    redirect: tecnotrade/websync/tablepropertygroupscontroller
+    redirectClose: tecnotrade/websync/tablepropertygroupscontroller

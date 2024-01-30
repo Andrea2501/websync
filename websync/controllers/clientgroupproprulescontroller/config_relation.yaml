@@ -1,0 +1,9 @@
+grouppropfields:
+    label: Aggiungi campo
+    view:
+        list: $/tecnotrade/websync/models/clientgrouppropfields/columns.yaml
+        toolbarButtons: add|remove|create|delete
+    manage:
+        form: $/tecnotrade/websync/models/clientgrouppropfields/fields.yaml
+        recordsPerPage: 10
+        showSearch: true

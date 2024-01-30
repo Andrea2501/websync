@@ -86,3 +86,9 @@ columns:
     visibility:
         label: visibility
         type: text
+    codice_interno_padre:
+        label: codice_interno_padre
+        type: text
+    october_prodotto_padre_id:
+        label: october_prodotto_padre_id
+        type: number

@@ -1,0 +1,28 @@
+columns:
+    id:
+        label: id
+        type: number
+    rule_name:
+        label: rule_name
+        type: text
+    label:
+        label: label
+        type: text
+    description:
+        label: description
+        type: text
+    is_slug:
+        label: is_slug
+        type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    is_data_update:
+        label: is_data_update
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

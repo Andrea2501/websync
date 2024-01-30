@@ -1,0 +1,45 @@
+fields:
+    id:
+        label: Id
+        span: auto
+        type: number
+    october_id_property_group:
+        label: 'October id property group'
+        span: auto
+        type: number
+    october_id_property:
+        label: 'October id property'
+        span: auto
+        type: number
+    use_for_variant:
+        label: 'Use for variant'
+        span: auto
+        type: checkbox
+    filter_type:
+        label: 'Filter type'
+        span: auto
+        type: text
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number
+    property_group_code:
+        label: 'Property group code'
+        span: auto
+        type: text
+    property_code:
+        label: 'Property code'
+        span: auto
+        type: text
+    created_at:
+        label: 'Created at'
+        span: auto
+        type: datepicker
+    updated_at:
+        label: 'Updated at'
+        span: auto
+        type: datepicker
+    sort_order:
+        label: 'Sort order'
+        span: auto
+        type: number

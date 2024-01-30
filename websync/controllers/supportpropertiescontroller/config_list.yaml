@@ -1,0 +1,12 @@
+list: $/tecnotrade/websync/models/supportproperties/columns.yaml
+modelClass: Tecnotrade\Websync\Models\SupportProperties
+title: SupportPropertiesController
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'tecnotrade/websync/supportpropertiescontroller/update/:id'

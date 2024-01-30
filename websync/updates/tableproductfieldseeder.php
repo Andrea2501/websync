@@ -21,6 +21,11 @@ class TableProductFieldSeeder extends Seeder
             'fieldtype_id'=>'2'
         ]);
         $field = ProductFields::create([
+            'field_name' => 'codice_interno_univoco_padre',
+            'is_primary_key'=>'0',
+            'fieldtype_id'=>'2'
+        ]);
+        $field = ProductFields::create([
             'field_name' => 'brand_code',
             'is_primary_key'=>'0',
             'fieldtype_id'=>'2'
@@ -77,7 +82,7 @@ class TableProductFieldSeeder extends Seeder
         $field = ProductFields::create([
             'field_name' => 'inventory_management_method',
             'is_primary_key'=>'0',
-            'fieldtype_id'=>'12'
+            'fieldtype_id'=>'2'
             
         ]);
         $field = ProductFields::create([

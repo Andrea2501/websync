@@ -1,0 +1,38 @@
+fields:
+    rule_name:
+        label: 'Rule name'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    clientpropvaluesfields:
+        label: 'Seleziona Campi'
+        span: full
+        path: partial_fields.htm
+        type: partial    
+    is_data_update:
+        label: 'Is data update'
+        span: auto
+        type: checkbox
+    is_primary_key:
+        label: 'Is primary key'
+        span: auto
+        type: checkbox
+    is_product_code:
+        label: 'Is product code'
+        span: auto
+        type: checkbox
+    is_parent_product_code:
+        label: 'Is parent product code'
+        span: auto
+        type: checkbox
+    is_property_code:
+        label: 'Is property code'
+        span: auto
+        type: checkbox
+    is_property_value:
+        label: 'Is property value'
+        span: auto
+        type: checkbox

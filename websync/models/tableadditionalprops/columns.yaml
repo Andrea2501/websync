@@ -5,9 +5,6 @@ columns:
     field_name:
         label: field_name
         type: text
-    is_relation_with_product_table:
-        label: is_relation_with_product_table
-        type: text
     clientadditonalpropsrules_id:
         label: clientadditonalpropsrules_id
         type: number
@@ -20,3 +17,12 @@ columns:
     updated_at:
         label: updated_at
         type: datetime
+    is_product_code:
+        label: is_product_code
+        type: text
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    is_data_update:
+        label: is_data_update
+        type: text

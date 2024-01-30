@@ -1,0 +1,10 @@
+name: TablePropertyFieldsController
+form: $/tecnotrade/websync/models/tablepropertyfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\TablePropertyFields
+defaultRedirect: tecnotrade/websync/tablepropertyfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/tablepropertyfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/tablepropertyfieldscontroller
+update:
+    redirect: tecnotrade/websync/tablepropertyfieldscontroller
+    redirectClose: tecnotrade/websync/tablepropertyfieldscontroller

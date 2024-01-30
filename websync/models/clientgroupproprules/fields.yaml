@@ -1,0 +1,30 @@
+fields:
+    rule_name:
+        label: 'Rule name'
+        span: auto
+        type: text
+    label:
+        label: Label
+        span: auto
+        type: text
+    description:
+        label: Description
+        span: auto
+        type: text
+    grouppropfields:
+        label: 'Seleziona Campi'
+        span: full
+        path: partial_fields.htm
+        type: partial
+    is_slug:
+        label: 'Is slug'
+        span: left
+        type: checkbox
+    is_primary_key:
+        label: 'Is primary key'
+        span: auto
+        type: checkbox
+    is_data_update:
+        label: 'Is data update'
+        span: auto
+        type: checkbox

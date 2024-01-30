@@ -1,0 +1,37 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        type: text
+    internal_code:
+        label: 'Internal code'
+        span: auto
+        type: text
+    type:
+        label: Type
+        span: auto
+        type: text
+    unit:
+        label: Unit
+        span: auto
+        type: text
+    filter_type:
+        label: 'Filter type'
+        span: auto
+        type: text
+    use_for_variant:
+        label: 'Use for variant'
+        span: auto
+        type: checkbox
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number

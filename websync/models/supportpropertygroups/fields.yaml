@@ -1,0 +1,33 @@
+fields:
+    name:
+        label: Name
+        span: auto
+        type: text
+    display_name:
+        label: 'Display name'
+        span: auto
+        type: text
+    unique_code:
+        label: 'Unique code'
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        type: text
+    description:
+        label: Description
+        span: auto
+        type: textarea
+    sort_order:
+        label: 'Sort order'
+        span: auto
+        type: number
+    october_id:
+        label: 'October id'
+        span: auto
+        type: number
+    import_status:
+        label: 'Import status'
+        span: auto
+        type: number

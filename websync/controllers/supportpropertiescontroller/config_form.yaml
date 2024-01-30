@@ -1,0 +1,10 @@
+name: SupportPropertiesController
+form: $/tecnotrade/websync/models/supportproperties/fields.yaml
+modelClass: Tecnotrade\Websync\Models\SupportProperties
+defaultRedirect: tecnotrade/websync/supportpropertiescontroller
+create:
+    redirect: 'tecnotrade/websync/supportpropertiescontroller/update/:id'
+    redirectClose: tecnotrade/websync/supportpropertiescontroller
+update:
+    redirect: tecnotrade/websync/supportpropertiescontroller
+    redirectClose: tecnotrade/websync/supportpropertiescontroller

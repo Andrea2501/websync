@@ -1,0 +1,10 @@
+name: CategoryPropertyGroupController
+form: $/tecnotrade/websync/models/categorypropertygroup/fields.yaml
+modelClass: Tecnotrade\Websync\Models\CategoryPropertyGroup
+defaultRedirect: tecnotrade/websync/categorypropertygroupcontroller
+create:
+    redirect: 'tecnotrade/websync/categorypropertygroupcontroller/update/:id'
+    redirectClose: tecnotrade/websync/categorypropertygroupcontroller
+update:
+    redirect: tecnotrade/websync/categorypropertygroupcontroller
+    redirectClose: tecnotrade/websync/categorypropertygroupcontroller

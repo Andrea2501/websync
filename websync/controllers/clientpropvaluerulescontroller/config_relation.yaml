@@ -1,0 +1,9 @@
+clientpropvaluesfields:
+    label: Aggiungi campo
+    view:
+        list: $/tecnotrade/websync/models/clientpropvaluesfields/columns.yaml
+        toolbarButtons: add|remove|create|delete
+    manage:
+        form: $/tecnotrade/websync/models/clientpropvaluesfields/fields.yaml
+        recordsPerPage: 10
+        showSearch: true

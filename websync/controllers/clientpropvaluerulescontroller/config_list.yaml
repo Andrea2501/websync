@@ -1,0 +1,12 @@
+list: $/tecnotrade/websync/models/clientpropvaluerules/columns.yaml
+modelClass: Tecnotrade\Websync\Models\ClientPropValueRules
+title: ClientPropValueRulesController
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'tecnotrade/websync/clientpropvaluerulescontroller/update/:id'

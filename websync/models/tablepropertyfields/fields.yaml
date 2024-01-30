@@ -1,0 +1,38 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        readOnly: 1
+        type: text
+    fieldtype:
+        label: 'Tipo Campo'
+        nameFrom: type
+        descriptionFrom: description
+        span: auto
+        readOnly: 1
+        type: relation
+    clientproprules:
+        label: 'Bind To Property Rules'
+        nameFrom: label
+        descriptionFrom: description
+        span: left
+        type: relation
+    is_relation_with_property_group:
+        label: "E' il campo di relazione con il gruppo di proprietà"
+        span: left
+        type: checkbox
+    is_primary_key:
+        label: 'Is primary key'
+        span: left
+        readOnly: 1
+        type: checkbox
+    is_slug:
+        label: 'Is slug'
+        span: left
+        type: checkbox
+    clientpropgrouprules:
+        label: 'Seleziona regola con il campo di relazione del gruppo di propietà'
+        nameFrom: label
+        descriptionFrom: description
+        span: left
+        type: relation

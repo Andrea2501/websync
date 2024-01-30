@@ -1,0 +1,40 @@
+columns:
+    id:
+        label: id
+        type: number
+    product_code:
+        label: product_code
+        type: text
+    parent_product_code:
+        label: parent_product_code
+        type: text
+    property_code:
+        label: property_code
+        type: text
+    property_name:
+        label: property_name
+        type: text
+    property_index:
+        label: property_index
+        type: text
+    october_id:
+        label: october_id
+        type: number
+    property_october_id:
+        label: property_october_id
+        type: number
+    product_october_id:
+        label: product_october_id
+        type: number
+    product_variant_id:
+        label: product_variant_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

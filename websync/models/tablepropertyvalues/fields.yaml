@@ -1,0 +1,41 @@
+fields:
+    field_name:
+        label: 'Field name'
+        span: auto
+        type: text
+    fieldtype:
+        label: 'Tipo Campo'
+        nameFrom: type
+        descriptionFrom: description
+        span: auto
+        type: relation
+    clientprovaluerules:
+        label: 'Regola da associare'
+        nameFrom: label
+        descriptionFrom: description
+        span: auto
+        type: relation
+    is_property_name:
+        label: 'Is property name'
+        span: left
+        type: checkbox
+    is_primary_key:
+        label: 'Is primary key'
+        span: left
+        type: checkbox
+    is_property_value:
+        label: 'Is property value'
+        span: left
+        type: checkbox
+    is_data_update:
+        label: 'Is data update'
+        span: left
+        type: checkbox
+    is_product_code:
+        label: 'Is product code'
+        span: left
+        type: checkbox
+    is_parent_product_code:
+        label: 'Is parent product code'
+        span: left
+        type: checkbox

@@ -1,0 +1,28 @@
+columns:
+    id:
+        label: id
+        type: number
+    field_name:
+        label: field_name
+        type: text
+    clientpropertygroupsrules_id:
+        label: client_grouppropertyrules_id
+        type: number
+    is_primary_key:
+        label: is_primary_key
+        type: text
+    fieldtype_id:
+        label: fieldtype_id
+        type: number
+    is_slug:
+        label: is_slug
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    is_category_code:
+        label: is_category_code
+        type: text

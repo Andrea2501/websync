@@ -1,0 +1,25 @@
+columns:
+    id:
+        label: id
+        type: number
+    category_code:
+        label: category_code
+        type: text
+    property_group_code:
+        label: property_group_code
+        type: text
+    october_category_id:
+        label: october_category_id
+        type: number
+    october_property_group_id:
+        label: october_property_group_id
+        type: number
+    import_status:
+        label: import_status
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

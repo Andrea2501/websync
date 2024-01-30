@@ -1,0 +1,10 @@
+name: ClientGroupPropFieldsController
+form: $/tecnotrade/websync/models/clientgrouppropfields/fields.yaml
+modelClass: Tecnotrade\Websync\Models\ClientGroupPropFields
+defaultRedirect: tecnotrade/websync/clientgrouppropfieldscontroller
+create:
+    redirect: 'tecnotrade/websync/clientgrouppropfieldscontroller/update/:id'
+    redirectClose: tecnotrade/websync/clientgrouppropfieldscontroller
+update:
+    redirect: tecnotrade/websync/clientgrouppropfieldscontroller
+    redirectClose: tecnotrade/websync/clientgrouppropfieldscontroller
